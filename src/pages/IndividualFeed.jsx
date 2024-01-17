@@ -1,11 +1,11 @@
-import React from 'react';
+import React from 'react'
 
-function IndividualFeed() {
+const IndividualFeed = () => {
   return (
     <div>
       <h1>IndividualFeed</h1>
     </div>
-  );
+  )
 }
 
-export default IndividualFeed;
+export default IndividualFeed
