@@ -87,12 +87,12 @@
     "import/resolver": {
       "node": {
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
-      },
+      }
       // "typescript": {}
     },
     "react": {
       "pragma": "React",
       "version": "detect"
     }
-  },
+  }
 }

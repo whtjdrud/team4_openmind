@@ -1,11 +1,11 @@
-import React from 'react';
+import React from 'react'
 
-function AnswerPage() {
+const AnswerPage = () => {
   return (
     <div>
       <h1>AnswerPage</h1>
     </div>
-  );
+  )
 }
 
-export default AnswerPage;
+export default AnswerPage

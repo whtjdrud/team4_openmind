@@ -1,11 +1,11 @@
-import React from 'react';
+import React from 'react'
 
-function QuestionList() {
+const QuestionList = () => {
   return (
     <div>
       <h1>QuestionList</h1>
     </div>
-  );
+  )
 }
 
-export default QuestionList;
+export default QuestionList
