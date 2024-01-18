@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, UserLayout, Profile, Text, ProfileImage, QuestionLayout, Question, SpeechBubble } from './StyledComponent'
-import MESSAGE_IMG from '../../../assets/img/Message.svg'
-import CAT from '../../../assets/img/Ellipse 1.svg'
+import MESSAGE_IMG from '../../../assets/images/Message.svg'
+import CAT from '../../../assets/images/Ellipse 1.svg'
 
 export const UserCard = ({ userImageUrl = `${CAT}`, userName = '아초는 고양이', messageCount = '999+' }) => {
   return (
