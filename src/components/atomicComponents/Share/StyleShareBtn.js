@@ -10,6 +10,7 @@ export const ShareBtnDiv = styled.div`
 export const ShareImg = styled.img`
   padding: 10px 10px;
   border-radius: 50%;
+  cursor: pointer;
 `
 export const ShareLinkImg = styled(ShareImg)`
   background-color: var(--Brown40, #542f1a);
