@@ -4,6 +4,7 @@ import AnswerPage from './pages/AnswerPage'
 import IndividualFeed from './pages/IndividualFeed'
 import HomePage from './pages/HomePage'
 import QuestionList from './pages/QuestionList'
+<<<<<<< HEAD
 import GlobalStyle from './style/GlobalStyle'
 
 const App = () => {
@@ -19,6 +20,19 @@ const App = () => {
         </Routes>
       </Router>
     </>
+=======
+
+const App = () => {
+  return (
+    <Router>
+      <Routes>
+        <Route path='/post/:id/answer' element={<AnswerPage />} />
+        <Route path='/post/:id' element={<IndividualFeed />} />
+        <Route path='/list' element={<QuestionList />} />
+        <Route path='/' element={<HomePage />} />
+      </Routes>
+    </Router>
+>>>>>>> 83becf1 ([FIX] 일부파일 수정)
   )
 }
 
