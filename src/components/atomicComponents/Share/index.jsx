@@ -1,4 +1,3 @@
-import React from 'react'
 import { ShareBtnDiv, ShareLinkImg, ShareFaceBookImg, ShareKakaoImg } from './StyleShareBtn'
 import LinkSvg from '../../../assets/images/whitelink.svg'
 import FacebookSvg from '../../../assets/images/whitefacebook.svg'
