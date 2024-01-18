@@ -8,14 +8,17 @@ import GlobalStyle from './style/GlobalStyle'
 
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path='/post/:id/answer' element={<AnswerPage />} />
-        <Route path='/post/:id' element={<IndividualFeed />} />
-        <Route path='/list' element={<QuestionList />} />
-        <Route path='/' element={<HomePage />} />
-      </Routes>
-    </Router>
+    <>
+      <GlobalStyle />
+      <Router>
+        <Routes>
+          <Route path='/post/:id/answer' element={<AnswerPage />} />
+          <Route path='/post/:id' element={<IndividualFeed />} />
+          <Route path='/list' element={<QuestionList />} />
+          <Route path='/' element={<HomePage />} />
+        </Routes>
+      </Router>
+    </>
   )
 }
 
