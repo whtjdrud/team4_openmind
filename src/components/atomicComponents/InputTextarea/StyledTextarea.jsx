@@ -2,8 +2,8 @@ import styled from 'styled-components'
 
 const StyledTextarea = styled.textarea`
   width: 100%;
-  height: 150px;
-  padding: 10px;
+  height: 100%;
+  padding: 16px;
   color: var(--Grayscale40, #818181);
   border: none;
   outline: none;
