@@ -1,5 +1,19 @@
 import React from 'react'
+import { CardLayout } from './styledCard'
+import IconsComponent from './Icons'
+import QuestionComponent from './Question'
+import ReplyComponent from './Reply'
+import ButtonsComponent from './Buttons'
 
-export const FeedCard = () => {
-  return <div>text</div>
+const FeedCard = () => {
+  return (
+    <CardLayout>
+      <IconsComponent />
+      <QuestionComponent />
+      <ReplyComponent />
+      <ButtonsComponent />
+    </CardLayout>
+  )
 }
+
+export default FeedCard
