@@ -8,7 +8,13 @@ export const MainPageDiv = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  @media only screen and (max-width: 767px) {
+    background-image: none;
+    background-color: var(--Grayscale-20, #f9f9f9);
+    // background-color: red;
+  }
 `
+
 export const MainDiv = styled.div`
   width: 100%;
   display: flex;
@@ -42,6 +48,7 @@ export const LogoImg = styled.img`
     order: 1;
   }
 `
+
 export const Inputdiv = styled.div`
   width: 40rem;
   height: 17.2rem;
@@ -58,3 +65,22 @@ export const Inputdiv = styled.div`
     order: 3;
   }
 `
+
+export const MobileImgDiv = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+export const MobileImg = styled.img`
+  display: none;
+  @media only screen and (max-width: 767px) {
+    display: block;
+    width: 375px;
+    height: 226px;
+  }
+`
+// display: flex;
+// justify-content: center;
+// align-items: center;
