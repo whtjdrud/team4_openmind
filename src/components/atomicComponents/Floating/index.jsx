@@ -25,6 +25,3 @@ const FloatingBtn = () => {
   return <StyleFloatingBtn width={width}>{buttonText}</StyleFloatingBtn>
 }
 export default FloatingBtn
-
-// 버튼 두개로 만들어서 조건부로 화면 미디어쿼리로 화면 줄어들면 하나로 보이기
-// 클래스를 다르게 만들어서 컴퓨터에서는 큰거로 보이고 핸드폰에서는 작은거로 보이게 하기
