@@ -1,16 +1,13 @@
 import styled from 'styled-components'
 import HomeBackImg from '../assets/images/HomeBackImg.png'
 
-export const MainPageDiv = styled.body`
+export const MainPageDiv = styled.div`
   width: 100vw;
   height: 100vh; // viewport 높이로 설정
   background-image: url(${HomeBackImg});
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  @media only screen and (max-width: 767px) {
-    // position: relative;
-  }
 `
 export const MainDiv = styled.div`
   width: 100%;
@@ -19,6 +16,10 @@ export const MainDiv = styled.div`
   align-items: center;
   padding-top: 6rem;
   gap: 5rem;
+  @media only screen and (max-width: 767px) {
+    padding-top: 5rem;
+    gap: 3rem;
+  }
 `
 
 export const ButtonDiv = styled.div`
@@ -35,6 +36,7 @@ export const ButtonDiv = styled.div`
 
 export const LogoImg = styled.img`
   width: 46rem;
+  padding-top: 4rem;
   @media only screen and (max-width: 767px) {
     width: 25rem;
     order: 1;
