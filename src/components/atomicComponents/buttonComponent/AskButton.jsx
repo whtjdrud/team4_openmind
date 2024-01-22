@@ -5,7 +5,6 @@ import ARROW_WHITE_IMG from '../../../assets/images/arrow-right-white.svg'
 export const AskButton = ({ children, buttonOff }) => {
   return (
     <AskStyledButton disabled={buttonOff}>
-      <Icon src={ARROW_WHITE_IMG} />
       <Text>{children}</Text>
       <Icon src={ARROW_WHITE_IMG} />
     </AskStyledButton>

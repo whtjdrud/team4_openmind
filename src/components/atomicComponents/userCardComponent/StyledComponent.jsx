@@ -2,8 +2,8 @@ import styled from 'styled-components'
 
 const Box = styled.div`
   display: flex;
-  width: 220px;
-  height: 187px;
+  width: 100%;
+  height: 100%;
   padding: 20px;
   flex-direction: column;
   justify-content: space-between;
@@ -33,13 +33,13 @@ const Text = styled.span`
     'clig' off,
     'liga' off;
   font-family: Actor;
-  font-size: 20px;
+  font-size: 2rem;
   font-style: normal;
   font-weight: 400;
   line-height: 125%;
 
   @media only screen and (max-width: 376px) {
-    font-size: 18px;
+    font-size: 1.8rem;
     line-height: 133.333%;
   }
 `
@@ -72,13 +72,13 @@ const QuestionLayout = styled.div`
       'clig' off,
       'liga' off;
     font-family: Pretendard;
-    font-size: 16px;
+    font-size: 1.6rem;
     font-style: normal;
     font-weight: 400;
     line-height: 137.5%;
 
     @media only screen and (max-width: 376px) {
-      font-size: 14px;
+      font-size: 1.4rem;
       line-height: 128.571%;
     }
   }
