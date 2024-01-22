@@ -23,7 +23,7 @@ export const Text = styled.span`
     'clig' off,
     'liga' off;
   font-family: Actor;
-  font-size: 18px;
+  font-size: 1.8rem;
   font-style: normal;
   font-weight: 400;
   line-height: 133.333%;
@@ -47,7 +47,7 @@ export const Badge = styled.div`
   ${Text} {
     color: var(--Brown-40, #542f1a);
     font-family: Pretendard;
-    font-size: 14px;
+    font-size: 1.4rem;
     font-weight: 500;
     line-height: 128.571%;
   }
@@ -76,7 +76,7 @@ export const Time = styled.span`
   gap: 8px;
   color: var(--Grayscale-40, #818181);
   font-family: Pretendard;
-  font-size: 14px;
+  font-size: 1.4rem;
   font-weight: 500;
   line-height: 128.571%;
 `
@@ -84,7 +84,7 @@ export const Question = styled(Text)`
   align-self: stretch;
 
   @media only screen and (max-width: 376px) {
-    font-size: 16px
+    font-size: 1.6rem;
     line-height: 137.5%;
   }
 `
@@ -126,7 +126,7 @@ export const UserBox = styled.div`
   ${Text} {
     align-self: stretch;
     font-family: Pretendard;
-    font-size: 16px;
+    font-size: 1.6rem;
     line-height: 137.5%;
   }
 `
@@ -151,7 +151,7 @@ export const NameFrag = styled.div`
 `
 export const UserName = styled(Text)`
 @media only screen and (max-width: 376px) {
-    font-size: 14px
+    font-size: 1.4rem
     line-height: 128.571%;
   }
 `
@@ -185,7 +185,7 @@ export const Button = styled.div`
   ${Text} {
     color: var(--Grayscale-40, #818181);
     font-family: Pretendard;
-    font-size: 14px;
+    font-size: 1.4rem;
     font-weight: 500;
     line-height: 128.571%;
   }
