@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
+import { Form, TextAreaInput, Text, Button } from './styledTextArea'
 
 const API_BASE_URL = 'https://openmind-api.vercel.app/3-4/'
 
@@ -34,9 +34,23 @@ export const TextArea = ({ questionId }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type='text' name='content' value={values.content} onChange={handleChange} />
-      <button type='submit'>답변하기</button>
-    </form>
+    <Form onSubmit={handleSubmit}>
+      <TextAreaInput
+        type='text'
+        name='content'
+        value={values.content}
+        onChange={handleChange}
+        placeholder='답변을 입력해주세요.'
+      />
+      {values.content ? (
+        <Button type='submit'>
+          <Text>답변하기</Text>
+        </Button>
+      ) : (
+        <Button type='submit' disabled>
+          <Text>답변하기</Text>
+        </Button>
+      )}
+    </Form>
   )
 }

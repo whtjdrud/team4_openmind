@@ -1,8 +1,33 @@
-import React from 'react'
-import { Icons, Badge, Text, More, BadgeWaited } from './styledCard'
+import React, { useState, useEffect } from 'react'
+import { Icons, Badge, Text, More, BadgeWaited, OptionsContainer } from './styledCard'
 import MORE_IMG from '../../../assets/images/More.svg'
 
-const IconsComponent = ({ isAnswered }) => {
+const API_BASE_URL = 'https://openmind-api.vercel.app/3-4/'
+
+const Options = ({ answerId }) => {
+  const [isdelete, setIsDelete] = useState(false)
+  const handleClick = async () => {
+    const deleteRequest = await fetch(`${API_BASE_URL}answers/${answerId}/`, {
+      method: 'DELETE',
+    })
+    console.log(deleteRequest.status)
+  }
+
+  return (
+    <OptionsContainer onClick={handleClick}>
+      <Text>삭제하기</Text>
+    </OptionsContainer>
+  )
+}
+
+const IconsComponent = ({ isAnswered, answerId }) => {
+  const [more, setMore] = useState(false)
+  useEffect(() => {
+    setMore(false)
+  }, [])
+  const handleClick = () => {
+    setMore(!more)
+  }
   return (
     <Icons>
       {isAnswered ? (
@@ -15,7 +40,8 @@ const IconsComponent = ({ isAnswered }) => {
         </BadgeWaited>
       )}
 
-      <More src={MORE_IMG} />
+      <More src={MORE_IMG} onClick={handleClick} />
+      {more && <Options answerId={answerId} />}
     </Icons>
   )
 }

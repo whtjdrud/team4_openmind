@@ -33,6 +33,7 @@ export const Icons = styled.div`
   justify-content: space-between;
   align-items: center;
   align-self: stretch;
+  position: relative;
 `
 export const Badge = styled.div`
   display: flex;
@@ -188,5 +189,28 @@ export const Button = styled.div`
     font-size: 1.4rem;
     font-weight: 500;
     line-height: 128.571%;
+  }
+`
+export const OptionsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 0.9rem;
+  position: absolute;
+  top: 2.5rem;
+  right: 0.3rem;
+
+  &:hover {
+    background-color: #dbdbdb;
+  }
+
+  ${Text} {
+    align-self: stretch;
+    font-family: Pretendard;
+    font-size: 1.3rem;
+    line-height: 137.5%;
+    padding: 0.5rem 0.5rem;
   }
 `

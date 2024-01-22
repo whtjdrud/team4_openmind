@@ -10,7 +10,7 @@ const FeedCard = ({ question, id, like, dislike, answer }) => {
   const [isAnswered, setIsAnswered] = useState(false)
   return (
     <CardLayout>
-      <IconsComponent isAsnwered={isAnswered} />
+      <IconsComponent isAnswered={isAnswered} answerId={answer && answer.id} />
       <QuestionComponent question={question} />
       {answer === null ? <FeedCardReply questionId={id} /> : <ReplyComponent answer={answer.content} />}
       <ButtonsComponent like={like} dislike={dislike} />
