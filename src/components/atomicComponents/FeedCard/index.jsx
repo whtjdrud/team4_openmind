@@ -18,24 +18,24 @@ const FeedCard = ({ question, id, like, dislike, answer }) => {
   )
 }
 
-const FeedCards = () => {
-  const API_BASE_URL = 'https://openmind-api.vercel.app/3-4/subjects/'
+const FeedCards = ({ id }) => {
   const [feeds, setFeeds] = useState([])
+  const API_BASE_URL = 'https://openmind-api.vercel.app/3-4/subjects/'
 
-  const getQuestions = async (id) => {
-    const question = await fetch(`${API_BASE_URL}${id ? `${id}/questions/` : ''}`)
+  const getQuestions = async (subjectId) => {
+    const question = await fetch(`${API_BASE_URL}${id ? `${subjectId}/questions/` : ''}`)
     return question.json()
   }
 
-  const getQuestionFnc = async (id) => {
-    const { results } = await getQuestions(id)
-    console.log(getQuestions(id))
-    console.log(results)
+  const getQuestionFnc = async (value) => {
+    const { results } = await getQuestions(value)
+    console.log(getQuestions(value))
+    // console.log(results)
     setFeeds(results)
   }
 
   useEffect(() => {
-    getQuestionFnc(2400)
+    getQuestionFnc(id)
   }, [])
 
   return feeds.map((feed) => (
