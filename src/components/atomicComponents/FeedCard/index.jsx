@@ -4,7 +4,7 @@ import IconsComponent from './Icons'
 import QuestionComponent from './Question'
 import ReplyComponent from './Reply'
 import ButtonsComponent from './Buttons'
-import FeedCardReply from '../FeedCardReply'
+import FeedCardEmpty from '../FeedCardEmpty'
 
 const FeedCard = ({ question, id, like, dislike, answer }) => {
   const [isAnswered, setIsAnswered] = useState(false)
@@ -12,7 +12,7 @@ const FeedCard = ({ question, id, like, dislike, answer }) => {
     <CardLayout>
       <IconsComponent isAnswered={isAnswered} answerId={answer && answer.id} />
       <QuestionComponent question={question} />
-      {answer === null ? <FeedCardReply questionId={id} /> : <ReplyComponent answer={answer.content} />}
+      {answer === null ? <FeedCardEmpty questionId={id} /> : <ReplyComponent answer={answer.content} />}
       <ButtonsComponent like={like} dislike={dislike} />
     </CardLayout>
   )

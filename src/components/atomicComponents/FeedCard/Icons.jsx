@@ -5,7 +5,6 @@ import MORE_IMG from '../../../assets/images/More.svg'
 const API_BASE_URL = 'https://openmind-api.vercel.app/3-4/'
 
 const Options = ({ answerId }) => {
-  const [isdelete, setIsDelete] = useState(false)
   const handleClick = async () => {
     const deleteRequest = await fetch(`${API_BASE_URL}answers/${answerId}/`, {
       method: 'DELETE',

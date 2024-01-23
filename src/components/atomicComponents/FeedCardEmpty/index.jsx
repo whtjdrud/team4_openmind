@@ -1,7 +1,7 @@
 import { TextArea } from './textArea'
 
-const FeedCardReply = ({ questionId }) => {
+const FeedCardEmpty = ({ questionId }) => {
   return <TextArea questionId={questionId} />
 }
 
-export default FeedCardReply
+export default FeedCardEmpty
