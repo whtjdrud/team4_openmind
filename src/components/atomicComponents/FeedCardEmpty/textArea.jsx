@@ -29,7 +29,6 @@ export const TextArea = ({ questionId }) => {
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault()
     postAnswer(questionId)
   }
 

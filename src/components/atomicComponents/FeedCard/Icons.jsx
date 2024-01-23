@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Icons, Badge, Text, More, BadgeWaited, OptionsContainer } from './styledCard'
+import { Icons, Badge, Text, More, BadgeWaited, OptionsContainer, Button } from './styledCard'
 import MORE_IMG from '../../../assets/images/More.svg'
 
 const API_BASE_URL = 'https://openmind-api.vercel.app/3-4/'
 
 const Options = ({ answerId }) => {
-  const handleClick = async () => {
+  const handleSubmit = async () => {
     const deleteRequest = await fetch(`${API_BASE_URL}answers/${answerId}/`, {
       method: 'DELETE',
     })
@@ -13,8 +13,8 @@ const Options = ({ answerId }) => {
   }
 
   return (
-    <OptionsContainer onClick={handleClick}>
-      <Text>삭제하기</Text>
+    <OptionsContainer onSubmit={handleSubmit}>
+      <Button type='submit'>삭제하기</Button>
     </OptionsContainer>
   )
 }

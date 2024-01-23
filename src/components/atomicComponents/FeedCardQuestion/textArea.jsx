@@ -26,7 +26,6 @@ export const TextArea = () => {
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault()
     postQuestions(2400)
   }
 

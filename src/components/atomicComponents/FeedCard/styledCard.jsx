@@ -178,7 +178,7 @@ export const Thumb = styled.img`
   height: 16px;
   color: #818181;
 `
-export const Button = styled.div`
+export const Button = styled.button`
   display: flex;
   align-items: center;
   gap: 6px;
@@ -191,7 +191,7 @@ export const Button = styled.div`
     line-height: 128.571%;
   }
 `
-export const OptionsContainer = styled.div`
+export const OptionsContainer = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -206,10 +206,10 @@ export const OptionsContainer = styled.div`
     background-color: #dbdbdb;
   }
 
-  ${Text} {
+  ${Button} {
     align-self: stretch;
     font-family: Pretendard;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     line-height: 137.5%;
     padding: 0.5rem 0.5rem;
   }
