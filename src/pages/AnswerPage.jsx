@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom'
 import React from 'react'
-import { AnswerPageComponent } from '../components/moduleComponents/AnswerPageComponents'
+import { AskPageComponent } from '../components/moduleComponents/AskPageComponents'
 
 const AnswerPage = () => {
   const { id } = useParams()
-  return <AnswerPageComponent id={id} />
+  return <AskPageComponent id={id} />
 }
 
 export default AnswerPage

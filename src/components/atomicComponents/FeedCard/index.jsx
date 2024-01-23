@@ -6,19 +6,20 @@ import ReplyComponent from './Reply'
 import ButtonsComponent from './Buttons'
 import FeedCardEmpty from '../FeedCardEmpty'
 
-const FeedCard = ({ question, id, like, dislike, answer }) => {
+const FeedCard = ({ question, id, like, dislike, answer, isAskPage }) => {
   const [isAnswered, setIsAnswered] = useState(false)
   return (
     <CardLayout>
       <IconsComponent isAnswered={isAnswered} answerId={answer && answer.id} />
       <QuestionComponent question={question} />
-      {answer === null ? <FeedCardEmpty questionId={id} /> : <ReplyComponent answer={answer.content} />}
+      {isAskPage && answer && <ReplyComponent answer={answer.content} />}
+      {isAskPage || (answer ? <ReplyComponent answer={answer.content} /> : <FeedCardEmpty questionId={id} />)}
       <ButtonsComponent like={like} dislike={dislike} />
     </CardLayout>
   )
 }
 
-const FeedCards = ({ id }) => {
+const FeedCards = ({ id, isAskPage }) => {
   const [feeds, setFeeds] = useState([])
   const API_BASE_URL = 'https://openmind-api.vercel.app/3-4/subjects/'
 
@@ -46,8 +47,13 @@ const FeedCards = ({ id }) => {
       question={feed.content}
       like={feed.like}
       dislike={feed.dislike}
+      isAskPage={isAskPage}
     />
   ))
+}
+
+FeedCards.defaultProps = {
+  isAskPage: false,
 }
 
 export default FeedCards
