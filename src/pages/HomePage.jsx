@@ -5,6 +5,7 @@ import { MainPageDiv, MainDiv, ButtonDiv, LogoImg, Inputdiv, LoginText, MobileIm
 import InputField from '../components/atomicComponents/InputField/index'
 import HomeBackImg from '../assets/images/HomeBackImg.png'
 import { useState } from 'react'
+import axios from 'axios'
 
 const HomePage = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -18,15 +19,12 @@ const HomePage = () => {
         const response = await axios.post(baseUrl, {
           name: inputValue,
         })
-
         // 응답으로 받은 ID 값을 localStorage에 저장
         localStorage.setItem('userId', response.data.id)
-
         console.log(`환영합니다, ${inputValue}님`)
       } else {
         console.log(`로그아웃 되었습니다.`)
       }
-
       setIsLoggedIn(!isLoggedIn)
     } catch (error) {
       console.error('Error during login:', error)
