@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Button = styled.button`
   all: unset;
-  color: ${(props) => (props.hated ? '#000000' : '#818181')};
+  color: ${(props) => (props.hated ? 'var(--Grayscale60)' : 'var(--Grayscale40)')};
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;

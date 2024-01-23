@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Button, Div, DropdownMenu } from './StyledDropdown'
-import { ReactComponent as ArrowUp } from '../../../assets/images/ArrowUp.svg'
-import { ReactComponent as ArrowDown } from '../../../assets/images/ArrowDown.svg'
+import ArrowUp from '../../../assets/images/ArrowUp.svg'
+import ArrowDown from '../../../assets/images/ArrowDown.svg'
 
 const Dropdown = () => {
   const [selectedItem, setSelectedItem] = useState(null)
@@ -20,7 +20,7 @@ const Dropdown = () => {
     <div>
       <Button onClick={toggleDropdown} isOpen={isDropdownOpen}>
         <p>{(selectedItem && selectedItem) || '이름순'}</p>
-        <p>{isDropdownOpen ? <ArrowUp /> : <ArrowDown />}</p>
+        <img src={isDropdownOpen ? ArrowUp : ArrowDown} alt='화살표 이미지' />
       </Button>
 
       {isDropdownOpen && (

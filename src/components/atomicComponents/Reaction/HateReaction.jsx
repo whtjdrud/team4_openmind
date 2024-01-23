@@ -4,11 +4,11 @@ import { ReactComponent as ThumbsDown } from '../../../assets/images/ThumbsDown.
 
 const HateReaction = () => {
   const [hated, setHated] = useState(false)
-  const [currentColor, setCurrentColor] = useState('#818181')
+  const [currentColor, setCurrentColor] = useState('var(--Grayscale40)')
 
   const handleHateClick = () => {
     setHated(!hated)
-    setCurrentColor(currentColor === '#818181' ? '#000000' : '#818181')
+    setCurrentColor(currentColor === 'var(--Grayscale40)' ? 'var(--Grayscale60)' : 'var(--Grayscale40)')
   }
 
   return (
