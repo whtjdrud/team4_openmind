@@ -1,10 +1,13 @@
 import React from 'react'
+import ListHeader from '../components/moduleComponents/ListHeader'
+import ListSection from '../components/moduleComponents/ListSection'
 
 const QuestionList = () => {
   return (
-    <div>
-      <h1>QuestionList</h1>
-    </div>
+    <>
+      <ListHeader />
+      <ListSection />
+    </>
   )
 }
 
