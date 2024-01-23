@@ -23,7 +23,7 @@ export const MainDiv = styled.div`
   padding-top: 6rem;
   gap: 5rem;
   @media only screen and (max-width: 767px) {
-    padding-top: 5rem;
+    padding-top: 4rem;
     gap: 3rem;
   }
 `
@@ -51,7 +51,7 @@ export const LogoImg = styled.img`
 
 export const Inputdiv = styled.div`
   width: 40rem;
-  height: 17.2rem;
+  height: 23rem;
   padding: 3.2rem;
   display: flex;
   flex-direction: column;
@@ -60,10 +60,19 @@ export const Inputdiv = styled.div`
   border-radius: 1.6rem;
   @media only screen and (max-width: 767px) {
     width: 30rem;
-    height: 15rem;
+    height: 22rem;
     padding: 2.4rem;
     order: 3;
   }
+`
+
+export const LoginText = styled.p`
+  width: 100%;
+  height: 4.59rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
 `
 
 export const MobileImgDiv = styled.div`
@@ -77,10 +86,7 @@ export const MobileImg = styled.img`
   display: none;
   @media only screen and (max-width: 767px) {
     display: block;
-    width: 375px;
-    height: 226px;
+    width: 37.5rem;
+    height: 16.2rem;
   }
 `
-// display: flex;
-// justify-content: center;
-// align-items: center;

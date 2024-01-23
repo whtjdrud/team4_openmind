@@ -15,8 +15,8 @@ const FeedCard = () => {
   }
 
   const getQuestionFnc = async (id) => {
-    // const { name } = getQuestions(id)
-    // console.log(name)
+    const { name } = getQuestions(id)
+    console.log(name)
     console.log(getQuestions())
   }
 
