@@ -6,6 +6,7 @@ import InputField from '../components/atomicComponents/InputField/index'
 import HomeBackImg from '../assets/images/HomeBackImg.png'
 import { useState } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 const HomePage = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -44,7 +45,9 @@ const HomePage = () => {
     <MainPageDiv>
       <MainDiv>
         <ButtonDiv>
-          <ReplyButton onClick={onclick}>질문하러 가기</ReplyButton>
+          <Link to='/list'>
+            <ReplyButton>질문하러 가기</ReplyButton>
+          </Link>
         </ButtonDiv>
         <LogoImg src={mainLogo} alt='mainLogo' />
         <Inputdiv>
