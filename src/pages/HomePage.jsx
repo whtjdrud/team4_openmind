@@ -10,33 +10,33 @@ const HomePage = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [inputValue, setInputValue] = useState('')
 
-  // const baseUrl = 'https://openmind-api.vercel.app/3-4/subjects/'
-  // const handleLoginToggle = async () => {
-  //   try {
-  //     if (!isLoggedIn) {
-  //       // 로그인 상태가 아닐 때 POST 요청을 보내고 응답을 받음
-  //       const response = await axios.post(baseUrl, {
-  //         name: inputValue,
-  //       })
+  const baseUrl = 'https://openmind-api.vercel.app/3-4/subjects/'
+  const handleLoginToggle = async () => {
+    try {
+      if (!isLoggedIn) {
+        // 로그인 상태가 아닐 때 POST 요청을 보내고 응답을 받음
+        const response = await axios.post(baseUrl, {
+          name: inputValue,
+        })
 
-  //       // 응답으로 받은 ID 값을 localStorage에 저장
-  //       localStorage.setItem('userId', response.data.id)
+        // 응답으로 받은 ID 값을 localStorage에 저장
+        localStorage.setItem('userId', response.data.id)
 
-  //       console.log(`환영합니다, ${inputValue}님`)
-  //     } else {
-  //       console.log(`로그아웃 되었습니다.`)
-  //     }
+        console.log(`환영합니다, ${inputValue}님`)
+      } else {
+        console.log(`로그아웃 되었습니다.`)
+      }
 
-  //     setIsLoggedIn(!isLoggedIn)
-  //   } catch (error) {
-  //     console.error('Error during login:', error)
-  //     throw error
-  //   }
-  // }
-
-  const handleLoginToggle = () => {
-    setIsLoggedIn(!isLoggedIn)
+      setIsLoggedIn(!isLoggedIn)
+    } catch (error) {
+      console.error('Error during login:', error)
+      throw error
+    }
   }
+
+  // const handleLoginToggle = () => {
+  //   setIsLoggedIn(!isLoggedIn)
+  // }
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value) // 입력값을 inputValue 상태에 설정
