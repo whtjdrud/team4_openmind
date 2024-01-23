@@ -19,14 +19,10 @@ const ListSection = () => {
       const headers = {
         accept: 'application/json',
       }
-      try {
-        const response = await axios.get(url, { params, headers })
-        console.log(response)
-        setUserCards(response.data.results)
-        setCount(response.data.count)
-      } catch (error) {
-        console.error('Error fetching user cards:', error)
-      }
+
+      const response = await axios.get(url, { params, headers })
+      setUserCards(response.data.results)
+      setCount(response.data.count)
     }
     fetchUserCards()
   }, [currentPage])
