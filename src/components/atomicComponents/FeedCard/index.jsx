@@ -8,7 +8,6 @@ import FeedCardEmpty from '../FeedCardEmpty'
 
 const FeedCard = ({ question, id, like, dislike, answer, isAskPage }) => {
   const [isAnswered, setIsAnswered] = useState(false)
-  console.log(isAskPage)
   return (
     <CardLayout>
       <IconsComponent isAnswered={isAnswered} answerId={answer && answer.id} />
