@@ -1,11 +1,8 @@
-import mainLogo from '../assets/images/mainLogo.svg'
-import { ReplyButton } from '../components/atomicComponents/buttonComponent/ReplyButton'
-import { AskButton } from '../components/atomicComponents/buttonComponent/AskButton'
-import { MainPageDiv, MainDiv, ButtonDiv, LogoImg, Inputdiv, LoginText, MobileImgDiv, MobileImg } from './HomePageStyle'
-import InputField from '../components/atomicComponents/InputField/index'
-import HomeBackImg from '../assets/images/HomeBackImg.png'
+import { MainPageDiv, MobileImgDiv, MobileImg } from './HomePageStyle'
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import HomeBackImg from '../assets/images/HomeBackImg.png'
+import LoginHeader from '../components/moduleComponents/LoginHeader/index'
+import LoginMain from '../components/moduleComponents/LoginMain/index'
 
 const HomePage = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -56,25 +53,16 @@ const HomePage = () => {
   const handleInputChange = (event) => {
     setInputValue(event.target.value)
   }
+
   return (
     <MainPageDiv>
-      <MainDiv>
-        <ButtonDiv>
-          <Link to='/list'>
-            <ReplyButton>질문하러 가기</ReplyButton>
-          </Link>
-        </ButtonDiv>
-        <LogoImg src={mainLogo} alt='mainLogo' />
-        <Inputdiv>
-          {isLoggedIn ? (
-            <LoginText>반가워요, {inputValue}님</LoginText> // 로그인 상태일 때 텍스트 표시
-          ) : (
-            <InputField value={inputValue} onChange={handleInputChange} /> // 로그인 상태가 아닐 때 InputField 표시
-          )}
-          <AskButton onClick={handleLoginToggle}>{isLoggedIn ? '로그아웃' : '로그인'}</AskButton>
-          <AskButton onClick={onclick}>질문받기</AskButton>
-        </Inputdiv>
-      </MainDiv>
+      <LoginHeader />
+      <LoginMain
+        isLoggedIn={isLoggedIn}
+        inputValue={inputValue}
+        onInputChange={handleInputChange}
+        onLoginToggle={handleLoginToggle}
+      />
       <MobileImgDiv>
         <MobileImg src={HomeBackImg} alt='HomeBackImg' />
       </MobileImgDiv>

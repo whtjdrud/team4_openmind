@@ -49,6 +49,14 @@ export const LogoImg = styled.img`
   }
 `
 
+export const InputBox = styled.div`
+  width: 100%;
+  margin-top: 2.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
 export const Inputdiv = styled.div`
   width: 40rem;
   height: 23rem;
