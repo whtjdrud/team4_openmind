@@ -4,52 +4,45 @@ import { Form, TextAreaInput, Text, Button } from './styledTextArea'
 const API_BASE_URL = 'https://openmind-api.vercel.app/3-4/'
 
 export const TextArea = ({ questionId }) => {
-  const [values, setValues] = useState({
-    content: '',
-    isRejected: true,
-  })
+  const [content, setContent] = useState('')
+  const [isRejected, setIsRejected] = useState(true)
 
-  const postAnswer = async (id) => {
-    const answer = await fetch(`${API_BASE_URL}questions/${id}/answers/`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(values),
-    })
-    const result = await answer.json()
-    console.log(result)
-    console.log(values.content)
-  }
+  const postAnswer = async () => {
+    try {
+      const response = await fetch(`${API_BASE_URL}questions/${questionId}/answers/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ content, isRejected }),
+      })
 
-  const handleChange = (e) => {
-    if (e.target.value) {
-      setValues({ [e.target.name]: e.target.value, isRejected: false })
+      if (!response.ok) {
+        throw new Error('Network response was not ok')
+      }
+      // 여기에 성공 시 처리 로직 추가
+    } catch (error) {
+      // 여기에 오류 처리 로직 추가
     }
+  }
+  const handleChange = (e) => {
+    setContent(e.target.value)
+    setIsRejected(!e.target.value)
   }
 
   const handleSubmit = (e) => {
-    postAnswer(questionId)
+    e.preventDefault()
+    if (content) {
+      postAnswer()
+    }
   }
 
   return (
     <Form onSubmit={handleSubmit}>
-      <TextAreaInput
-        type='text'
-        name='content'
-        value={values.content}
-        onChange={handleChange}
-        placeholder='답변을 입력해주세요.'
-      />
-      {values.content ? (
-        <Button type='submit'>
-          <Text>답변하기</Text>
-        </Button>
-      ) : (
-        <Button type='submit' disabled>
-          <Text>답변하기</Text>
-        </Button>
-      )}
+      <TextAreaInput name='content' value={content} onChange={handleChange} placeholder='답변을 입력해주세요.' />
+      <Button type='submit' disabled={!content}>
+        <Text>답변하기</Text>
+      </Button>
     </Form>
   )
 }
