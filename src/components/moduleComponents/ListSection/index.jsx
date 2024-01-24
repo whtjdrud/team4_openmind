@@ -9,12 +9,14 @@ const ListSection = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [count, setCount] = useState(0)
   const [userCards, setUserCards] = useState([])
+  const [selectedItem, setSelectedItem] = useState('name')
   useEffect(() => {
     const fetchUserCards = async () => {
       const url = 'https://openmind-api.vercel.app/3-4/subjects/'
       const params = {
         limit: 8,
         offset: (currentPage - 1) * 8,
+        sort: selectedItem,
       }
       const headers = {
         accept: 'application/json',
@@ -25,10 +27,10 @@ const ListSection = () => {
       setCount(response.data.count)
     }
     fetchUserCards()
-  }, [currentPage])
+  }, [currentPage, selectedItem])
   return (
     <StyledListSection>
-      <ListTitle />
+      <ListTitle selectedItem={selectedItem} setSelectedItem={setSelectedItem} />
       <UserCardList userCards={userCards} />
       <Pagination count={count} currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </StyledListSection>
