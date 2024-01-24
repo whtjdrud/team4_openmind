@@ -10,6 +10,10 @@ const ListSection = () => {
   const [count, setCount] = useState(0)
   const [userCards, setUserCards] = useState([])
   const [selectedItem, setSelectedItem] = useState('name')
+  const [localId, setLocalId] = useState('')
+  useEffect(() => {
+    setLocalId(localStorage.getItem('userId'))
+  }, [])
   useEffect(() => {
     const fetchUserCards = async () => {
       const url = 'https://openmind-api.vercel.app/3-4/subjects/'
@@ -31,7 +35,7 @@ const ListSection = () => {
   return (
     <StyledListSection>
       <ListTitle selectedItem={selectedItem} setSelectedItem={setSelectedItem} />
-      <UserCardList userCards={userCards} />
+      <UserCardList userCards={userCards} localId={localId} />
       <Pagination count={count} currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </StyledListSection>
   )
