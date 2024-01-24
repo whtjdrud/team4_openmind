@@ -10,7 +10,8 @@ const HomePage = () => {
 
   const baseUrl = 'https://openmind-api.vercel.app/3-4/subjects/?limit=1000'
 
-  const handleLoginToggle = async () => {
+  const handleLoginToggle = async (e) => {
+    e.preventDefault()
     if (!isLoggedIn) {
       try {
         const response = await fetch(baseUrl)

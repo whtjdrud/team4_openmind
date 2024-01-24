@@ -56,7 +56,7 @@ export const InputBox = styled.div`
   align-items: center;
 `
 // form 태그로 바꾸기
-export const Inputdiv = styled.div`
+export const Inputdiv = styled.form`
   width: 40rem;
   height: 23rem;
   padding: 3.2rem;
