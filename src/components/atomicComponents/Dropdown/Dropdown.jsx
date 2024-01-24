@@ -3,8 +3,7 @@ import { Button, Div, DropdownMenu } from './StyledDropdown'
 import ArrowUp from '../../../assets/images/ArrowUp.svg'
 import ArrowDown from '../../../assets/images/ArrowDown.svg'
 
-const Dropdown = () => {
-  const [selectedItem, setSelectedItem] = useState(null)
+const Dropdown = ({ setSelectedItem, selectedItem }) => {
   const [isDropdownOpen, setDropdownOpen] = useState(false)
 
   const handleItemClick = (item) => {
@@ -25,8 +24,8 @@ const Dropdown = () => {
 
       {isDropdownOpen && (
         <Div>
-          <DropdownMenu onClick={() => handleItemClick('이름순')}>이름순</DropdownMenu>
-          <DropdownMenu onClick={() => handleItemClick('최신순')}>최신순</DropdownMenu>
+          <DropdownMenu onClick={() => handleItemClick('name')}>이름순</DropdownMenu>
+          <DropdownMenu onClick={() => handleItemClick('time')}>최신순</DropdownMenu>
         </Div>
       )}
     </div>

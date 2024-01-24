@@ -1,10 +1,11 @@
+import Dropdown from '../../atomicComponents/Dropdown/Dropdown'
 import { StyledListTitleBox, Title } from './StyledListTitle'
 
-const ListTitle = () => {
+const ListTitle = ({ setSelectedItem, selectedItem }) => {
   return (
     <StyledListTitleBox>
       <Title>누구에게 질문할까요?</Title>
-      <div>드롭다운위치</div>
+      <Dropdown selectedItem={selectedItem} setSelectedItem={setSelectedItem} />
     </StyledListTitleBox>
   )
 }
