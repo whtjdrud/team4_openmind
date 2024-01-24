@@ -10,6 +10,7 @@ import KakaoShare from './KakaoShare'
 const ShareBtn = () => {
   const [isToast, setIsToast] = useState(false) // 토스트 메시지를 보여줄지 말지 결정하는 state
   const currentLocation = useLocation() // 현재 페이지의 url을 가져옴
+  const baseUrl = 'http://localhost:3000'
 
   const url = window.location.href
   const shareToFacebook = () => {
@@ -40,7 +41,7 @@ const ShareBtn = () => {
           src={LinkSvg}
           alt='link'
           onClick={() => {
-            handleCopyClipBoard(`${currentLocation.pathname}`)
+            handleCopyClipBoard(`${baseUrl}${currentLocation.pathname}`)
           }}
         />
         <ShareFaceBookImg src={FacebookSvg} alt='facebook' onClick={shareToFacebook} />
