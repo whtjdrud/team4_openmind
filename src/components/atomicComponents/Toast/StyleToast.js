@@ -11,4 +11,17 @@ export const ToastDiv = styled.div`
   font-size: 14px;
   font-weight: 500;
   font-family: Pretendard;
+  // 여기서부터 추가한거
+  margin-top: 10px;
+  animation: fadeout 3s;
+  -webkit-animation: fadeout 5s;
+  animation-fill-mode: forwards;
+  @keyframes fadeout {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
 `
