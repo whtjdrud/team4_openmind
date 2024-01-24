@@ -29,6 +29,7 @@ export const MainDiv = styled.div`
 
 export const ButtonDiv = styled.div`
   width: 100%;
+  height: 4rem;
   padding-right: 20rem;
   display: flex;
   justify-content: flex-end;
@@ -55,7 +56,7 @@ export const InputBox = styled.div`
   justify-content: center;
   align-items: center;
 `
-// form 태그로 바꾸기
+
 export const Inputdiv = styled.form`
   width: 40rem;
   height: 23rem;
