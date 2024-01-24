@@ -5,11 +5,11 @@ import LinkSvg from '../../../assets/images/whitelink.svg'
 import FacebookSvg from '../../../assets/images/whitefacebook.svg'
 import KakaotalkSvg from '../../../assets/images/Kakaotalk.svg'
 import Toast from '../Toast'
+import KakaoShare from './KakaoShare'
 
 const ShareBtn = () => {
   const [isToast, setIsToast] = useState(false) // 토스트 메시지를 보여줄지 말지 결정하는 state
-  const currentLocation = useLocation()
-  console.log(currentLocation)
+  const currentLocation = useLocation() // 현재 페이지의 url을 가져옴
 
   const url = window.location.href
   const shareToFacebook = () => {
@@ -29,6 +29,10 @@ const ShareBtn = () => {
     }
   }
 
+  const handleShareKakao = () => {
+    KakaoShare()
+  }
+
   return (
     <>
       <ShareBtnDiv>
@@ -40,7 +44,7 @@ const ShareBtn = () => {
           }}
         />
         <ShareFaceBookImg src={FacebookSvg} alt='facebook' onClick={shareToFacebook} />
-        <ShareKakaoImg src={KakaotalkSvg} alt='kakao' />
+        <ShareKakaoImg src={KakaotalkSvg} alt='kakao' onClick={handleShareKakao} />
       </ShareBtnDiv>
       <div>{isToast && <Toast />}</div>
     </>
@@ -49,6 +53,4 @@ const ShareBtn = () => {
 
 export default ShareBtn
 
-// 카카오톡 공유하기 기능은 웹페이지가 배포되어있는 상태여야 작동
-// useLocation을 사용하여 현재 페이지의 url을 가져옴
 // $handleCopyClipBoard(`{baseUrl}${currentLocation.pathname}`) 추가!

@@ -11,7 +11,6 @@ export const MainPageDiv = styled.div`
   @media only screen and (max-width: 767px) {
     background-image: none;
     background-color: var(--Grayscale-20, #f9f9f9);
-    // background-color: red;
   }
 `
 
@@ -56,7 +55,7 @@ export const InputBox = styled.div`
   justify-content: center;
   align-items: center;
 `
-
+// form 태그로 바꾸기
 export const Inputdiv = styled.div`
   width: 40rem;
   height: 23rem;
@@ -95,6 +94,6 @@ export const MobileImg = styled.img`
   @media only screen and (max-width: 767px) {
     display: block;
     width: 37.5rem;
-    height: 16.2rem;
+    height: 17rem;
   }
 `

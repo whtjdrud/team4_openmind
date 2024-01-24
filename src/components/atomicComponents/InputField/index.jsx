@@ -17,6 +17,7 @@ const InputField = ({ onChange, value }) => {
         onChange={onChange}
         placeholder='이름을 입력하세요'
         value={value}
+        maxLength={6}
       />
     </Styled.InputFieldBox>
   )
@@ -25,34 +26,4 @@ const InputField = ({ onChange, value }) => {
 export default InputField
 
 // onChange, value를 props로 받아서 사용할 수 있도록 설정
-
-// import { useState } from 'react'
-// import * as Styled from './StyleInputField'
-
-// const InputField = () => {
-//   const [isFocused, setIsFocused] = useState(false)
-//   const [value, setValue] = useState('')
-
-//   const handleFocusToggle = () => {
-//     setIsFocused(!isFocused)
-//   }
-
-//   const handleInputChange = (e) => {
-//     setValue(e.target.value)
-//   }
-
-//   return (
-//     <Styled.InputFieldBox focused={isFocused}>
-//       <Styled.PersonImg />
-//       <Styled.InputField
-//         onFocus={handleFocusToggle}
-//         onBlur={handleFocusToggle}
-//         onChange={handleInputChange}
-//         placeholder='이름을 입력하세요'
-//         value={value}
-//       />
-//     </Styled.InputFieldBox>
-//   )
-// }
-
-// export default InputField
+// maxLenth를 5로 설정하여 5글자 이상 입력되지 않도록 설정
