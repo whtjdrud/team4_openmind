@@ -54,9 +54,8 @@ const HomePage = () => {
   }, [])
 
   const handleInputChange = (event) => {
-    setInputValue(event.target.value) // 입력값을 inputValue 상태에 설정
+    setInputValue(event.target.value)
   }
-
   return (
     <MainPageDiv>
       <MainDiv>
