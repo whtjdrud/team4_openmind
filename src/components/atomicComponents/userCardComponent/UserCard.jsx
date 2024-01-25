@@ -4,9 +4,15 @@ import MESSAGE_IMG from '../../../assets/images/Message.svg'
 import CAT from '../../../assets/images/Ellipse 1.svg'
 import { Link } from 'react-router-dom'
 
-export const UserCard = ({ userImageUrl = `${CAT}`, userName = '아초는 고양이', messageCount = '999+', id }) => {
+export const UserCard = ({
+  userImageUrl = `${CAT}`,
+  userName = '아초는 고양이',
+  messageCount = '999+',
+  id,
+  localId,
+}) => {
   return (
-    <Link to={`/post/${id}`}>
+    <Link to={Number(localId) === id ? `/post/${id}/answer` : `/post/${id}`}>
       <Box>
         <UserLayout>
           <Profile>
