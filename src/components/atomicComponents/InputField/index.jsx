@@ -17,7 +17,7 @@ const InputField = ({ onChange, value }) => {
         onChange={onChange}
         placeholder='이름을 입력하세요'
         value={value}
-        maxLength={6}
+        maxLength={7}
       />
     </Styled.InputFieldBox>
   )
