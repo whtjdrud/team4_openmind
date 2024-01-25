@@ -3,7 +3,7 @@ import { ButtonContainer, Line, ButtonBox, Button, Thumb, Text } from './styledC
 import LIKE from '../../../assets/images/thumbs-up.svg'
 import DISLIKE from '../../../assets/images/thumbs-down.svg'
 
-const ButtonsComponent = ({ like, dislike }) => {
+const ButtonsComponent = ({ like, dislike, questionId }) => {
   return (
     <ButtonContainer>
       <Line />
@@ -16,11 +16,11 @@ const ButtonsComponent = ({ like, dislike }) => {
           <Thumb src={`${DISLIKE}`} />
           <Text>싫어요 {dislike}</Text>
         </Button>
+        {questionId}
       </ButtonBox>
     </ButtonContainer>
   )
 }
-
 ButtonsComponent.defaultProps = {
   like: 0,
   dislike: 0,
