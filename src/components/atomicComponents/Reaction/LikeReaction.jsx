@@ -2,22 +2,49 @@ import { useState } from 'react'
 import { Button } from './StyledLikeReaction'
 import { ReactComponent as ThumbsUp } from '../../../assets/images/ThumbsUp.svg'
 
-const LikeReaction = () => {
-  const [liked, setLiked] = useState(false)
-  const [currentColor, setCurrentColor] = useState('#818181')
+const BASE_URL = 'https://openmind-api.vercel.app/3-4'
 
-  const handleLikeClick = () => {
-    setLiked(!liked)
-    setLiked(liked + 1)
-    setLiked(liked > 0 ? null : 1)
-    setCurrentColor(currentColor === '#818181' ? '#1877F2' : '#818181')
+const postReaction = async (id, formData) => {
+  const response = await fetch(`${BASE_URL}/questions/${id}/reaction/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: formData,
+  })
+  if (!response.ok) {
+    throw new Error('error')
+  }
+  const body = await response.json()
+  return body
+}
+
+const LikeReaction = ({ number, questionId }) => {
+  const [likeCount, setLikeCount] = useState(number)
+  const [active, setActive] = useState('false')
+
+  const handleActiveClick = async () => {
+    setActive('blue')
+    try {
+      const formData = JSON.stringify({
+        type: 'like',
+      })
+      const result = await postReaction(questionId, formData)
+      setLikeCount(result.like)
+    } catch (err) {
+      console.log(err)
+    } finally {
+      setTimeout(() => {
+        setActive('false')
+      }, 200)
+    }
   }
 
   return (
     <div>
-      <Button onClick={handleLikeClick} liked={liked}>
-        <ThumbsUp fill={currentColor} />
-        <p>좋아요 {liked}</p>
+      <Button $active={active} onClick={handleActiveClick}>
+        <ThumbsUp fill={active === 'blue' ? 'var(--Blue50)' : 'var(--Grayscale40)'} />
+        <p>좋아요 {likeCount}</p>
       </Button>
     </div>
   )

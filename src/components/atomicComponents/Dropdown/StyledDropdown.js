@@ -5,8 +5,8 @@ export const Button = styled.button`
   display: flex;
   font-size: 14px;
   font-weight: 500;
-  color: ${(props) => (props.isOpen ? '#000000' : '#818181')};
-  border: 1px solid ${(props) => (props.isOpen ? '#000000' : '#818181')};
+  color: ${(props) => (props.isOpen ? 'var(--Grayscale60)' : 'var(--Grayscale40)')};
+  border: 1px solid ${(props) => (props.isOpen ? 'var(--Grayscale60)' : 'var(--Grayscale40)')};
   padding: 8px 12px;
   border-radius: 8px;
   cursor: pointer;
@@ -17,11 +17,11 @@ export const Button = styled.button`
 `
 export const Div = styled.div`
   width: 80px;
-  border: 1px solid #cfcfcf;
+  border: 1px solid var(--Grayscale30);
   border-radius: 8px;
   margin-top: 4px;
   cursor: pointer;
-  box-shadow: 0px 4px 4px 0px rgba(140, 140, 140, 0.25);
+  box-shadow: var(--shadow-small);
 `
 export const DropdownMenu = styled.p`
   font-size: 14px;
@@ -30,6 +30,6 @@ export const DropdownMenu = styled.p`
   cursor: pointer;
 
   &:hover {
-    color: #1877f2;
+    color: var(--Blue50);
   }
 `
