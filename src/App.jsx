@@ -15,6 +15,7 @@ const App = () => {
           <Route path='/post/:id/answer' element={<AnswerPage />} />
           <Route path='/post/:id' element={<IndividualFeed />} />
           <Route path='/list' element={<QuestionList />} />
+          <Route path='/list/index' element={<QuestionList />} />
           <Route path='/' element={<HomePage />} />
         </Routes>
       </Router>
