@@ -5,7 +5,7 @@ import QuestionComponent from './Question'
 import ReplyComponent from './Reply'
 import ButtonsComponent from './Buttons'
 import FeedCardEmpty from '../FeedCardEmpty'
-import { fetchQuestions } from '../../../api/AnswerApi'
+import { fetchQuestions, fetchUserData } from '../../../api/AnswerApi'
 
 const FeedCard = ({ question, id, like, dislike, answer, isAskPage, replyingUserImage, replyingUserName }) => {
   return (
@@ -22,7 +22,6 @@ const FeedCard = ({ question, id, like, dislike, answer, isAskPage, replyingUser
           <FeedCardEmpty questionId={id} />
         ))}
       <ButtonsComponent like={like} dislike={dislike} />
-      {isAskPage && answer && <ReplyComponent answer={answer.content} />}
     </CardLayout>
   )
 }
@@ -31,24 +30,20 @@ const FeedCards = ({ id, isAskPage }) => {
   const [feeds, setFeeds] = useState([])
   const [replyingUserImage, setReplyingUserImage] = useState('')
   const [replyingUserName, setReplyingUserName] = useState('')
+
   const fetchAndSetQuestions = async () => {
     const questionsData = await fetchQuestions(id)
     setFeeds(questionsData.results)
   }
-  const API_BASE_URL = 'https://openmind-api.vercel.app/3-4/subjects/'
-  const getUserData = async (localId) => {
-    const data = await fetch(`${API_BASE_URL}${id && `${localId}`}/`)
-    return data.json()
-  }
-  const replyingUserId = localStorage.getItem('userId')
-  const getUserDataFnc = async (localId) => {
-    const { name, imageSource } = await getUserData(localId)
+
+  const fetchAndSetUserData = async () => {
+    const { name, imageSource } = await fetchUserData(id)
     setReplyingUserName(name)
     setReplyingUserImage(imageSource)
   }
   useEffect(() => {
     fetchAndSetQuestions()
-    getUserDataFnc(replyingUserId)
+    fetchAndSetUserData()
   }, [])
 
   return (
