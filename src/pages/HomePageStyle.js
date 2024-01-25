@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import HomeBackImg from '../assets/images/HomeBackImg.png'
 
 export const MainPageDiv = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 100vh; // viewport 높이로 설정
   background-image: url(${HomeBackImg});
   background-size: cover;
@@ -11,7 +11,6 @@ export const MainPageDiv = styled.div`
   @media only screen and (max-width: 767px) {
     background-image: none;
     background-color: var(--Grayscale-20, #f9f9f9);
-    // background-color: red;
   }
 `
 
@@ -30,6 +29,7 @@ export const MainDiv = styled.div`
 
 export const ButtonDiv = styled.div`
   width: 100%;
+  height: 4rem;
   padding-right: 20rem;
   display: flex;
   justify-content: flex-end;
@@ -51,13 +51,13 @@ export const LogoImg = styled.img`
 
 export const InputBox = styled.div`
   width: 100%;
-  margin-top: 2.4rem;
+  margin-top: 5rem;
   display: flex;
   justify-content: center;
   align-items: center;
 `
 
-export const Inputdiv = styled.div`
+export const Inputdiv = styled.form`
   width: 40rem;
   height: 23rem;
   padding: 3.2rem;
@@ -95,6 +95,6 @@ export const MobileImg = styled.img`
   @media only screen and (max-width: 767px) {
     display: block;
     width: 37.5rem;
-    height: 16.2rem;
+    height: 17rem;
   }
 `
