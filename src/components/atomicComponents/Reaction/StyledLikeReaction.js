@@ -1,14 +1,22 @@
 import styled from 'styled-components'
 
+const FONT_COLOR = {
+  false: `var(--Grayscale40)`,
+  blue: `var(--Blue50)`,
+}
+
 export const Button = styled.button`
   all: unset;
-  color: ${(props) => (props.liked ? '#1877F2' : '#818181')};
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
 
   p {
-    margin-left: 6px;
+    color: ${({ $active }) => FONT_COLOR[$active] || 'var(--Grayscale40)'};
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 18px;
   }
 `
