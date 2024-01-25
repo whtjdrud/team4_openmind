@@ -4,10 +4,20 @@ import IconsComponent from './Icons'
 import QuestionComponent from './Question'
 import ReplyComponent from './Reply'
 import ButtonsComponent from './Buttons'
-import FeedCardEmpty from '../FeedCardEmpty'
+import { TextArea } from '../FeedCardEmpty/textArea'
 import { fetchQuestions, fetchUserData } from '../../../api/AnswerApi'
 
-const FeedCard = ({ question, id, like, dislike, answer, isAskPage, replyingUserImage, replyingUserName }) => {
+const FeedCard = ({
+  onDataFromFeedCard,
+  question,
+  id,
+  like,
+  dislike,
+  answer,
+  isAskPage,
+  replyingUserImage,
+  replyingUserName,
+}) => {
   return (
     <CardLayout>
       <IconsComponent isAnswered={!!answer} answerId={answer?.id} />
@@ -19,7 +29,7 @@ const FeedCard = ({ question, id, like, dislike, answer, isAskPage, replyingUser
         (answer ? (
           <ReplyComponent image={replyingUserImage} name={replyingUserName} answer={answer.content} />
         ) : (
-          <FeedCardEmpty questionId={id} />
+          <TextArea questionId={id} onDataFromTextArea={onDataFromFeedCard} />
         ))}
       <ButtonsComponent like={like} dislike={dislike} />
     </CardLayout>
@@ -45,6 +55,9 @@ const FeedCards = ({ id, isAskPage }) => {
     fetchAndSetQuestions()
     fetchAndSetUserData()
   }, [])
+  const handleFeedCardState = () => {
+    fetchAndSetQuestions()
+  }
 
   return (
     <>
@@ -59,6 +72,7 @@ const FeedCards = ({ id, isAskPage }) => {
           isAskPage={isAskPage}
           replyingUserName={replyingUserName}
           replyingUserImage={replyingUserImage}
+          onDataFromFeedCard={handleFeedCardState}
         />
       ))}
     </>
