@@ -1,6 +1,9 @@
 import styled from 'styled-components'
 
 const StyleFloatingBtn = styled.button`
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
   width: ${(props) => props.width};
   height: 54px;
   padding: 12px 24px;

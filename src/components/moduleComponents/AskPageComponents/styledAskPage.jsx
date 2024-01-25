@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import HeadImg from '../../../assets/images/HomeBackImg.png'
+import { Text } from '../../atomicComponents/FeedCard/styledCard'
 
 export const PageLayout = styled.div`
   width: 100%;
