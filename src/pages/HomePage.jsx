@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import HomeBackImg from '../assets/images/HomeBackImg.png'
 import LoginHeader from '../components/moduleComponents/LoginHeader/index'
 import LoginMain from '../components/moduleComponents/LoginMain/index'
+import ReactionCount from '../components/atomicComponents/ReactionCount/ReactionCount'
 
 const HomePage = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -63,6 +64,7 @@ const HomePage = () => {
         onInputChange={handleInputChange}
         onLoginToggle={handleLoginToggle}
       />
+      <ReactionCount />
       <MobileImgDiv>
         <MobileImg src={HomeBackImg} alt='HomeBackImg' />
       </MobileImgDiv>
