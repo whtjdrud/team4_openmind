@@ -35,9 +35,6 @@ const FeedCards = ({ id, isAskPage }) => {
     const questionsData = await fetchQuestions(id)
     setFeeds(questionsData.results)
   }
-  useEffect(() => {
-    fetchAndSetQuestions()
-  }, [id])
   const API_BASE_URL = 'https://openmind-api.vercel.app/3-4/subjects/'
   const getUserData = async (localId) => {
     const data = await fetch(`${API_BASE_URL}${id && `${localId}`}/`)
@@ -50,6 +47,7 @@ const FeedCards = ({ id, isAskPage }) => {
     setReplyingUserImage(imageSource)
   }
   useEffect(() => {
+    fetchAndSetQuestions()
     getUserDataFnc(replyingUserId)
   }, [])
 
