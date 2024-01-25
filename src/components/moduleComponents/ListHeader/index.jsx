@@ -15,7 +15,7 @@ const ListHeader = () => {
       <Link to='/'>
         <img className='logo-img' src={logo} alt='로고' />
       </Link>
-      <Link to={`${localId}` ? `/post/${localId}/answer` : '/'}>
+      <Link to={localId ? `/post/${localId}/answer` : '/'}>
         <ReplyButton>답변하러 가기</ReplyButton>
       </Link>
     </StyledListHeader>

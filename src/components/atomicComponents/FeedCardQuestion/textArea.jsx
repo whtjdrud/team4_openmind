@@ -9,16 +9,14 @@ export const TextArea = ({ id }) => {
   })
 
   const postQuestions = async (userid) => {
-    const question = await fetch(`${API_BASE_URL}subjects/${userid}/questions/`, {
+    await fetch(`${API_BASE_URL}subjects/${userid}/questions/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(values),
     })
-    const result = await question.json()
-    console.log(result)
-    console.log(values.content)
+    window.location.reload()
   }
 
   const handleChange = (e) => {
@@ -26,6 +24,7 @@ export const TextArea = ({ id }) => {
   }
 
   const handleSubmit = (e) => {
+    e.preventDefault()
     postQuestions(id)
   }
 
