@@ -1,64 +1,32 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import { Text } from '../../atomicComponents/FeedCard/styledCard'
-import {
-  PageLayout,
-  QuestionsList,
-  QuestionCount,
-  Head,
-  HeadImage,
-  LogoContainer,
-  LogoBox,
-  LogoItem,
-  ProfileContainer,
-  ProfileImage,
-  BubbleImg,
-  NotYet,
-  BoxImg,
-} from './StyledAnswerPage'
-import ShareBtn from '../../atomicComponents/Share'
+import { PageLayout, QuestionsList, QuestionCount, BubbleImg, NotYet, BoxImg } from './StyledAnswerPage'
 import FeedCards from '../../atomicComponents/FeedCard'
-import Logo from '../../../assets/images/mainLogo.svg'
-import CAT from '../../../assets/images/Ellipse 1.svg'
 import Bubble from '../../../assets/images/Messages.svg'
 import EmptyBox from '../../../assets/images/Frame 70.svg'
+import AnswerPageHeader from './AnswerPageHeader'
+import { getSubject } from '../../../api/AnswerApi'
 
 export const AnswerPageComponent = ({ id }) => {
-  const [profileImage, setProfileImage] = useState(`${CAT}`)
+  const [profileImage, setProfileImage] = useState('')
   const [questionCounts, setQuestionCounts] = useState(0)
-  const [profileName, setProfileName] = useState('아초는 고양이')
-  const API_BASE_URL = 'https://openmind-api.vercel.app/3-4/subjects/'
-  const getSubject = async () => {
-    const subject = await fetch(`${API_BASE_URL}${id}/`)
-    return subject.json()
-  }
-  const getSubjectProfile = async () => {
-    const { imageSource, questionCount, name } = await getSubject()
-    setProfileImage(imageSource)
-    setQuestionCounts(questionCount)
-    setProfileName(name)
-  }
+  const [profileName, setProfileName] = useState('')
+
   useEffect(() => {
-    getSubjectProfile()
-  }, [])
+    const fetchProfileData = async () => {
+      const subjectData = await getSubject(id)
+      if (subjectData) {
+        setProfileImage(subjectData.imageSource)
+        setQuestionCounts(subjectData.questionCount)
+        setProfileName(subjectData.name)
+      }
+    }
+    fetchProfileData()
+  }, [id])
 
   return (
     <PageLayout>
-      <Head>
-        <HeadImage />
-      </Head>
-      <LogoContainer>
-        <Link to='/'>
-          <LogoBox>
-            <LogoItem src={Logo} />
-          </LogoBox>
-        </Link>
-      </LogoContainer>
-      <ProfileContainer>
-        <ProfileImage backgroundImageUrl={profileImage} />
-        <Text>{profileName}</Text>
-        <ShareBtn />
-      </ProfileContainer>
+      <AnswerPageHeader $backgroundImageUrl={profileImage} profileName={profileName} />
       {questionCounts === 0 ? (
         <NotYet>
           <BubbleImg src={Bubble} />
