@@ -42,6 +42,7 @@ const HomePage = () => {
       localStorage.removeItem('userId')
       localStorage.removeItem('userName')
       setIsLoggedIn(false)
+      setInputValue('')
     }
   }
 
