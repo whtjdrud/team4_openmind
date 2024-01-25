@@ -58,6 +58,8 @@ const HomePage = () => {
     setInputValue(event.target.value)
   }
 
+  const userId = localStorage.getItem('userId')
+
   return (
     <MainPageDiv>
       <LoginHeader />
@@ -66,6 +68,7 @@ const HomePage = () => {
         inputValue={inputValue}
         onInputChange={handleInputChange}
         onLoginToggle={handleLoginToggle}
+        userId={userId}
       />
       <MobileImgDiv>
         <MobileImg src={HomeBackImg} alt='HomeBackImg' />
