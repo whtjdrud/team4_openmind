@@ -14,3 +14,7 @@ export const fetchQuestions = async (id) => {
   const response = await fetch(`${API_BASE_URL}${id}/questions/`)
   return response.json()
 }
+export const fetchUserData = async (subjectId) => {
+  const response = await fetch(`${API_BASE_URL}${subjectId}/`)
+  return response.json()
+}
