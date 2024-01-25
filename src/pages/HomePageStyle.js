@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import HomeBackImg from '../assets/images/HomeBackImg.png'
+import { Link } from 'react-router-dom'
 
 export const MainPageDiv = styled.div`
   width: 100%;
@@ -72,6 +73,11 @@ export const Inputdiv = styled.form`
     padding: 2.4rem;
     order: 3;
   }
+`
+
+export const AnswerButtonLink = styled(Link)`
+  display: flex;
+  flex-direction: column;
 `
 
 export const LoginText = styled.p`
