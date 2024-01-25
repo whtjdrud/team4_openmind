@@ -4,13 +4,22 @@ import { UserCardList } from '../UserCardList'
 import axios from 'axios'
 import Pagination from '../../atomicComponents/Pagination'
 import { useEffect, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 
 const ListSection = () => {
-  const [currentPage, setCurrentPage] = useState(1)
+  const [search] = useSearchParams()
+  const URL_PAGE = search.get('page')
+  const URL_SORT = search.get('sort')
+  const [currentPage, setCurrentPage] = useState(Number(URL_PAGE) || 1)
   const [count, setCount] = useState(0)
   const [userCards, setUserCards] = useState([])
-  const [selectedItem, setSelectedItem] = useState('name')
+  const [selectedItem, setSelectedItem] = useState(URL_SORT || 'name')
   const [localId, setLocalId] = useState('')
+  useEffect(() => {
+    if (URL_PAGE) {
+      setCurrentPage(Number(URL_PAGE))
+    }
+  }, [URL_PAGE])
   useEffect(() => {
     setLocalId(localStorage.getItem('userId'))
   }, [])
@@ -36,7 +45,7 @@ const ListSection = () => {
     <StyledListSection>
       <ListTitle selectedItem={selectedItem} setSelectedItem={setSelectedItem} />
       <UserCardList userCards={userCards} localId={localId} />
-      <Pagination count={count} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      <Pagination count={count} currentPage={currentPage} setCurrentPage={setCurrentPage} selectedItem={selectedItem} />
     </StyledListSection>
   )
 }

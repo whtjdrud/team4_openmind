@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import arrowLeft from '../../../assets/images/Arrow-left.svg'
 import arrowRight from '../../../assets/images/Arrow-right.svg'
 import { PageButton, PaginationBox } from './StylePagination'
@@ -5,7 +6,7 @@ import { PageButton, PaginationBox } from './StylePagination'
 const ITEMS_PER_PAGE = 8
 const PAGE_GROUP_SIZE = 5
 
-const Pagination = ({ count, currentPage, setCurrentPage }) => {
+const Pagination = ({ count, currentPage, setCurrentPage, selectedItem }) => {
   const maxPage = Math.ceil(count / ITEMS_PER_PAGE)
   const startPage = Math.floor((currentPage - 1) / PAGE_GROUP_SIZE) * PAGE_GROUP_SIZE + 1
   const endPage = Math.min(startPage + PAGE_GROUP_SIZE - 1, maxPage)
@@ -20,9 +21,11 @@ const Pagination = ({ count, currentPage, setCurrentPage }) => {
         </button>
       )}
       {Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i).map((number) => (
-        <PageButton key={number} $clicked={number === currentPage} onClick={() => setCurrentPage(number)}>
-          {number}
-        </PageButton>
+        <Link to={`/list/index?page=${number}&sort=${selectedItem}`} key={number}>
+          <PageButton key={number} $clicked={number === currentPage} onClick={() => setCurrentPage(number)}>
+            {number}
+          </PageButton>
+        </Link>
       ))}
       {!isInLastPageGroup && (
         <button type='button' onClick={() => setCurrentPage(startPage + PAGE_GROUP_SIZE)}>
