@@ -97,7 +97,7 @@ export const ProfileImage = styled.div`
   height: 136px;
   flex-shrink: 0;
   border-radius: 136px;
-  background-image: ${({ backgroundImageUrl }) => `url(${backgroundImageUrl})`};
+  background-image: url(${(props) => props.$backgroundImageUrl});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

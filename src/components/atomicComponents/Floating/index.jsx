@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import StyleFloatingBtn from './StyleFloatingBtn'
 
-const FloatingBtn = () => {
+const FloatingBtn = ({ onClick }) => {
   const [buttonText, setButtonText] = useState('')
   const [width, setWidth] = useState(0)
   useEffect(() => {
@@ -22,6 +22,10 @@ const FloatingBtn = () => {
     }
   }, [])
 
-  return <StyleFloatingBtn width={width}>{buttonText}</StyleFloatingBtn>
+  return (
+    <StyleFloatingBtn onClick={onClick} width={width}>
+      {buttonText}
+    </StyleFloatingBtn>
+  )
 }
 export default FloatingBtn

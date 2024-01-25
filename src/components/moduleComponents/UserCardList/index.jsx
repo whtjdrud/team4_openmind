@@ -1,7 +1,7 @@
 import { UserCard } from '../../atomicComponents/userCardComponent/UserCard'
 import StyledUserCardList from './StyledUserCardList'
 
-export const UserCardList = ({ userCards }) => {
+export const UserCardList = ({ userCards, localId }) => {
   return (
     <StyledUserCardList>
       {userCards.length > 0 ? (
@@ -13,6 +13,7 @@ export const UserCardList = ({ userCards }) => {
               userName={card.name}
               messageCount={card.questionCount}
               userImageUrl={card.imageSource}
+              localId={localId}
             />
           )
         })

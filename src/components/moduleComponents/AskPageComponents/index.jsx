@@ -22,11 +22,20 @@ import Logo from '../../../assets/images/mainLogo.svg'
 import CAT from '../../../assets/images/Ellipse 1.svg'
 import Bubble from '../../../assets/images/Messages.svg'
 import EmptyBox from '../../../assets/images/Frame 70.svg'
+import FloatingBtn from '../../atomicComponents/Floating'
+import QuestionModal from '../../atomicComponents/QuestionModal'
 
 export const AskPageComponent = ({ id }) => {
   const [profileImage, setProfileImage] = useState(`${CAT}`)
-  const [questionCounts, setQuestionCounts] = useState(0)
   const [profileName, setProfileName] = useState('아초는 고양이')
+  const [questionCounts, setQuestionCounts] = useState(0)
+  const [isOpenModal, setIsOpenModal] = useState(false)
+  const openModal = () => {
+    setIsOpenModal(true)
+  }
+  const closeModal = () => {
+    setIsOpenModal(false)
+  }
   const API_BASE_URL = 'https://openmind-api.vercel.app/3-4/subjects/'
   const getSubject = async () => {
     const subject = await fetch(`${API_BASE_URL}${id}/`)
@@ -73,6 +82,8 @@ export const AskPageComponent = ({ id }) => {
           <FeedCards id={id} isAskPage />
         </QuestionsList>
       )}
+      <FloatingBtn onClick={openModal} />
+      {isOpenModal && <QuestionModal closeModal={closeModal} image={profileImage} name={profileName} id={id} />}
     </PageLayout>
   )
 }

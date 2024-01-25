@@ -3,22 +3,20 @@ import { Form, TextAreaInput, Button, Text } from '../FeedCardEmpty/styledTextAr
 
 const API_BASE_URL = 'https://openmind-api.vercel.app/3-4/'
 
-export const TextArea = () => {
+export const TextArea = ({ id }) => {
   const [values, setValues] = useState({
     content: '',
   })
 
-  const postQuestions = async (id) => {
-    const question = await fetch(`${API_BASE_URL}subjects/${id}/questions/`, {
+  const postQuestions = async (userid) => {
+    await fetch(`${API_BASE_URL}subjects/${userid}/questions/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(values),
     })
-    const result = await question.json()
-    console.log(result)
-    console.log(values.content)
+    window.location.reload()
   }
 
   const handleChange = (e) => {
@@ -26,7 +24,8 @@ export const TextArea = () => {
   }
 
   const handleSubmit = (e) => {
-    postQuestions(2400)
+    e.preventDefault()
+    postQuestions(id)
   }
 
   return (

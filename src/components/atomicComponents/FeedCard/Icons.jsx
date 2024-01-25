@@ -14,7 +14,7 @@ const Options = ({ answerId }) => {
 
   return (
     <OptionsContainer onSubmit={handleSubmit}>
-      <Button type='submit'>삭제하기</Button>
+      <Button type='submit'>답변삭제</Button>
     </OptionsContainer>
   )
 }

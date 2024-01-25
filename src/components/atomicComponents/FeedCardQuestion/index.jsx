@@ -19,11 +19,11 @@ const SubjectProfileImg = styled(ProfileImg)`
   height: 28px;
 `
 
-const FeedCardAnswer = ({ image, name }) => {
+const FeedCardAnswer = ({ image, name, id }) => {
   const [isAnswered, setIsAnswered] = useState(false)
 
   return (
-    <CardLayout>
+    <>
       <SubjectUserContainer>
         <Text>To.</Text>
         <SubjectProfileBox>
@@ -32,8 +32,8 @@ const FeedCardAnswer = ({ image, name }) => {
         </SubjectProfileBox>
         <UserName>{name}</UserName>
       </SubjectUserContainer>
-      <TextArea />
-    </CardLayout>
+      <TextArea id={id} />
+    </>
   )
 }
 
