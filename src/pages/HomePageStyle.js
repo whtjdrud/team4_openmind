@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import HomeBackImg from '../assets/images/HomeBackImg.png'
 
 export const MainPageDiv = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 100vh; // viewport 높이로 설정
   background-image: url(${HomeBackImg});
   background-size: cover;
@@ -51,7 +51,7 @@ export const LogoImg = styled.img`
 
 export const InputBox = styled.div`
   width: 100%;
-  margin-top: 2.4rem;
+  margin-top: 5rem;
   display: flex;
   justify-content: center;
   align-items: center;
