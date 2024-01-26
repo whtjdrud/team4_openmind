@@ -21,7 +21,7 @@ const FeedCard = ({ question, id, like, dislike, answer, isAskPage, replyingUser
         ) : (
           <FeedCardEmpty questionId={id} />
         ))}
-      <ButtonsComponent like={like} dislike={dislike} />
+      <ButtonsComponent like={like} dislike={dislike} questionId={id} />
     </CardLayout>
   )
 }
