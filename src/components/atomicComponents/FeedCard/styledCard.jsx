@@ -35,37 +35,7 @@ export const Icons = styled.div`
   align-self: stretch;
   position: relative;
 `
-export const Badge = styled.div`
-  display: flex;
-  padding: 4px 12px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  border-radius: 8px;
-  border: 1px solid var(--Brown-40, #542f1a);
-  background: var(--Grayscale-10, #fff);
 
-  ${Text} {
-    color: var(--Brown-40, #542f1a);
-    font-family: Pretendard;
-    font-size: 1.4rem;
-    font-weight: 500;
-    line-height: 128.571%;
-  }
-`
-export const BadgeWaited = styled(Badge)`
-  border-radius: 8px;
-  border: 1px solid var(--Grayscale-40, #818181);
-
-  ${Text} {
-    color: var(--Grayscale-40, #818181);
-    line-height: 1.8rem;
-  }
-`
-export const More = styled.img`
-  width: 26px;
-  height: 26px;
-`
 export const QuestionContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -213,4 +183,9 @@ export const OptionsContainer = styled.form`
     line-height: 137.5%;
     padding: 0.5rem 0.5rem;
   }
+`
+export const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 `

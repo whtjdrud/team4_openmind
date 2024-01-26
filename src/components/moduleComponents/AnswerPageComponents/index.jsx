@@ -11,7 +11,6 @@ export const AnswerPageComponent = ({ id }) => {
   const [profileImage, setProfileImage] = useState('')
   const [questionCounts, setQuestionCounts] = useState(0)
   const [profileName, setProfileName] = useState('')
-
   useEffect(() => {
     const fetchProfileData = async () => {
       const subjectData = await getSubject(id)
@@ -38,7 +37,7 @@ export const AnswerPageComponent = ({ id }) => {
           <QuestionCount>
             <Text>{questionCounts}개의 질문이 있습니다.</Text>
           </QuestionCount>
-          <FeedCards id={id} />
+          <FeedCards id={id} isAskPage={false} setQuestionCounts={setQuestionCounts} />
         </QuestionsList>
       )}
     </PageLayout>
