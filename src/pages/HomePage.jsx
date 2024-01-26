@@ -48,7 +48,6 @@ const HomePage = () => {
   }
 
   useEffect(() => {
-    // 페이지가 로드될 때 로컬 스토리지에서 로그인 정보를 확인하여 상태를 업데이트
     const userId = localStorage.getItem('userId')
     if (userId) {
       setIsLoggedIn(true)
