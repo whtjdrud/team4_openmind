@@ -8,7 +8,7 @@ export const CardLayout = styled.div`
   align-items: flex-start;
   gap: 32px;
   border-radius: 16px;
-  background: var(--Grayscale-10, #fff);
+  background: var(--Grayscale10, #fff);
 
   box-shadow: 0px 4px 4px 0px rgba(140, 140, 140, 0.25);
 
@@ -18,7 +18,7 @@ export const CardLayout = styled.div`
   }
 `
 export const Text = styled.span`
-  color: var(--Grayscale-60, #000);
+  color: var(--Grayscale60, #000);
   font-feature-settings:
     'clig' off,
     'liga' off;
@@ -27,6 +27,7 @@ export const Text = styled.span`
   font-style: normal;
   font-weight: 400;
   line-height: 133.333%;
+  color: ${(props) => (props.$isRejected ? 'var(--Red50)' : 'var(--Grayscale60)')};
 `
 export const Icons = styled.div`
   display: flex;
@@ -45,7 +46,7 @@ export const QuestionContainer = styled.div`
 `
 export const Time = styled.span`
   gap: 8px;
-  color: var(--Grayscale-40, #818181);
+  color: var(--Grayscale40, #818181);
   font-family: Pretendard;
   font-size: 1.4rem;
   font-weight: 500;
@@ -136,7 +137,7 @@ export const ButtonContainer = styled.div`
 export const Line = styled.div`
   height: 1px;
   align-self: stretch;
-  background: var(--Grayscale-30, #cfcfcf);
+  background: var(--Grayscale30, #cfcfcf);
 `
 export const ButtonBox = styled.div`
   display: flex;
@@ -154,7 +155,7 @@ export const Button = styled.button`
   gap: 6px;
 
   ${Text} {
-    color: var(--Grayscale-40, #818181);
+    color: var(--Grayscale40, #818181);
     font-family: Pretendard;
     font-size: 1.4rem;
     font-weight: 500;
@@ -186,6 +187,12 @@ export const OptionsContainer = styled.form`
 `
 export const Header = styled.div`
   display: flex;
+  justify-content: space-between;
+  width: 100%;
+`
+
+export const FooterCard = styled.div`
+  position: relative;
   justify-content: space-between;
   width: 100%;
 `
