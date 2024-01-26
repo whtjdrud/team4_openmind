@@ -10,7 +10,11 @@ const StyledListHeader = styled.header`
     width: 146px;
     height: 54px;
   }
-
+  .profile-box {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
   @media only screen and (max-width: 376px) {
     flex-direction: column;
     align-items: center;
