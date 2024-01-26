@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 const Box = styled.div`
+  position: relative;
   display: flex;
   width: 100%;
   height: 100%;
@@ -12,8 +13,21 @@ const Box = styled.div`
   border-radius: 16px;
   border: 1px solid var(--Grayscale40, #818181);
   background: var(--Grayscale10, #fff);
+
+  .MOKOKO {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    width: 70px;
+    top: -50px;
+  }
+
   &:hover {
     border: none;
+  }
+
+  &:hover .MOKOKO {
+    opacity: 1;
   }
 `
 const UserLayout = styled.div`

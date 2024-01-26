@@ -3,6 +3,7 @@ import { Box, UserLayout, Profile, Text, ProfileImage, QuestionLayout, Question,
 import MESSAGE_IMG from '../../../assets/images/Message.svg'
 import CAT from '../../../assets/images/Ellipse 1.svg'
 import { Link } from 'react-router-dom'
+import MOKOKO_IMG from '../../../assets/images/01_모코코콘1_09_방긋.png'
 
 export const UserCard = ({
   userImageUrl = `${CAT}`,
@@ -14,6 +15,7 @@ export const UserCard = ({
   return (
     <Link to={Number(localId) === id ? `/post/${id}/answer` : `/post/${id}`}>
       <Box>
+        <img className='MOKOKO' alt='선택' src={MOKOKO_IMG} />
         <UserLayout>
           <Profile>
             <ProfileImage src={userImageUrl} />

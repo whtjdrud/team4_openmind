@@ -16,6 +16,7 @@ export const Button = styled.button`
   }
 `
 export const Div = styled.div`
+  z-index: 1;
   position: absolute;
   background: var(--Grayscale10, #fff);
   width: 80px;
