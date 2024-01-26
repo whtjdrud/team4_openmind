@@ -16,15 +16,15 @@ const FeedCard = ({
   id,
   like,
   dislike,
-  answer,
+  initAnswer,
   isAskPage,
   replyingUserImage,
   replyingUserName,
-  onDataFromFeedCard,
   handleDeleteQuestion,
   createdAt,
 }) => {
   const [isModify, setIsModify] = useState(false)
+  const [answer, setAnswer] = useState(initAnswer)
   const handleModifyClick = () => {
     setIsModify(!isModify)
   }
@@ -35,7 +35,15 @@ const FeedCard = ({
     }
     if (answer) {
       if (isModify) {
-        return <TextArea questionId={id} onDataFromTextArea={onDataFromFeedCard} value={answer?.content} />
+        return (
+          <TextArea
+            questionId={id}
+            value={answer?.content}
+            isModify={isModify}
+            answerId={answer.id}
+            setAnswer={setAnswer}
+          />
+        )
       }
       return (
         <ReplyComponent
@@ -46,7 +54,7 @@ const FeedCard = ({
         />
       )
     }
-    return <TextArea questionId={id} onDataFromTextArea={onDataFromFeedCard} />
+    return <TextArea questionId={id} setAnswer={setAnswer} />
   }
 
   return (
@@ -87,23 +95,21 @@ const FeedCards = ({ id, isAskPage, setQuestionCounts }) => {
   const [replyingUserImage, setReplyingUserImage] = useState('')
   const [replyingUserName, setReplyingUserName] = useState('')
 
-  const fetchAndSetQuestions = async () => {
-    const questionsData = await fetchQuestions(id)
-    setFeeds(questionsData.results)
-  }
-
-  const fetchAndSetUserData = async () => {
-    const { name, imageSource } = await fetchUserData(id)
-    setReplyingUserName(name)
-    setReplyingUserImage(imageSource)
-  }
   useEffect(() => {
+    const fetchAndSetQuestions = async () => {
+      const questionsData = await fetchQuestions(id)
+      setFeeds(questionsData.results)
+    }
+
+    const fetchAndSetUserData = async () => {
+      const { name, imageSource } = await fetchUserData(id)
+      setReplyingUserName(name)
+      setReplyingUserImage(imageSource)
+    }
+
     fetchAndSetQuestions()
     fetchAndSetUserData()
-  }, [])
-  const handleFeedCardState = () => {
-    fetchAndSetQuestions()
-  }
+  }, [id])
 
   const handleDeleteQuestion = async (questionId) => {
     await deleteQuestion(questionId)
@@ -116,7 +122,7 @@ const FeedCards = ({ id, isAskPage, setQuestionCounts }) => {
         <FeedCard
           key={feed.id}
           id={feed.id}
-          answer={feed.answer}
+          initAnswer={feed.answer}
           question={feed.content}
           like={feed.like}
           dislike={feed.dislike}
@@ -124,7 +130,6 @@ const FeedCards = ({ id, isAskPage, setQuestionCounts }) => {
           createdAt={feed.createdAt}
           replyingUserName={replyingUserName}
           replyingUserImage={replyingUserImage}
-          onDataFromFeedCard={handleFeedCardState}
           handleDeleteQuestion={handleDeleteQuestion}
         />
       ))}

@@ -22,17 +22,17 @@ export const fetchUserData = async (subjectId) => {
 }
 
 export const postAnswer = async (questionId, content, isRejected) => {
-  try {
-    const response = await axios.post(`${API_BASE_URL}questions/${questionId}answers/`, {
-      content,
-      isRejected,
-    })
-    return response.data
-  } catch (error) {
-    return null
-  }
+  const response = await axios.post(`${API_BASE_URL}questions/${questionId}/answers/`, {
+    content,
+    isRejected,
+  })
+  return response.data
 }
 
+export const putAnswer = async (answerId, content, isRejected) => {
+  const response = await axios.put(`${API_BASE_URL}answers/${answerId}/`, { content, isRejected })
+  return response.data
+}
 // 답변 삭제
 export const deleteAnswer = async (answerId) => {
   try {
