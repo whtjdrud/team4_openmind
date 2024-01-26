@@ -1,6 +1,7 @@
 import React from 'react'
 import { ReplyContainer, ProfileBox, ProfileImg, UserBox, NameItem, NameFrag, UserName, Time, Text } from './styledCard'
 import CAT from '../../../assets/images/Ellipse 1.svg'
+import timeSince from '../../../util/dateUtils'
 
 const ReplyComponent = ({ image, name, repliedAt, answer }) => {
   return (
@@ -15,7 +16,7 @@ const ReplyComponent = ({ image, name, repliedAt, answer }) => {
             {/* 닉네임 받아오기 */}
             <UserName>{name}</UserName>
             {/* 시간 받아오기 */}
-            <Time>{repliedAt}주전</Time>
+            <Time>{timeSince(repliedAt)}</Time>
           </NameFrag>
         </NameItem>
         {/* 답변 받아오기 */}

@@ -20,7 +20,6 @@ export const ToastDiv = styled.span`
   font-family: Pretendard;
   // 애니메이션
   animation: fadeout 5s;
-  animation-fill-mode: forwards;
   @keyframes fadeout {
     from {
       opacity: 1;
