@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Form, TextAreaInput, Text, Button } from './styledTextArea'
 import { postAnswer, putAnswer } from '../../../api/AnswerApi'
 
-export const TextArea = ({ questionId, value, isModify, answerId, setAnswer }) => {
+export const TextArea = ({ questionId, value, isModify, answerId, setAnswer, setIsModify }) => {
   const [content, setContent] = useState(value || '')
   const [isRejected, setIsRejected] = useState(true)
 
@@ -16,6 +16,9 @@ export const TextArea = ({ questionId, value, isModify, answerId, setAnswer }) =
 
     if (isModify) {
       const result = await putAnswer(answerId, content, isRejected)
+
+      setIsModify(false)
+
       setAnswer(result)
     } else {
       const result = await postAnswer(questionId, content, isRejected)

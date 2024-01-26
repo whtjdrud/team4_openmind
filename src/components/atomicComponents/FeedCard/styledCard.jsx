@@ -27,6 +27,7 @@ export const Text = styled.span`
   font-style: normal;
   font-weight: 400;
   line-height: 133.333%;
+  color: ${(props) => (props.$isRejected ? 'var(--Red50)' : 'var(--Grayscale60)')};
 `
 export const Icons = styled.div`
   display: flex;

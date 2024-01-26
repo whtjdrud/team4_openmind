@@ -42,6 +42,7 @@ const FeedCard = ({
             isModify={isModify}
             answerId={answer.id}
             setAnswer={setAnswer}
+            setIsModify={setIsModify}
           />
         )
       }
@@ -51,6 +52,7 @@ const FeedCard = ({
           name={replyingUserName}
           answer={answer?.content}
           repliedAt={answer?.createdAt}
+          isRejected={answer?.isRejected}
         />
       )
     }
@@ -67,12 +69,13 @@ const FeedCard = ({
             questionId={id}
             isRejected={answer?.isRejected}
             handleDeleteQuestion={handleDeleteQuestion}
+            setIsModify={setIsModify}
+            setAnswer={setAnswer}
           />
         )}
       </Header>
 
       <QuestionComponent askAt={createdAt} question={question} />
-      <ButtonsComponent like={like} dislike={dislike} />
 
       {/* 질문하기페이지 답이 있을 경우 */}
       {isAskPage && answer && (
@@ -81,11 +84,12 @@ const FeedCard = ({
           name={replyingUserName}
           answer={answer?.content}
           repliedAt={answer?.createdAt}
+          isRejected={answer?.isRejected}
         />
       )}
 
       {renderAnswerComponent()}
-
+      <ButtonsComponent like={like} dislike={dislike} />
       {!isAskPage && answer && !answer?.isRejected && <ButtonEdit onClick={handleModifyClick} isModify={isModify} />}
     </CardLayout>
   )

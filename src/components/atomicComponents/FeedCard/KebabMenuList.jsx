@@ -9,7 +9,7 @@ const KeBabMenuList = ({ data }) => {
       value: '답변 거절',
       type: 'reject',
       handler: () => {
-        handleRejectAnswer(answerId)
+        handleRejectAnswer(questionId)
       },
     },
     {

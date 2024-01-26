@@ -43,10 +43,13 @@ export const deleteAnswer = async (answerId) => {
   }
 }
 
-// 답변 거절 (PUT 요청)
-export const rejectAnswer = async (answerId) => {
+// 답변 거절
+export const rejectAnswer = async (questionId) => {
   try {
-    const response = await axios.put(`${API_BASE_URL}answers/${answerId}`)
+    const response = await axios.post(`${API_BASE_URL}questions/${questionId}/answers/`, {
+      content: '답변 거절',
+      isRejected: true,
+    })
     return response.data
   } catch (error) {
     return null
