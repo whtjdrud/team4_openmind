@@ -1,10 +1,11 @@
 import React from 'react'
 import { QuestionContainer, Time, Question } from './styledCard'
+import timeSince from '../../../util/dateUtils'
 
 const QuestionComponent = ({ askAt, question }) => {
   return (
     <QuestionContainer>
-      <Time>질문 · {askAt}주전</Time>
+      <Time>질문 · {timeSince(askAt)}</Time>
       <Question>{question}</Question>
     </QuestionContainer>
   )

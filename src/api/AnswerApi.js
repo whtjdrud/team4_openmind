@@ -1,7 +1,9 @@
-const API_BASE_URL = 'https://openmind-api.vercel.app/3-4/subjects/'
+import axios from 'axios'
+
+const API_BASE_URL = 'https://openmind-api.vercel.app/3-4/'
 export const getSubject = async (id) => {
   try {
-    const response = await fetch(`${API_BASE_URL}${id}/`)
+    const response = await fetch(`${API_BASE_URL}subjects/${id}/`)
     if (!response.ok) {
       throw new Error('Network response was not ok')
     }
@@ -11,10 +13,42 @@ export const getSubject = async (id) => {
   }
 }
 export const fetchQuestions = async (id) => {
-  const response = await fetch(`${API_BASE_URL}${id}/questions/`)
+  const response = await fetch(`${API_BASE_URL}subjects/${id}/questions/`)
   return response.json()
 }
 export const fetchUserData = async (subjectId) => {
-  const response = await fetch(`${API_BASE_URL}${subjectId}/`)
+  const response = await fetch(`${API_BASE_URL}subjects/${subjectId}/`)
   return response.json()
+}
+
+export const postAnswer = async (questionId, content, isRejected) => {
+  try {
+    const response = await axios.post(`${API_BASE_URL}questions/${questionId}answers/`, {
+      content,
+      isRejected,
+    })
+    return response.data
+  } catch (error) {
+    return null
+  }
+}
+
+// 답변 삭제
+export const deleteAnswer = async (answerId) => {
+  try {
+    const response = await axios.delete(`${API_BASE_URL}answers/${answerId}/`)
+    return response.data
+  } catch (error) {
+    return null
+  }
+}
+
+// 답변 거절 (PUT 요청)
+export const rejectAnswer = async (answerId) => {
+  try {
+    const response = await axios.put(`${API_BASE_URL}answers/${answerId}`)
+    return response.data
+  } catch (error) {
+    return null
+  }
 }

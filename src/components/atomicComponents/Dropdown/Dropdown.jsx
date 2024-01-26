@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Button, Div, DropdownMenu } from './StyledDropdown'
 import ArrowUp from '../../../assets/images/ArrowUp.svg'
 import ArrowDown from '../../../assets/images/ArrowDown.svg'
+import { Link } from 'react-router-dom'
 
 const Dropdown = ({ setSelectedItem, selectedItem }) => {
   const [isDropdownOpen, setDropdownOpen] = useState(false)
@@ -18,14 +19,18 @@ const Dropdown = ({ setSelectedItem, selectedItem }) => {
   return (
     <div>
       <Button onClick={toggleDropdown} isOpen={isDropdownOpen}>
-        <p>{(selectedItem && selectedItem) || '이름순'}</p>
+        <p>{selectedItem === 'name' ? '이름순' : '최신순'}</p>
         <img src={isDropdownOpen ? ArrowUp : ArrowDown} alt='화살표 이미지' />
       </Button>
 
       {isDropdownOpen && (
         <Div>
-          <DropdownMenu onClick={() => handleItemClick('name')}>이름순</DropdownMenu>
-          <DropdownMenu onClick={() => handleItemClick('time')}>최신순</DropdownMenu>
+          <Link to='/list/index?page=1&sort=name'>
+            <DropdownMenu onClick={() => handleItemClick('name')}>이름순</DropdownMenu>
+          </Link>
+          <Link to='/list/index?page=1&sort=time'>
+            <DropdownMenu onClick={() => handleItemClick('time')}>최신순</DropdownMenu>
+          </Link>
         </Div>
       )}
     </div>

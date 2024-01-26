@@ -8,6 +8,7 @@ const HomePage = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [inputValue, setInputValue] = useState('')
   const regex = /^[가-힣a-zA-Z0-9]+$/ // 가-힣 한글, a-zA-Z 영어, 0-9 숫자
+  const userStorageId = localStorage.getItem('userId')
 
   const baseUrl = 'https://openmind-api.vercel.app/3-4/subjects/?limit=1000'
 
@@ -42,11 +43,11 @@ const HomePage = () => {
       localStorage.removeItem('userId')
       localStorage.removeItem('userName')
       setIsLoggedIn(false)
+      setInputValue('')
     }
   }
 
   useEffect(() => {
-    // 페이지가 로드될 때 로컬 스토리지에서 로그인 정보를 확인하여 상태를 업데이트
     const userId = localStorage.getItem('userId')
     if (userId) {
       setIsLoggedIn(true)
@@ -54,21 +55,15 @@ const HomePage = () => {
     }
   }, [])
 
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value)
-  }
-
-  const userId = localStorage.getItem('userId')
-
   return (
     <MainPageDiv>
-      <LoginHeader />
+      <LoginHeader userStorageId={userStorageId} />
       <LoginMain
         isLoggedIn={isLoggedIn}
         inputValue={inputValue}
-        onInputChange={handleInputChange}
-        onLoginToggle={handleLoginToggle}
-        userId={userId}
+        setInputValue={setInputValue}
+        onClick={handleLoginToggle}
+        userStorageId={userStorageId}
       />
       <MobileImgDiv>
         <MobileImg src={HomeBackImg} alt='HomeBackImg' />

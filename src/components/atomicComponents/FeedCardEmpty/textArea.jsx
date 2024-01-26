@@ -3,8 +3,8 @@ import { Form, TextAreaInput, Text, Button } from './styledTextArea'
 
 const API_BASE_URL = 'https://openmind-api.vercel.app/3-4/'
 
-export const TextArea = ({ questionId }) => {
-  const [content, setContent] = useState('')
+export const TextArea = ({ questionId, onDataFromTextArea, value }) => {
+  const [content, setContent] = useState(value || '')
   const [isRejected, setIsRejected] = useState(true)
 
   const postAnswer = async () => {
@@ -37,10 +37,14 @@ export const TextArea = ({ questionId }) => {
     }
   }
 
+  const handleClick = () => {
+    onDataFromTextArea()
+  }
+
   return (
     <Form onSubmit={handleSubmit}>
       <TextAreaInput name='content' value={content} onChange={handleChange} placeholder='답변을 입력해주세요.' />
-      <Button type='submit' disabled={!content}>
+      <Button type='submit' disabled={!content} onClick={handleClick}>
         <Text>답변하기</Text>
       </Button>
     </Form>
