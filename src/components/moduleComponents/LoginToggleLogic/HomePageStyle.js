@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import HomeBackImg from '../assets/images/HomeBackImg.png'
+import HomeBackImg from '../../../assets/images/HomeBackImg.png'
 import { Link } from 'react-router-dom'
 
 export const MainPageDiv = styled.div`
