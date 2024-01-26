@@ -1,7 +1,6 @@
 import ListTitle from '../ListTitle'
 import StyledListSection from './StyledListSection'
 import { UserCardList } from '../UserCardList'
-import axios from 'axios'
 import Pagination from '../../atomicComponents/Pagination'
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
@@ -26,19 +25,28 @@ const ListSection = () => {
   useEffect(() => {
     const fetchUserCards = async () => {
       const url = 'https://openmind-api.vercel.app/3-4/subjects/'
-      const params = {
+      const queryParams = new URLSearchParams({
         limit: 8,
         offset: (currentPage - 1) * 8,
         sort: selectedItem,
+      })
+      try {
+        const response = await fetch(`${url}?${queryParams}`, {
+          headers: {
+            accept: 'application/json',
+          },
+        })
+        if (!response.ok) {
+          throw new Error('Network response was not ok')
+        }
+        const data = await response.json()
+        setUserCards(data.results)
+        setCount(data.count)
+      } catch (error) {
+        console.error('Error fetching user cards:', error)
       }
-      const headers = {
-        accept: 'application/json',
-      }
-
-      const response = await axios.get(url, { params, headers })
-      setUserCards(response.data.results)
-      setCount(response.data.count)
     }
+
     fetchUserCards()
   }, [currentPage, selectedItem])
   return (
