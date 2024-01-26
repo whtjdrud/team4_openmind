@@ -1,4 +1,4 @@
-import { Inputdiv, LoginText, InputBox, AnswerButtonLink } from '../../../pages/HomePageStyle'
+import { Inputdiv, LoginText, InputBox, AnswerButtonLink } from '../LoginToggleLogic/HomePageStyle'
 import { AskButton } from '../../atomicComponents/buttonComponent/AskButton'
 import InputField from '../../atomicComponents/InputField/index'
 
