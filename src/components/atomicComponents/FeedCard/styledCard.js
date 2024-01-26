@@ -190,3 +190,9 @@ export const Header = styled.div`
   justify-content: space-between;
   width: 100%;
 `
+
+export const FooterCard = styled.div`
+  position: relative;
+  justify-content: space-between;
+  width: 100%;
+`

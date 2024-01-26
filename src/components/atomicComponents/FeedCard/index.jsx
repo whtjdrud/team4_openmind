@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { CardLayout, Header } from './styledCard'
+import { CardLayout, FooterCard, Header } from './styledCard'
 import QuestionComponent from './Question'
 import ReplyComponent from './Reply'
 import ButtonsComponent from './Buttons'
@@ -89,8 +89,10 @@ const FeedCard = ({
       )}
 
       {renderAnswerComponent()}
-      <ButtonsComponent like={like} dislike={dislike} />
-      {!isAskPage && answer && !answer?.isRejected && <ButtonEdit onClick={handleModifyClick} isModify={isModify} />}
+      <FooterCard>
+        <ButtonsComponent like={like} dislike={dislike} />
+        {!isAskPage && answer && !answer?.isRejected && <ButtonEdit onClick={handleModifyClick} isModify={isModify} />}
+      </FooterCard>
     </CardLayout>
   )
 }
