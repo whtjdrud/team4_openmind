@@ -1,4 +1,4 @@
-import { MainDiv, ButtonDiv, LogoImg } from '../../../pages/HomePageStyle'
+import { MainDiv, ButtonDiv, LogoImg } from '../LoginToggleLogic/HomePageStyle'
 import { ReplyButton } from '../../atomicComponents/buttonComponent/ReplyButton'
 import { Link } from 'react-router-dom'
 import mainLogo from '../../../assets/images/mainLogo.svg'
