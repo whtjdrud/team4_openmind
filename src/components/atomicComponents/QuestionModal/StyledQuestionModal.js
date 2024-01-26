@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export const StyledModalContent = styled.div`
-  // 모달의 스타일을 추가
   position: relative;
   display: flex;
   flex-direction: column;
@@ -20,6 +19,7 @@ export const StyledModalContent = styled.div`
   .modal-header {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
   }
 
   .title-box {

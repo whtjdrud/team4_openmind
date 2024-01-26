@@ -10,8 +10,11 @@ const Box = styled.div`
   align-items: flex-start;
   flex-shrink: 0;
   border-radius: 16px;
-  border: 1px solid var(--Grayscale-40, #818181);
-  background: var(--Grayscale-10, #fff);
+  border: 1px solid var(--Grayscale40, #818181);
+  background: var(--Grayscale10, #fff);
+  &:hover {
+    border: none;
+  }
 `
 const UserLayout = styled.div`
   display: flex;
@@ -28,7 +31,7 @@ const Profile = styled.div`
   align-self: stretch;
 `
 const Text = styled.span`
-  color: var(--Grayscale-60, #000);
+  color: var(--Grayscale60, #000);
   font-feature-settings:
     'clig' off,
     'liga' off;
@@ -67,7 +70,7 @@ const QuestionLayout = styled.div`
   align-self: stretch;
 
   ${Text} {
-    color: var(--Grayscale-40, #818181);
+    color: var(--Grayscale40, #818181);
     font-feature-settings:
       'clig' off,
       'liga' off;

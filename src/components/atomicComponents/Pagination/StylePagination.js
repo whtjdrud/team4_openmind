@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const PaginationBox = styled.div`
   display: flex;
+  margin-top: 40px;
   justify-content: center;
   align-items: center;
   gap: 5px;

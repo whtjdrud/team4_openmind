@@ -38,6 +38,7 @@ const GlobalStyle = createGlobalStyle`
       -webkit-tap-highlight-color : transparent;
       background-repeat: no-repeat;
       background-attachment: fixed;
+      background: var(--Grayscale20, #F9F9F9);
   }
 
   h1 {

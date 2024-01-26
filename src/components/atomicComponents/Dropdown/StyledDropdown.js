@@ -16,6 +16,8 @@ export const Button = styled.button`
   }
 `
 export const Div = styled.div`
+  position: absolute;
+  background: var(--Grayscale10, #fff);
   width: 80px;
   border: 1px solid var(--Grayscale30);
   border-radius: 8px;
