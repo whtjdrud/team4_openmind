@@ -3,8 +3,8 @@ import { Form, TextAreaInput, Text, Button } from './styledTextArea'
 
 const API_BASE_URL = 'https://openmind-api.vercel.app/3-4/'
 
-export const TextArea = ({ questionId, onDataFromTextArea }) => {
-  const [content, setContent] = useState('')
+export const TextArea = ({ questionId, onDataFromTextArea, value }) => {
+  const [content, setContent] = useState(value || '')
   const [isRejected, setIsRejected] = useState(true)
 
   const postAnswer = async () => {
