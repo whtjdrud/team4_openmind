@@ -15,6 +15,7 @@ const StyledListHeader = styled.header`
     align-items: center;
     gap: 18px;
   }
+
   @media only screen and (max-width: 376px) {
     flex-direction: column;
     align-items: center;

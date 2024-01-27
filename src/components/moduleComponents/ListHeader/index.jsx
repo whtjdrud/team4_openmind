@@ -8,6 +8,7 @@ import LocalProfile from '../../atomicComponents/LocalProfile'
 const ListHeader = () => {
   const [localId, setLocalId] = useState('')
   const [userData, setUserData] = useState({})
+  const [isProfileHovered, setIsProfileHovered] = useState(false)
   useEffect(() => {
     setLocalId(localStorage.getItem('userId'))
   }, [])
@@ -41,12 +42,19 @@ const ListHeader = () => {
       <Link to='/'>
         <img className='logo-img' src={logo} alt='로고' />
       </Link>
-      <div className='profile-box'>
-        {localId && <LocalProfile userImg={userData.imageSource} userName={userData.name} />}
-        <Link to={localId ? `/post/${localId}/answer` : '/'}>
-          <ReplyButton>답변하러 가기</ReplyButton>
-        </Link>
-      </div>
+
+      {localId && (
+        <div
+          className='profile-box'
+          onMouseEnter={() => setIsProfileHovered(true)}
+          onMouseLeave={() => setIsProfileHovered(false)}
+        >
+          <LocalProfile userImg={userData.imageSource} userName={userData.name} />
+          <Link to={localId ? `/post/${localId}/answer` : '/'}>
+            <ReplyButton>답변하러 가기</ReplyButton>
+          </Link>
+        </div>
+      )}
     </StyledListHeader>
   )
 }
