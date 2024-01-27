@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { StyledModalContent, StyledOverlay } from './StyledQuestionModal'
 import MESSAGE from '../../../assets/images/Messages.svg'
 import CLOSE from '../../../assets/images/Close.svg'

@@ -5,13 +5,11 @@ const Icon = styled.img`
   height: 18px;
 `
 const Text = styled.span`
-  color: var(--Grayscale-10, #fff);
+  color: var(--Grayscale10, #fff);
   font-feature-settings:
     'clig' off,
     'liga' off;
-  font-family: Pretendard;
   font-size: 1.6rem;
-  font-style: normal;
   font-weight: 400;
   line-height: 137.5%;
 `
@@ -20,13 +18,12 @@ const AskStyledButton = styled.button`
   padding: 12px 24px;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   border-radius: 8px;
   border: none;
   background: var(--Brown-40, #542f1a);
 
   &:hover {
-    gap: 10px;
     border: 2px solid var(--Brown-50, #341909);
   }
   &:active {
@@ -35,7 +32,6 @@ const AskStyledButton = styled.button`
   &:disabled {
     background: var(--Brown-30, #c7bbb5);
     &:hover {
-      gap: 10px;
       border: none;
     }
   }
@@ -46,7 +42,8 @@ const AskStyledButton = styled.button`
 `
 const ReplyStyledButton = styled(AskStyledButton)`
   background: var(--Brown-10, #f5f1ee);
-  gap: 8px;
+  border: 2px solid transparent;
+  gap: 10px;
 
   ${Text} {
     color: var(--Brown-40, #542f1a);
@@ -66,11 +63,10 @@ const ReplyStyledButton = styled(AskStyledButton)`
     background: var(--Brown-20, #e4d5c9);
   }
   &:disabled {
-    border: 1px solid var(--Brown-30, #c7bbb5);
+    border: 2px solid var(--Brown-30, #c7bbb5);
     background: var(--Brown-10, #f5f1ee);
     &:hover {
-      gap: 10px;
-      border: 1px solid var(--Brown-30, #c7bbb5);
+      border: 2px solid var(--Brown-30, #c7bbb5);
     }
   }
 `

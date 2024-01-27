@@ -46,9 +46,9 @@ const ListSection = () => {
         console.error('Error fetching user cards:', error)
       }
     }
-
     fetchUserCards()
   }, [currentPage, selectedItem])
+
   return (
     <StyledListSection>
       <ListTitle selectedItem={selectedItem} setSelectedItem={setSelectedItem} />
