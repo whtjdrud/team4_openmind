@@ -3,7 +3,7 @@ import { ReplyContainer, ProfileBox, ProfileImg, UserBox, NameItem, NameFrag, Us
 import CAT from '../../../assets/images/Ellipse 1.svg'
 import timeSince from '../../../util/dateUtils'
 
-const ReplyComponent = ({ image, name, repliedAt, answer }) => {
+const ReplyComponent = ({ image, name, repliedAt, answer, isRejected }) => {
   return (
     <ReplyContainer>
       <ProfileBox>
@@ -20,7 +20,7 @@ const ReplyComponent = ({ image, name, repliedAt, answer }) => {
           </NameFrag>
         </NameItem>
         {/* 답변 받아오기 */}
-        <Text>{answer}</Text>
+        <Text $isRejected={isRejected}>{answer}</Text>
       </UserBox>
     </ReplyContainer>
   )

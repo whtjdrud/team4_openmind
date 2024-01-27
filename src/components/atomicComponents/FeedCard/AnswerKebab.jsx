@@ -3,7 +3,7 @@ import KeBabMenuList from './KebabMenuList'
 import { Container, Kebab } from './StyledKebabMenuList'
 import { deleteAnswer, rejectAnswer } from '../../../api/AnswerApi'
 
-const AnswerKebab = ({ answerId, questionId, isRejected, handleDeleteQuestion }) => {
+const AnswerKebab = ({ answerId, questionId, isRejected, handleDeleteQuestion, setAnswer, setIsModify }) => {
   const buttonRef = useRef()
   const [isOpen, setIsOpen] = useState(false)
   const handleOnToggle = () => {
@@ -12,10 +12,13 @@ const AnswerKebab = ({ answerId, questionId, isRejected, handleDeleteQuestion })
 
   const handleDeleteAnswer = async (id) => {
     await deleteAnswer(id)
+    setAnswer(null)
   }
 
   const handleRejectAnswer = async (id) => {
-    await rejectAnswer(id)
+    const result = await rejectAnswer(id)
+    setAnswer(result)
+    setIsModify(false)
   }
 
   const handleOutsideClick = (e) => {

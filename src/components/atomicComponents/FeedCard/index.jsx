@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { CardLayout, Header } from './styledCard'
+import { CardLayout, FooterCard, Header } from './styledCard'
 import QuestionComponent from './Question'
 import ReplyComponent from './Reply'
 import ButtonsComponent from './Buttons'
@@ -16,15 +16,15 @@ const FeedCard = ({
   id,
   like,
   dislike,
-  answer,
+  initAnswer,
   isAskPage,
   replyingUserImage,
   replyingUserName,
-  onDataFromFeedCard,
   handleDeleteQuestion,
   createdAt,
 }) => {
   const [isModify, setIsModify] = useState(false)
+  const [answer, setAnswer] = useState(initAnswer)
   const handleModifyClick = () => {
     setIsModify(!isModify)
   }
@@ -35,7 +35,16 @@ const FeedCard = ({
     }
     if (answer) {
       if (isModify) {
-        return <TextArea questionId={id} onDataFromTextArea={onDataFromFeedCard} value={answer?.content} />
+        return (
+          <TextArea
+            questionId={id}
+            value={answer?.content}
+            isModify={isModify}
+            answerId={answer.id}
+            setAnswer={setAnswer}
+            setIsModify={setIsModify}
+          />
+        )
       }
       return (
         <ReplyComponent
@@ -43,10 +52,11 @@ const FeedCard = ({
           name={replyingUserName}
           answer={answer?.content}
           repliedAt={answer?.createdAt}
+          isRejected={answer?.isRejected}
         />
       )
     }
-    return <TextArea questionId={id} onDataFromTextArea={onDataFromFeedCard} />
+    return <TextArea questionId={id} setAnswer={setAnswer} />
   }
 
   return (
@@ -59,12 +69,13 @@ const FeedCard = ({
             questionId={id}
             isRejected={answer?.isRejected}
             handleDeleteQuestion={handleDeleteQuestion}
+            setIsModify={setIsModify}
+            setAnswer={setAnswer}
           />
         )}
       </Header>
 
       <QuestionComponent askAt={createdAt} question={question} />
-      <ButtonsComponent like={like} dislike={dislike} />
 
       {/* 질문하기페이지 답이 있을 경우 */}
       {isAskPage && answer && (
@@ -73,12 +84,15 @@ const FeedCard = ({
           name={replyingUserName}
           answer={answer?.content}
           repliedAt={answer?.createdAt}
+          isRejected={answer?.isRejected}
         />
       )}
 
       {renderAnswerComponent()}
-
-      {!isAskPage && answer && !answer?.isRejected && <ButtonEdit onClick={handleModifyClick} isModify={isModify} />}
+      <FooterCard>
+        <ButtonsComponent like={like} dislike={dislike} />
+        {!isAskPage && answer && !answer?.isRejected && <ButtonEdit onClick={handleModifyClick} isModify={isModify} />}
+      </FooterCard>
     </CardLayout>
   )
 }
@@ -87,23 +101,21 @@ const FeedCards = ({ id, isAskPage, setQuestionCounts }) => {
   const [replyingUserImage, setReplyingUserImage] = useState('')
   const [replyingUserName, setReplyingUserName] = useState('')
 
-  const fetchAndSetQuestions = async () => {
-    const questionsData = await fetchQuestions(id)
-    setFeeds(questionsData.results)
-  }
-
-  const fetchAndSetUserData = async () => {
-    const { name, imageSource } = await fetchUserData(id)
-    setReplyingUserName(name)
-    setReplyingUserImage(imageSource)
-  }
   useEffect(() => {
+    const fetchAndSetQuestions = async () => {
+      const questionsData = await fetchQuestions(id)
+      setFeeds(questionsData.results)
+    }
+
+    const fetchAndSetUserData = async () => {
+      const { name, imageSource } = await fetchUserData(id)
+      setReplyingUserName(name)
+      setReplyingUserImage(imageSource)
+    }
+
     fetchAndSetQuestions()
     fetchAndSetUserData()
-  }, [])
-  const handleFeedCardState = () => {
-    fetchAndSetQuestions()
-  }
+  }, [id])
 
   const handleDeleteQuestion = async (questionId) => {
     await deleteQuestion(questionId)
@@ -116,7 +128,7 @@ const FeedCards = ({ id, isAskPage, setQuestionCounts }) => {
         <FeedCard
           key={feed.id}
           id={feed.id}
-          answer={feed.answer}
+          initAnswer={feed.answer}
           question={feed.content}
           like={feed.like}
           dislike={feed.dislike}
@@ -124,7 +136,6 @@ const FeedCards = ({ id, isAskPage, setQuestionCounts }) => {
           createdAt={feed.createdAt}
           replyingUserName={replyingUserName}
           replyingUserImage={replyingUserImage}
-          onDataFromFeedCard={handleFeedCardState}
           handleDeleteQuestion={handleDeleteQuestion}
         />
       ))}
