@@ -52,5 +52,3 @@ const ShareBtn = () => {
 }
 
 export default ShareBtn
-
-// $handleCopyClipBoard(`{baseUrl}${currentLocation.pathname}`) 추가!

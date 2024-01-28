@@ -27,10 +27,10 @@ export const MainPageDiv = styled.div`
 
 export const MainDiv = styled.div`
   width: 100%;
+  padding-top: 6rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 6rem;
   gap: 5rem;
 
   @media only screen and (max-width: 767px) {
@@ -51,8 +51,8 @@ export const ButtonDiv = styled.div`
   }
 
   @media only screen and (max-width: 767px) {
-    justify-content: center;
     padding-right: 0;
+    justify-content: center;
     order: 2;
   }
 `
@@ -62,8 +62,8 @@ export const LogoImg = styled.img`
   padding-top: 4rem;
 
   @media only screen and (max-width: 767px) {
-    padding-top: 0;
     width: 25rem;
+    padding-top: 0;
     order: 1;
   }
 `
@@ -80,11 +80,12 @@ export const Inputdiv = styled.form`
   width: 40rem;
   height: 23rem;
   padding: 3.2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.6rem;
   background-color: var(--Grayscale-10, #fff);
   border-radius: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 1.6rem;
 
   @media only screen and (max-width: 767px) {
     width: 30rem;
@@ -119,14 +120,14 @@ export const ResponsiveImg = styled.img`
   display: none;
 
   @media only screen and (max-width: 1199px) {
-    display: block;
     width: 100%;
     height: 100%;
+    display: block;
   }
 
   @media only screen and (max-width: 767px) {
-    display: block;
     width: 100%;
     height: 100%;
+    display: block;
   }
 `
