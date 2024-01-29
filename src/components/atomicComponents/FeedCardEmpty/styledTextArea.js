@@ -8,7 +8,8 @@ export const Form = styled.form`
   align-self: stretch;
 `
 
-export const TextAreaInput = styled.input`
+export const TextAreaInput = styled.textarea`
+  outline: none;
   display: flex;
   height: 186px;
   padding: 16px;
