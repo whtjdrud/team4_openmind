@@ -5,6 +5,7 @@ import IndividualFeed from './pages/IndividualFeed'
 import HomePage from './pages/HomePage'
 import QuestionList from './pages/QuestionList'
 import GlobalStyle from './style/GlobalStyle'
+import NotFoundPage from './pages/NotFoundPage'
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route path='/list' element={<QuestionList />} />
           <Route path='/list/index' element={<QuestionList />} />
           <Route path='/' element={<HomePage />} />
+          <Route path='*' element={<NotFoundPage />} />
         </Routes>
       </Router>
     </>
