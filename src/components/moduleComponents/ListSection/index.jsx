@@ -12,7 +12,7 @@ const ListSection = () => {
   const [currentPage, setCurrentPage] = useState(Number(URL_PAGE) || 1)
   const [count, setCount] = useState(0)
   const [userCards, setUserCards] = useState([])
-  const [selectedItem, setSelectedItem] = useState(URL_SORT || 'name')
+  const [selectedItem, setSelectedItem] = useState(URL_SORT || 'time')
   const [localId, setLocalId] = useState('')
   useEffect(() => {
     if (URL_PAGE) {
