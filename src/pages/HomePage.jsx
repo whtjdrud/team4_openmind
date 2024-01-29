@@ -1,4 +1,8 @@
-import { MainPageDiv, MobileImgDiv, MobileImg } from '../components/moduleComponents/LoginToggleLogic/HomePageStyle'
+import {
+  MainPageDiv,
+  ResponsiveImgDiv,
+  ResponsiveImg,
+} from '../components/moduleComponents/LoginToggleLogic/HomePageStyle'
 import HomeBackImg from '../assets/images/HomeBackImg.png'
 import LoginHeader from '../components/moduleComponents/LoginHeader/index'
 import LoginMain from '../components/moduleComponents/LoginMain/index'
@@ -16,9 +20,9 @@ const HomePage = () => {
         onClick={handleLoginToggle}
         userStorageId={userStorageId}
       />
-      <MobileImgDiv>
-        <MobileImg src={HomeBackImg} alt='HomeBackImg' />
-      </MobileImgDiv>
+      <ResponsiveImgDiv>
+        <ResponsiveImg src={HomeBackImg} alt='HomeBackImg' />
+      </ResponsiveImgDiv>
     </MainPageDiv>
   )
 }
