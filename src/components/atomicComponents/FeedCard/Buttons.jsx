@@ -1,26 +1,20 @@
 import React from 'react'
-import { ButtonContainer, Line, ButtonBox, Button, Thumb, Text } from './styledCard'
-import LIKE from '../../../assets/images/thumbs-up.svg'
-import DISLIKE from '../../../assets/images/thumbs-down.svg'
+import HateReaction from '../Reaction/HateReaction'
+import LikeReaction from '../Reaction/LikeReaction'
+import { ButtonContainer, Line, ButtonBox } from './styledCard'
 
 const ButtonsComponent = ({ like, dislike, questionId }) => {
   return (
     <ButtonContainer>
       <Line />
       <ButtonBox>
-        <Button>
-          <Thumb src={`${LIKE}`} />
-          <Text>좋아요 {like}</Text>
-        </Button>
-        <Button>
-          <Thumb src={`${DISLIKE}`} />
-          <Text>싫어요 {dislike}</Text>
-        </Button>
-        {questionId}
+        <LikeReaction number={like} questionId={questionId} />
+        <HateReaction number={dislike} questionId={questionId} />
       </ButtonBox>
     </ButtonContainer>
   )
 }
+
 ButtonsComponent.defaultProps = {
   like: 0,
   dislike: 0,
