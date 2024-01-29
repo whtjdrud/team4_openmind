@@ -90,7 +90,7 @@ const FeedCard = ({
 
       {renderAnswerComponent()}
       <FooterCard>
-        <ButtonsComponent like={like} dislike={dislike} />
+        <ButtonsComponent like={like} dislike={dislike} questionId={id} />
         {!isAskPage && answer && !answer?.isRejected && <ButtonEdit onClick={handleModifyClick} isModify={isModify} />}
       </FooterCard>
     </CardLayout>
