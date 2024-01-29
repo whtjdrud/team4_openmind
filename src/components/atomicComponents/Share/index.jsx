@@ -30,7 +30,7 @@ const ShareBtn = () => {
   }
 
   const handleShareKakao = () => {
-    KakaoShare(window.location.origin)
+    KakaoShare(`${url}${currentLocation.pathname}`)
   }
 
   return (
