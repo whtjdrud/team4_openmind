@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
 import { Form, TextAreaInput, Button, Text } from '../FeedCardEmpty/styledTextArea'
 
-const API_BASE_URL = 'https://openmind-api.vercel.app/3-4/'
-
 export const TextArea = ({ id }) => {
   const [values, setValues] = useState({
     content: '',
   })
-
+  const API_BASE_URL = 'https://openmind-api.vercel.app/3-4/'
   const postQuestions = async (userid) => {
     await fetch(`${API_BASE_URL}subjects/${userid}/questions/`, {
       method: 'POST',

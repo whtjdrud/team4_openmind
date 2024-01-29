@@ -10,5 +10,3 @@ export const AskButton = ({ children, buttonOff, onClick }) => {
     </AskStyledButton>
   )
 }
-
-// onClick을 props로 받아서 사용할 수 있도록 설정

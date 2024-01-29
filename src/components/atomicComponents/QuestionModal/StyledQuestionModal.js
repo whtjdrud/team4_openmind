@@ -16,6 +16,11 @@ export const StyledModalContent = styled.div`
   background: var(--Grayscale10, #fff);
   box-shadow: var(--shoadow-large, 0px 16px 20px 0px rgba(48, 48, 48, 0.62));
 
+  @media only screen and (max-width: 375px) {
+    width: 327px;
+    height: 500px;
+  }
+
   .modal-header {
     display: flex;
     justify-content: space-between;
