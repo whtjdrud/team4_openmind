@@ -1,6 +1,5 @@
 import { ShareBtnDiv, ShareLinkImg, ShareFaceBookImg, ShareKakaoImg } from './StyleShareBtn'
 import React, { useState } from 'react'
-import { useLocation } from 'react-router-dom'
 import LinkSvg from '../../../assets/images/whitelink.svg'
 import FacebookSvg from '../../../assets/images/whitefacebook.svg'
 import KakaotalkSvg from '../../../assets/images/Kakaotalk.svg'
@@ -9,8 +8,7 @@ import KakaoShare from './KakaoShare'
 
 const ShareBtn = () => {
   const [isToast, setIsToast] = useState(false) // 토스트 메시지를 보여줄지 말지 결정하는 state
-  const currentLocation = useLocation() // 현재 페이지의 url을 가져옴
-  const url = window.location.origin
+  const url = window.location.href
 
   const shareToFacebook = () => {
     const sharedLink = encodeURIComponent(url)
@@ -30,7 +28,7 @@ const ShareBtn = () => {
   }
 
   const handleShareKakao = () => {
-    KakaoShare(`${url}${currentLocation.pathname}`)
+    KakaoShare(url)
   }
 
   return (
@@ -40,7 +38,7 @@ const ShareBtn = () => {
           src={LinkSvg}
           alt='link'
           onClick={() => {
-            handleCopyClipBoard(`${url}${currentLocation.pathname}`)
+            handleCopyClipBoard(url)
           }}
         />
         <ShareFaceBookImg src={FacebookSvg} alt='facebook' onClick={shareToFacebook} />
