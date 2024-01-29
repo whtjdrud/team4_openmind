@@ -6,6 +6,7 @@ const LoginToggleLogic = () => {
   const [inputValue, setInputValue] = useState('')
   const regex = /^[가-힣a-zA-Z0-9]+$/ // 가-힣 한글, a-zA-Z 영어, 0-9 숫자
   const userStorageId = localStorage.getItem('userId')
+  const userStorageName = localStorage.getItem('userName')
 
   const handleLoginToggle = async (e) => {
     e.preventDefault()
@@ -36,10 +37,9 @@ const LoginToggleLogic = () => {
   }
 
   useEffect(() => {
-    const userId = localStorage.getItem('userId')
-    if (userId) {
+    if (userStorageId) {
       setIsLoggedIn(true)
-      setInputValue(localStorage.getItem('userName'))
+      setInputValue(userStorageName)
     }
   }, [])
   return { isLoggedIn, inputValue, userStorageId, setInputValue, handleLoginToggle }

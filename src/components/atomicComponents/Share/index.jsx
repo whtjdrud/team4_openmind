@@ -10,7 +10,7 @@ import { useParams } from 'react-router-dom'
 const ShareBtn = () => {
   const [isToast, setIsToast] = useState(false) // 토스트 메시지를 보여줄지 말지 결정하는 state
   const Params = useParams()
-  const url = `${window.location.origin}/post/${Params.id}` //
+  const url = `${window.location.origin}/post/${Params.id}`
 
   const shareToFacebook = () => {
     const sharedLink = encodeURIComponent(url)
