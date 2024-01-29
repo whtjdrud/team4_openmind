@@ -19,7 +19,7 @@ const LoginToggleLogic = () => {
           } else {
             const newUser = await createUserApi(inputValue)
             setIsLoggedIn(true)
-            user = newUser
+            user = newUser // user에 새로운 유저 정보를 넣어줌
           }
           localStorage.setItem('userId', user.id)
           localStorage.setItem('userName', user.name)
