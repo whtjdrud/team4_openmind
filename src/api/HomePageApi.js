@@ -10,7 +10,7 @@ export const createUserApi = async (inputValue) => {
   const newUserResponse = await fetch(baseUrl, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name: inputValue }),
+    body: JSON.stringify({ name: inputValue }), 
   })
   return newUserResponse.json()
 }
