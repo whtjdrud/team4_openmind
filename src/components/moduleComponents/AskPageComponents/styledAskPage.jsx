@@ -13,6 +13,7 @@ export const PageLayout = styled.div`
   overflow: scroll;
 `
 export const QuestionsList = styled.div`
+  position: relative;
   display: inline-flex;
   padding: 16px;
   margin-top: 20rem;
