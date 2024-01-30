@@ -27,6 +27,18 @@
     <img src="https://img.shields.io/badge/axios-DA291C?style=for-the-badge&logo=axios&logoColor=white">
 </div>
 
+## 🎄 프로젝트 트리
+
+```
+src
+ ┣ api          // 프로젝트에 사용된 api들
+ ┣ assets       // image 파일
+ ┣ components   // 공통으로 사용하는 컴포넌트
+ ┣ pages        // 페이지
+ ┣ style        // 전역 style
+ ┣ util         // 시간 관련 함수
+```
+
 ## 📍 Getting Started / 어떻게 시작하나요?
 
 1. Repository 클론
@@ -50,6 +62,11 @@ $ npm start
 ## 🔧구현 방법 🦖🦕🐳🐬🐊🐷
 
 ### 1. 홈페이지
+
+> HomePage, [LoginToggleLogic](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fuzqq2%2FbtsEa9YIkYU%2FERbMQ0Q6tB9yvg8YzdRNDK%2Fimg.png) Component
+  - Api를 조회해서 inputvalue값이 result.name과 같으면 result.name으로 로그인을 하고 새로운 정보는 post 요청 후 로그인 하도록 했습니다. 
+  - 데이터를 localStorage에 저장해 브라우저가 꺼져도 데이터가 남으며 다른 페이지에서도 사용할 수 있도록 했습니다. 
+  - useEffect 훅을 이용해서 페이지가 렌더링될 때 localStorage에 저장된 로그인 정보를 확인하고 유지되도록 설정했습니다. 
 
 ### 2. 리스트 페이지
 
