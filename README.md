@@ -21,7 +21,7 @@
     <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"> 
     <img src="https://img.shields.io/badge/eslint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white">
     <img src="https://img.shields.io/badge/prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=white">
-    <img src="https://img.shields.io/badge/axios-DA291C?style=for-the-badge&logo=axiosr&logoColor=white">
+    <img src="https://img.shields.io/badge/axios-DA291C?style=for-the-badge&logo=axios&logoColor=white">
 </div>
 
 
