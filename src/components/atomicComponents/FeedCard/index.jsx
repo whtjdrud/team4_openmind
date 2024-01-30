@@ -11,6 +11,8 @@ import ButtonEdit from '../ButtonEdit/buttonEdit'
 import AnsweredBadge from '../ButtonBadge/AnsweredBadge'
 import UnansweredBadge from '../ButtonBadge/UnansweredBadge'
 
+const LIMIT = 3
+
 const FeedCard = ({
   question,
   id,
@@ -98,32 +100,73 @@ const FeedCard = ({
 }
 const FeedCards = ({ id, isAskPage, setQuestionCounts }) => {
   const [feeds, setFeeds] = useState([])
+  const [offset, setOffset] = useState(0)
   const [replyingUserImage, setReplyingUserImage] = useState('')
   const [replyingUserName, setReplyingUserName] = useState('')
 
-  useEffect(() => {
-    const fetchAndSetQuestions = async () => {
-      const questionsData = await fetchQuestions(id)
+  const fetchAndSetQuestions = async (options) => {
+    const questionsData = await fetchQuestions(options)
+    if (options.offset === 0) {
       setFeeds(questionsData.results)
+    } else {
+      setFeeds([...feeds, ...questionsData.results])
     }
+    setOffset(options.offset + feeds.length)
+  }
 
-    const fetchAndSetUserData = async () => {
-      const { name, imageSource } = await fetchUserData(id)
-      setReplyingUserName(name)
-      setReplyingUserImage(imageSource)
-    }
+  const fetchAndSetUserData = async () => {
+    const { name, imageSource } = await fetchUserData(id)
+    setReplyingUserName(name)
+    setReplyingUserImage(imageSource)
+  }
 
-    fetchAndSetQuestions()
+  useEffect(() => {
+    fetchAndSetQuestions({ id, offset: 0, limit: LIMIT })
     fetchAndSetUserData()
   }, [id])
+
+  const handleLoadMore = () => {
+    fetchAndSetQuestions({ id, offset, limit: LIMIT })
+  }
 
   const handleDeleteQuestion = async (questionId) => {
     await deleteQuestion(questionId)
     setFeeds((prevFeeds) => prevFeeds.filter((feed) => feed.id !== questionId))
     setQuestionCounts((prevCounts) => prevCounts - 1)
   }
+  const handleLatestData = () => {
+    const sortItems = (items) => items.sort((a, b) => a[id] - b[id])
+    setFeeds(sortItems(feeds))
+  }
+  const handleEarliestData = () => {
+    const sortItems = (items) => items.sort((a, b) => b[id] - a[id])
+    setFeeds(sortItems(feeds))
+  }
+  const handleAnsweredData = () => {
+    const filterItems = (items) => items.filter((answer) => answer.length !== 0)
+    setFeeds(filterItems(feeds))
+  }
+  const handleNonansweredData = () => {
+    const filterItems = (items) => items.filter((answer) => answer.length === 0)
+    setFeeds(filterItems(feeds))
+  }
   return (
     <>
+      <button type='button' onClick={handleLatestData}>
+        최신순
+      </button>
+      <button type='button' onClick={handleEarliestData}>
+        오래된순
+      </button>
+      <button type='button' onClick={handleAnsweredData}>
+        답변완료
+      </button>
+      <button type='button' onClick={handleNonansweredData}>
+        미답변
+      </button>
+      <button type='button' onClick={handleLoadMore}>
+        더보기
+      </button>
       {feeds.map((feed) => (
         <FeedCard
           key={feed.id}
