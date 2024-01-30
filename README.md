@@ -1,4 +1,4 @@
-## 코드잇 프론트엔드 부트캠프 1기 기초 프로젝트
+# 코드잇 프론트엔드 부트캠프 1기 기초 프로젝트
 
 ## 📜 프로젝트 개요
 
@@ -13,7 +13,6 @@
 ### 🔗 [배포 사이트](https://mokoko-openmind.netlify.app/)
 
 ## 🖥️ 프론트엔드 Tech
-
 <div style="display:flex"> 
     <img src="https://img.shields.io/badge/html-E34F26?style=for-the-badge&logo=html5&logoColor=white"/>
   	<img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white">
@@ -26,6 +25,12 @@
     <img src="https://img.shields.io/badge/prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=white">
     <img src="https://img.shields.io/badge/axios-DA291C?style=for-the-badge&logo=axios&logoColor=white">
 </div>
+
+## 🖼 실행 영상
+ - 질문
+![질문](https://cdn.discordapp.com/attachments/1187367966237532240/1201748609880838194/13fa6793b0916a27.gif?ex=65caf29c&is=65b87d9c&hm=8f2df412415aed5bd0021e248512f291d7aff39726c1db16efa5fd7df0a66f1d&)
+ - 답변 
+![답변](https://cdn.discordapp.com/attachments/1187367966237532240/1201749117877878835/7e9b8530b624d5e4.gif?ex=65caf315&is=65b87e15&hm=d841960acd59b97a6c56bf7047bc10416e2c29a498503f44d2a9187dc2f9a89a&)
 
 ## 🎄 프로젝트 트리
 
