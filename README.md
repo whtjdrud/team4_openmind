@@ -4,8 +4,11 @@
 익명 질문 서비스  App
 
 ## 👉🏻 멤버 소개
-| 박건호 | 박지용 | 이윤성 | 조성경 | 조현진 |
-|-------|-------|-------|-------|-------|
+|   <img width="100"  alt="image" src="https://avatars.githubusercontent.com/u/102002013?v=4"> | <img width="100" alt="image" src="https://media.discordapp.net/attachments/1187367966237532240/1201753397985030164/ee7ae933e1fc9f16.jpg?ex=65caf711&is=65b88211&hm=096f35503d96fb647a710e6f888e08d94828d872a51efb6e1a8c53c85ec5872c&=&format=webp">  | <img width="100" alt="image" src='https://avatars.githubusercontent.com/u/135799803?v=4'> | <img width="100"  alt="image" src="https://github.com/mingzzi96/js-deep-dive-study/assets/134386378/49168e9e-0162-49a6-b80e-95a52b60eb45"> | <img width="100" alt="image" src="https://avatars.githubusercontent.com/u/126558640?v=4"> |
+|:------------------------------------------------:|:--------------------------------------------:|:---------------------------------------------:|:--------------------------------------------:|:--------------------------------------------:|
+|         [박건호](https://github.com/pgunoya)         |       [박지용](https://github.com/jiyong0106)       |      [이윤성](https://github.com/yunsunglee2)       |      [조성경](https://github.com/whtjdrud)       |      [조현진](https://github.com/ahrrrl)       |
+
+
 
 
 ### 🔗 [배포 사이트](https://mokoko-openmind.netlify.app/)
