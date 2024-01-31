@@ -2,8 +2,7 @@
 
 ## 📜 프로젝트 개요
 
-익명 질문 서비스 App
-<br>
+익명 질문 서비스 App <br>
 
 ## 👉🏻 멤버 소개
 
@@ -18,6 +17,7 @@
 <br>
 
 ## 🖥️ 프론트엔드 Tech
+
 <div style="display:flex"> 
     <img src="https://img.shields.io/badge/html-E34F26?style=for-the-badge&logo=html5&logoColor=white"/>
   	<img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white">
@@ -34,10 +34,9 @@
 <br>
 
 ## 🖼 실행 영상
- - 질문
-![질문](https://cdn.discordapp.com/attachments/1187367966237532240/1201748609880838194/13fa6793b0916a27.gif?ex=65caf29c&is=65b87d9c&hm=8f2df412415aed5bd0021e248512f291d7aff39726c1db16efa5fd7df0a66f1d&)
- - 답변 
-![답변](https://cdn.discordapp.com/attachments/1187367966237532240/1201749117877878835/7e9b8530b624d5e4.gif?ex=65caf315&is=65b87e15&hm=d841960acd59b97a6c56bf7047bc10416e2c29a498503f44d2a9187dc2f9a89a&)
+
+- 질문 ![질문](https://cdn.discordapp.com/attachments/1187367966237532240/1201748609880838194/13fa6793b0916a27.gif?ex=65caf29c&is=65b87d9c&hm=8f2df412415aed5bd0021e248512f291d7aff39726c1db16efa5fd7df0a66f1d&)
+- 답변 ![답변](https://cdn.discordapp.com/attachments/1187367966237532240/1201749117877878835/7e9b8530b624d5e4.gif?ex=65caf315&is=65b87e15&hm=d841960acd59b97a6c56bf7047bc10416e2c29a498503f44d2a9187dc2f9a89a&)
 
 <br>
 
@@ -52,6 +51,7 @@ src
  ┣ style        // 전역 style
  ┣ util         // 시간 관련 함수
 ```
+
 <br>
 
 ## 📍 Getting Started / 어떻게 시작하나요?
@@ -73,6 +73,7 @@ $ npm install
 ```sh
 $ npm start
 ```
+
 <br>
 
 ## 🔧구현 방법 🦖🦕🐳🐬🐊🐷
@@ -80,9 +81,10 @@ $ npm start
 ### 1. 홈페이지
 
 > HomePage, [LoginToggleLogic](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fuzqq2%2FbtsEa9YIkYU%2FERbMQ0Q6tB9yvg8YzdRNDK%2Fimg.png) Component
-  - Api를 조회해서 input값이 JSON데이터와 같으면 로그인을 하고 새로운 정보는 post 요청 후 로그인 하도록 했습니다. 
-  - 데이터를 localStorage에 저장해 브라우저를 닫아도 데이터가 남으며 다른 페이지에서도 사용할 수 있도록 했습니다. 
-  - useEffect 훅을 이용해서 페이지가 렌더링될 때 localStorage에 저장된 로그인 정보를 확인하고 유지되도록 설정했습니다. 
+
+- Api를 조회해서 input값이 JSON데이터와 같으면 로그인을 하고 새로운 정보는 post 요청 후 로그인 하도록 했습니다.
+- 데이터를 localStorage에 저장해 브라우저를 닫아도 데이터가 남으며 다른 페이지에서도 사용할 수 있도록 했습니다.
+- useEffect 훅을 이용해서 페이지가 렌더링될 때 localStorage에 저장된 로그인 정보를 확인하고 유지되도록 설정했습니다.
 
 ### 2. 리스트 페이지
 
@@ -121,6 +123,10 @@ $ npm start
 - props를 이용하여 질문대상의 data를 전달받아 질문대상의 정보를 나타냈으며 textarea의 내용을 해당data에 있는 id로 POST하게 했습니다.
 
 ### 4. 답변하기 페이지
+
+> Reaction Component
+
+- 좋아요, 싫어요 버튼 누를때마다 setTimeout을 사용하여 색상 변경하게 하였고 숫자는 누를때마다 올라가는 방식으로 구현했습니다.
 
 ### 5. NotFound 페이지
 
