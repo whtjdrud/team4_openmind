@@ -12,8 +12,9 @@ export const getSubject = async (id) => {
     return null
   }
 }
-export const fetchQuestions = async (id) => {
-  const response = await fetch(`${API_BASE_URL}subjects/${id}/questions/`)
+export const fetchQuestions = async ({ id, offset = 0, limit = 6 }) => {
+  const query = `offset=${offset}&limit=${limit}`
+  const response = await fetch(`${API_BASE_URL}subjects/${id}/questions/?${query}`)
   return response.json()
 }
 export const fetchUserData = async (subjectId) => {
