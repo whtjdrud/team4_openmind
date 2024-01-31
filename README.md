@@ -123,6 +123,9 @@ $ npm start
 - props를 이용하여 질문대상의 data를 전달받아 질문대상의 정보를 나타냈으며 textarea의 내용을 해당data에 있는 id로 POST하게 했습니다.
 
 ### 4. 답변하기 페이지
+> AnswerKebab, KebabMenuList, FeedCard/Buttons Component
+- 케밥 메뉴 추가 및 버튼 추가(답변 거절, 답변 삭제, 질문 삭제)했습니다.
+- 답변 거절 기능 추가했습니다.
 
 > Reaction Component
 
