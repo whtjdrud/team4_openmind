@@ -97,6 +97,10 @@ $ npm start
 - 버튼을 호버하면 반응하게 css처리를 하였고 클릭하면 Link로 답변하기 페이지로 이동합니다.
 - localstorage에 아이디가 없다면 버튼이 보이지 않도록하였습니다.
 
+> ListHeader Component
+
+- ReactRouter의 Link를 활용하여 페이지간 이동을 구현했습니다. useEffect의 dependency array에 빈 배열을 넣어 화면 초기 렌더링이 끝나면 localStorage에서 'userId'를 취득했습니다. 취득한 값은 useState의 localId 변수에 담아주어 삼항 연사자를 통해 Link 경로를 설정해 localId가 있으면 그 id 소유자의 '답변하기'페이지로 이동, 아닐 경우 홈 화면은 돌아가게 설정했습니다. 
+
 > ListSection Component
 
 - DropDown, UserCardList, Pagination의 상태가 서로 상호작용하므로 상위컴포넌트인 ListSection에서 상태관리를 했습니다.
@@ -118,6 +122,12 @@ $ npm start
 
 ### 3. 질문하기 페이지
 
+> AskPage Component
+
+- ReactRouter의 useParams()를 활용해 id 값을 props로 전달받아 서버에 특정 사용자의 정보를 GET 요청할 수 있게 개발했습니다. 
+- API서버에서 GET요청을 통해 받은 데이터의 questionCount 값을 useState의 questionCount라는 변수로 관리해주었다. questionCount가 0이면 '질문이 없다' 페이지를 보여주고 값이 존재한다면 FeedCards Component를 출력해주는 조건부 렌더링을 활용해 개발했습니다. 
+- 서버에서 받아온 데이터를 useState의 questionCount 변수에 할당하여 대상에게 남겨진 질문의 갯수가 몇개인지 나타내주는 기능을 추가하였습니다.   
+
 > QuestionModal Component
 
 - props를 이용하여 질문대상의 data를 전달받아 질문대상의 정보를 나타냈으며 textarea의 내용을 해당data에 있는 id로 POST하게 했습니다.
@@ -130,6 +140,30 @@ $ npm start
 > Reaction Component
 
 - 좋아요, 싫어요 버튼 누를때마다 setTimeout을 사용하여 색상 변경하게 하였고 숫자는 누를때마다 올라가는 방식으로 구현했습니다.
+
+> AnswerPage Component
+
+- ReactRouter의 useParams()를 활용해 id 값을 props로 전달받아 서버에 특정 사용자의 정보를 GET 요청할 수 있게 개발했습니다. 
+- localStorage에서 취득한 'userId' 와 useParams로 전달받은 id가 동일해야만 '답변하기' 페이지로 이동할 수 있도록 개발했습니다.
+- API서버에서 GET요청을 통해 받은 데이터의 questionCount 값을 useState의 questionCount라는 변수로 관리해주었다. questionCount가 0이면 '질문이 없다' 페이지를 보여주고 값이 존재한다면 FeedCards Component를 출력해주는 조건부 렌더링을 활용해 개발했습니다. 
+- 서버에서 받아온 데이터를 useState의 questionCount 변수에 할당하여 대상에게 남겨진 질문의 갯수가 몇개인지 나타내주는 기능을 추가하였습니다.
+
+> FeedCards Component
+
+- 상위 컴포넌트인 AnswerPage Component에서 전달받은 useParams()의 id 값을 전달받아 API서버에서 특정 대상에게 남겨진 질문 배열을 불러옵니다. 불러온 배열들을 map()을 이용해 화면에 한번에 출력해줍니다. 
+- 질문 더 불러오기: API 서버 뒷부분에 querystring 변수로 offset과 limit의 값을 관리한다. 기본 출력 질문 갯수는 6개로 LIMIT이라는 변수에 6을 할당해 사용했다. 더보기 버튼을 클릭하여 Offset값을 변경해주어 화면의 질문을 더 보여주게 만들었다. useState의 offset 변수를 통해 상태를 관리해 주었고 버튼 클릭시 GET요청을 보낸다. 질문은 offset 값이 0이 아니면 기존의 피드에 이어서 추가해주고 setOffset을 통하여 추가된 데이터의 길이 만큼 더해준다.
+- Badge: useState의 answer 변수에서 답변상태를 관리해주고 조건부 렌더링으로 '답변완료', '미답변' 뱃지를 화면에 출력해준다. 
+- Kebab: useState를 활용해 케밥 창의 화면 출력 유무를 관리해주었고 질문하기 페이지에서는 사용되는 FeedCard Component에서는 케밥이 보이지 않게 하기 위해서 isAskPage 라는 props를 생성해 isAskPage가 값이 있으면 케밥을 렌더링 하지 않게 개발했다. (컴포넌트의 재사용성을 위해) 
+- 질문내용과 시간은 상위 컴포넌트에서 Props로 내려주는 qusetionContent와 createdAt을 받아 내용을 출력해준다. 
+- 인풋의 내용은 Content라는 변수로 상태를 관리해주고 온체이니지 이벤트가 일어날때 마다 setContent를 통해 인풋의 value를 최신화한다.
+- 버튼의 disable 프로퍼티를 useState의 변수인 content로 관리해주었다. 버튼이 disable상태이면 비활성화 상태를 표시해주기 위해 css로 백그라운드 색상을 변경해주었다. 버튼 클릭시 form태그의 handleSubmit 함수를 달아주어 서버에 답변을 post요청하고 답변 상태를 최신화 할수 있게 setAnswer을 props로 받아 부분 렌더링으로 화면을 출력해준다.
+
+> Dropdown Component
+
+- useState의 order 변수를 통해 질문의 정렬 상태를 관리합니다. 초기값은 'createdAt'으로 최근에 남겨진 질문 순으로 화면에 보여줍니다. 
+- 질문순, 최신순: order 값을 onClick 이벤트를 통해 setOrder합니다. order 값이 '질문순'이고 filter 값이 없으면 질문순으로 정렬된 sortedItems를 반환하여 map() 통해 화면에 출력합니다. API서버에서 질문을 받아오는 함수를 관리해주는 useEffect의 의존성 배열에 order를 추가하여 order값이 바뀔때 마다 질문을 다시 받아와 재렌더링을 해줍니다. 
+- 답변완료, 미답변: useState의 filter 변수를 통해 질문 상태를 관리합니다. 초기값은 ''이고 onClick이벤트를 통하여 setFilter 해줍니다. filter값이 존재하면 filteredItems를 반환하여 화면에 출력해줍니다. filter는 API서버에서 질문을 받아오는 함수를 관리해주는 useEffect의 의존성 배열에 추가하지 않아 기존 등록돼있던 질문에서 필터링된 질문들을 화면에 보여줍니다. 
+
 
 ### 5. NotFound 페이지
 
