@@ -3,6 +3,7 @@
 ## 📜 프로젝트 개요
 
 익명 질문 서비스 App
+<br>
 
 ## 👉🏻 멤버 소개
 
@@ -10,7 +11,11 @@
 | :-: | :-: | :-: | :-: | :-: |
 | [박건호](https://github.com/pgunoya) | [박지용](https://github.com/jiyong0106) | [이윤성](https://github.com/yunsunglee2) | [조성경](https://github.com/whtjdrud) | [조현진](https://github.com/ahrrrl) |
 
+<br>
+
 ### 🔗 [배포 사이트](https://mokoko-openmind.netlify.app/)
+
+<br>
 
 ## 🖥️ 프론트엔드 Tech
 <div style="display:flex"> 
@@ -26,11 +31,15 @@
     <img src="https://img.shields.io/badge/axios-DA291C?style=for-the-badge&logo=axios&logoColor=white">
 </div>
 
+<br>
+
 ## 🖼 실행 영상
  - 질문
 ![질문](https://cdn.discordapp.com/attachments/1187367966237532240/1201748609880838194/13fa6793b0916a27.gif?ex=65caf29c&is=65b87d9c&hm=8f2df412415aed5bd0021e248512f291d7aff39726c1db16efa5fd7df0a66f1d&)
  - 답변 
 ![답변](https://cdn.discordapp.com/attachments/1187367966237532240/1201749117877878835/7e9b8530b624d5e4.gif?ex=65caf315&is=65b87e15&hm=d841960acd59b97a6c56bf7047bc10416e2c29a498503f44d2a9187dc2f9a89a&)
+
+<br>
 
 ## 🎄 프로젝트 트리
 
@@ -43,6 +52,7 @@ src
  ┣ style        // 전역 style
  ┣ util         // 시간 관련 함수
 ```
+<br>
 
 ## 📍 Getting Started / 어떻게 시작하나요?
 
@@ -63,14 +73,15 @@ $ npm install
 ```sh
 $ npm start
 ```
+<br>
 
 ## 🔧구현 방법 🦖🦕🐳🐬🐊🐷
 
 ### 1. 홈페이지
 
 > HomePage, [LoginToggleLogic](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fuzqq2%2FbtsEa9YIkYU%2FERbMQ0Q6tB9yvg8YzdRNDK%2Fimg.png) Component
-  - Api를 조회해서 inputvalue값이 result.name과 같으면 result.name으로 로그인을 하고 새로운 정보는 post 요청 후 로그인 하도록 했습니다. 
-  - 데이터를 localStorage에 저장해 브라우저가 꺼져도 데이터가 남으며 다른 페이지에서도 사용할 수 있도록 했습니다. 
+  - Api를 조회해서 input값이 JSON데이터와 같으면 로그인을 하고 새로운 정보는 post 요청 후 로그인 하도록 했습니다. 
+  - 데이터를 localStorage에 저장해 브라우저를 닫아도 데이터가 남으며 다른 페이지에서도 사용할 수 있도록 했습니다. 
   - useEffect 훅을 이용해서 페이지가 렌더링될 때 localStorage에 저장된 로그인 정보를 확인하고 유지되도록 설정했습니다. 
 
 ### 2. 리스트 페이지
