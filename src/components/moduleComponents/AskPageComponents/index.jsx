@@ -41,12 +41,14 @@ export const AskPageComponent = ({ id }) => {
     const subject = await fetch(`${API_BASE_URL}${id}/`)
     return subject.json()
   }
+
   const getSubjectProfile = async () => {
     const { imageSource, questionCount, name } = await getSubject()
     setProfileImage(imageSource)
     setQuestionCounts(questionCount)
     setProfileName(name)
   }
+
   useEffect(() => {
     getSubjectProfile()
   }, [])
@@ -79,7 +81,7 @@ export const AskPageComponent = ({ id }) => {
           <QuestionCount>
             <Text>{questionCounts}개의 질문이 있습니다.</Text>
           </QuestionCount>
-          <FeedCardList id={id} isAskPage />
+          <FeedCardList name={profileName} imageSource={profileImage} id={id} isAskPage />
         </QuestionsList>
       )}
       <FloatingBtn onClick={openModal} />

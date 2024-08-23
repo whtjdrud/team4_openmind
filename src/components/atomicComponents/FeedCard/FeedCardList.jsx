@@ -6,13 +6,21 @@ import FeedCard from './index'
 
 const LIMIT = 6
 
-const FeedCardList = ({ id, isAskPage, setQuestionCounts }) => {
-  const [feeds, setFeeds] = useState([])
+const FeedCardList = ({ name, imageSource, id, isAskPage, setQuestionCounts }) => {
+  const [feeds, setFeeds] = useState([
+    {
+      answer: null,
+      content: null,
+      createdAt: null,
+      dislike: 0,
+      id: 1,
+      like: 0,
+      subjectedId: 0,
+    },
+  ])
   const [order, setOrder] = useState('createdAt')
   const [filter, setFilter] = useState('')
   const [offset, setOffset] = useState(0)
-  const [replyingUserImage, setReplyingUserImage] = useState('')
-  const [replyingUserName, setReplyingUserName] = useState('')
 
   const sortedItems =
     order === '질문순'
@@ -31,15 +39,8 @@ const FeedCardList = ({ id, isAskPage, setQuestionCounts }) => {
     setOffset(options.offset + results.length)
   }
 
-  const fetchAndSetUserData = async () => {
-    const { name, imageSource } = await fetchUserData(id)
-    setReplyingUserName(name)
-    setReplyingUserImage(imageSource)
-  }
-
   useEffect(() => {
     fetchAndSetQuestions({ id, offset: 0, limit: LIMIT })
-    fetchAndSetUserData()
     // 버튼으로 order값을 바꿔줄때 마다 useEffect를 실행시켜주기 위해
     // dependency array에 order를 추가해줍니다.
   }, [id, order])
@@ -54,6 +55,8 @@ const FeedCardList = ({ id, isAskPage, setQuestionCounts }) => {
     setQuestionCounts((prevCounts) => prevCounts - 1)
   }
 
+  console.log(feeds)
+
   return (
     <>
       <Dropdown setFilter={setFilter} setOrder={setOrder} order={order} filter={filter} />
@@ -62,30 +65,20 @@ const FeedCardList = ({ id, isAskPage, setQuestionCounts }) => {
         ? filteredItems.map((feed) => (
             <FeedCard
               key={feed.id}
-              id={feed.id}
-              initAnswer={feed.answer}
-              question={feed.content}
-              like={feed.like}
-              dislike={feed.dislike}
+              feedData={feed}
               isAskPage={isAskPage}
-              createdAt={feed.createdAt}
-              replyingUserName={replyingUserName}
-              replyingUserImage={replyingUserImage}
+              replyingUserName={name}
+              replyingUserImage={imageSource}
               handleDeleteQuestion={handleDeleteQuestion}
             />
           ))
         : sortedItems.map((feed) => (
             <FeedCard
               key={feed.id}
-              id={feed.id}
-              initAnswer={feed.answer}
-              question={feed.content}
-              like={feed.like}
-              dislike={feed.dislike}
+              feedData={feed}
               isAskPage={isAskPage}
-              createdAt={feed.createdAt}
-              replyingUserName={replyingUserName}
-              replyingUserImage={replyingUserImage}
+              replyingUserName={name}
+              replyingUserImage={imageSource}
               handleDeleteQuestion={handleDeleteQuestion}
             />
           ))}

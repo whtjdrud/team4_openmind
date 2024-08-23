@@ -3,25 +3,14 @@ import { CardLayout, FooterCard, Header } from './styledCard'
 import QuestionComponent from './Question'
 import ReplyComponent from './Reply'
 import ButtonsComponent from './Buttons'
-import { TextArea } from '../FeedCardEmpty/textArea'
 import AnswerKebab from './AnswerKebab'
 import ButtonEdit from '../ButtonEdit/buttonEdit'
 import AnsweredBadge from '../ButtonBadge/AnsweredBadge'
 import UnansweredBadge from '../ButtonBadge/UnansweredBadge'
 import AnswerCard from './AnswerCard'
 
-const FeedCard = ({
-  question,
-  id,
-  like,
-  dislike,
-  initAnswer,
-  isAskPage,
-  replyingUserImage,
-  replyingUserName,
-  handleDeleteQuestion,
-  createdAt,
-}) => {
+const FeedCard = ({ feedData, isAskPage, replyingUserImage, replyingUserName, handleDeleteQuestion }) => {
+  const { id, like, dislike, answer: initAnswer, content: question, createdAt } = feedData
   const [isModify, setIsModify] = useState(false)
   const [answer, setAnswer] = useState(initAnswer)
   const handleModifyClick = () => {
@@ -56,7 +45,6 @@ const FeedCard = ({
           isRejected={answer?.isRejected}
         />
       )}
-
       <AnswerCard
         isAskPage={isAskPage}
         answer={answer}
