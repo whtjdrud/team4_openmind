@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react'
 import { fetchQuestions } from '../../../api/AnswerApi'
 import { deleteQuestion } from '../../../api/QuestionApi'
 import Dropdown from './Dropdown'
@@ -15,8 +14,7 @@ const FeedCardList = ({
   setOrder,
   filter,
   setFilter,
-  name,
-  imageSource,
+  profileState,
   id,
   isAskPage,
   setQuestionCounts,
@@ -58,8 +56,7 @@ const FeedCardList = ({
               key={feed.id}
               feedData={feed}
               isAskPage={isAskPage}
-              replyingUserName={name}
-              replyingUserImage={imageSource}
+              profileState={profileState}
               handleDeleteQuestion={handleDeleteQuestion}
             />
           ))
@@ -68,8 +65,7 @@ const FeedCardList = ({
               key={feed.id}
               feedData={feed}
               isAskPage={isAskPage}
-              replyingUserName={name}
-              replyingUserImage={imageSource}
+              profileState={profileState}
               handleDeleteQuestion={handleDeleteQuestion}
             />
           ))}

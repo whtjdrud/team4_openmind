@@ -9,13 +9,14 @@ import AnsweredBadge from '../ButtonBadge/AnsweredBadge'
 import UnansweredBadge from '../ButtonBadge/UnansweredBadge'
 import AnswerCard from './AnswerCard'
 
-const FeedCard = ({ feedData, isAskPage, replyingUserImage, replyingUserName, handleDeleteQuestion }) => {
+const FeedCard = ({ feedData, isAskPage, profileState, handleDeleteQuestion }) => {
   const { id, like, dislike, answer: initAnswer, content: question, createdAt } = feedData
   const [isModify, setIsModify] = useState(false)
   const [answer, setAnswer] = useState(initAnswer)
   const handleModifyClick = () => {
     setIsModify(!isModify)
   }
+  const { profileImage, profileName } = profileState
 
   return (
     <CardLayout>
@@ -38,8 +39,8 @@ const FeedCard = ({ feedData, isAskPage, replyingUserImage, replyingUserName, ha
       {/* 질문하기페이지 답이 있을 경우 */}
       {isAskPage && answer && (
         <ReplyComponent
-          image={replyingUserImage}
-          name={replyingUserName}
+          image={profileImage}
+          name={profileName}
           answer={answer?.content}
           repliedAt={answer?.createdAt}
           isRejected={answer?.isRejected}
@@ -52,8 +53,8 @@ const FeedCard = ({ feedData, isAskPage, replyingUserImage, replyingUserName, ha
         id={id}
         setAnswer={setAnswer}
         setIsModify={setIsModify}
-        replyingUserImage={replyingUserImage}
-        replyingUserName={replyingUserName}
+        replyingUserImage={profileImage}
+        replyingUserName={profileName}
       />
       <FooterCard>
         <ButtonsComponent like={like} dislike={dislike} questionId={id} />

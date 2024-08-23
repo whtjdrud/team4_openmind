@@ -29,8 +29,10 @@ import { fetchQuestions } from '../../../api/AnswerApi'
 const LIMIT = 6
 
 export const AskPageComponent = ({ id }) => {
-  const [profileImage, setProfileImage] = useState('')
-  const [profileName, setProfileName] = useState('')
+  const [profileState, setProfileState] = useState({
+    profileImage: '',
+    profileName: '',
+  })
   const [questionCounts, setQuestionCounts] = useState(0)
   const [isOpenModal, setIsOpenModal] = useState(false)
   const [loading, setLoading] = useState(true)
@@ -53,9 +55,8 @@ export const AskPageComponent = ({ id }) => {
 
   const getSubjectProfile = async () => {
     const { imageSource, questionCount, name } = await getSubject()
-    setProfileImage(imageSource)
     setQuestionCounts(questionCount)
-    setProfileName(name)
+    setProfileState({ profileImage: imageSource, profileName: name })
   }
 
   const fetchAndSetQuestions = async (options) => {
@@ -95,8 +96,8 @@ export const AskPageComponent = ({ id }) => {
         <ProfileSkeletonComponent />
       ) : (
         <ProfileContainer>
-          <ProfileImage backgroundImageUrl={profileImage} />
-          <Text>{profileName}</Text>
+          <ProfileImage backgroundImageUrl={profileState.profileImage} />
+          <Text>{profileState.profileName}</Text>
           <ShareBtn />
         </ProfileContainer>
       )}
@@ -122,8 +123,7 @@ export const AskPageComponent = ({ id }) => {
             setOrder={setOrder}
             filter={filter}
             setFilter={setFilter}
-            name={profileName}
-            imageSource={profileImage}
+            profileState={profileState}
             id={id}
             isAskPage
           />
@@ -131,7 +131,14 @@ export const AskPageComponent = ({ id }) => {
       )}
 
       <FloatingBtn onClick={openModal} />
-      {isOpenModal && <QuestionModal closeModal={closeModal} image={profileImage} name={profileName} id={id} />}
+      {isOpenModal && (
+        <QuestionModal
+          closeModal={closeModal}
+          image={profileState.profileImage}
+          name={profileState.profileName}
+          id={id}
+        />
+      )}
     </PageLayout>
   )
 }
