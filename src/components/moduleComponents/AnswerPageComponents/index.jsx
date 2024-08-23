@@ -1,10 +1,26 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Text } from '../../atomicComponents/FeedCard/styledCard'
-import { PageLayout, QuestionsList, QuestionCount, BubbleImg, NotYet, BoxImg } from './StyledAnswerPage'
+import {
+  PageLayout,
+  Head,
+  HeadImage,
+  LogoContainer,
+  LogoBox,
+  LogoItem,
+  ProfileContainer,
+  ProfileImage,
+  QuestionsList,
+  QuestionCount,
+  BubbleImg,
+  NotYet,
+  BoxImg,
+} from './StyledAnswerPage'
 import FeedCardList from '../../atomicComponents/FeedCard/FeedCardList'
 import Bubble from '../../../assets/images/Messages.svg'
 import EmptyBox from '../../../assets/images/Frame 70.svg'
-import AnswerPageHeader from './AnswerPageHeader'
+import Logo from '../../../assets/images/mainLogo.svg'
+import ShareBtn from '../../atomicComponents/Share'
 import { getSubject, fetchQuestions } from '../../../api/AnswerApi'
 import ProfileSkeletonComponent from '../../atomicComponents/Skeleton/ProfileSkeletonComponent'
 
@@ -58,10 +74,24 @@ export const AnswerPageComponent = ({ id }) => {
 
   return (
     <PageLayout>
+      <Head>
+        <HeadImage />
+      </Head>
+      <LogoContainer>
+        <Link to='/'>
+          <LogoBox>
+            <LogoItem src={Logo} />
+          </LogoBox>
+        </Link>
+      </LogoContainer>
       {loading ? (
         <ProfileSkeletonComponent />
       ) : (
-        <AnswerPageHeader $backgroundImageUrl={profileState.profileImage} profileName={profileState.profileName} />
+        <ProfileContainer>
+          <ProfileImage backgroundImageUrl={profileState.profileImage} />
+          <Text>{profileState.profileName}</Text>
+          <ShareBtn />
+        </ProfileContainer>
       )}
 
       {loading ? (

@@ -5,7 +5,7 @@ import ArrowDown from '../../../assets/images/ArrowDown.svg'
 
 const Dropdown = ({ setFeedState, feedState }) => {
   const [isDropdownOpen, setDropdownOpen] = useState(false)
-  const [dropdownName, setDropdownName] = useState('최신순')
+  const [dropdownName, setDropdownName] = useState(feedState.order)
 
   const handleLatestData = () => {
     setFeedState((prev) => ({ ...prev, filter: '' }))
@@ -47,7 +47,6 @@ const Dropdown = ({ setFeedState, feedState }) => {
 
       {isDropdownOpen && (
         <Wrapper>
-          <DropdownMenu onClick={handleLatestData}>최신순</DropdownMenu>
           <DropdownMenu onClick={handleEarliestData}>질문순</DropdownMenu>
           <DropdownMenu onClick={handleAnsweredData}>답변완료</DropdownMenu>
           <DropdownMenu onClick={handleNonansweredData}>미답변</DropdownMenu>
