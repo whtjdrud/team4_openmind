@@ -33,13 +33,15 @@ export const AskPageComponent = ({ id }) => {
     profileImage: '',
     profileName: '',
   })
+  const [feedState, setFeedState] = useState({
+    order: '질문순',
+    filter: '',
+    offset: '',
+  })
   const [questionCounts, setQuestionCounts] = useState(0)
   const [isOpenModal, setIsOpenModal] = useState(false)
   const [loading, setLoading] = useState(true)
   const [feeds, setFeeds] = useState([])
-  const [order, setOrder] = useState('createdAt')
-  const [filter, setFilter] = useState('')
-  const [offset, setOffset] = useState(0)
 
   const openModal = () => {
     setIsOpenModal(true)
@@ -66,7 +68,12 @@ export const AskPageComponent = ({ id }) => {
     } else {
       setFeeds([...feeds, ...results])
     }
-    setOffset(options.offset + results.length)
+    setFeedState((prev) => ({ ...prev, offset: options.offset + results.length }))
+  }
+
+  const handleLoadMore = () => {
+    const { offset } = feedState
+    fetchAndSetQuestions({ id, offset, limit: LIMIT })
   }
 
   useEffect(() => {
@@ -78,7 +85,7 @@ export const AskPageComponent = ({ id }) => {
     }, 800)
 
     return () => clearTimeout(timer)
-  }, [id, order])
+  }, [id, feedState.order])
 
   return (
     <PageLayout>
@@ -117,14 +124,11 @@ export const AskPageComponent = ({ id }) => {
           <FeedCardList
             feeds={feeds}
             setFeeds={setFeeds}
-            offset={offset}
-            setOffset={setOffset}
-            order={order}
-            setOrder={setOrder}
-            filter={filter}
-            setFilter={setFilter}
+            feedState={feedState}
+            setFeedState={setFeedState}
             profileState={profileState}
             id={id}
+            handleLoadMore={handleLoadMore}
             isAskPage
           />
         </QuestionsList>

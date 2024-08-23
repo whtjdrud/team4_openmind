@@ -3,33 +3,33 @@ import { Button, Container, DropdownMenu, Wrapper } from './StyledDropdown'
 import ArrowUp from '../../../assets/images/ArrowUp.svg'
 import ArrowDown from '../../../assets/images/ArrowDown.svg'
 
-const Dropdown = ({ setFilter, setOrder, order, filter }) => {
+const Dropdown = ({ setFeedState, feedState }) => {
   const [isDropdownOpen, setDropdownOpen] = useState(false)
   const [dropdownName, setDropdownName] = useState('최신순')
 
   const handleLatestData = () => {
-    setFilter('')
+    setFeedState((prev) => ({ ...prev, filter: '' }))
     // 필터를 ''처리 해줌으로써 filteredItems가 아닌 sortedItems가 렌더링 되게 해줍니다
-    setOrder('createdAt')
+    setFeedState((prev) => ({ ...prev, order: '질문순' }))
     setDropdownName('최신순')
     setDropdownOpen(false) // 항목을 클릭하면 드롭다운을 닫습니다.
   }
 
   const handleEarliestData = () => {
-    setFilter('')
-    setOrder('질문순')
+    setFeedState((prev) => ({ ...prev, filter: '' }))
+    setFeedState((prev) => ({ ...prev, order: '질문순' }))
     setDropdownName('질문순')
     setDropdownOpen(false)
   }
 
   const handleAnsweredData = () => {
-    setFilter('답변완료')
+    setFeedState((prev) => ({ ...prev, filter: '답변완료' }))
     setDropdownName('답변완료')
     setDropdownOpen(false)
   }
 
   const handleNonansweredData = () => {
-    setFilter('미답변')
+    setFeedState((prev) => ({ ...prev, filter: '미답변' }))
     setDropdownName('미답변')
     setDropdownOpen(false)
   }

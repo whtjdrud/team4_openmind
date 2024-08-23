@@ -8,37 +8,20 @@ const LIMIT = 6
 const FeedCardList = ({
   feeds,
   setFeeds,
-  offset,
-  setOffset,
-  order,
-  setOrder,
-  filter,
-  setFilter,
   profileState,
-  id,
+  feedState,
+  setFeedState,
   isAskPage,
   setQuestionCounts,
+  handleLoadMore,
 }) => {
   const sortedItems =
-    order === '질문순'
+    feedState.order === '질문순'
       ? feeds.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
-      : feeds.sort((a, b) => b[order] - a[order])
+      : feeds.sort((a, b) => b[feedState.order] - a[feedState.order])
 
-  const filteredItems = filter === '미답변' ? feeds.filter((feed) => !feed.answer) : feeds.filter((feed) => feed.answer)
-
-  const fetchAndSetQuestions = async (options) => {
-    const { results } = await fetchQuestions(options)
-    if (options.offset === 0) {
-      setFeeds(results)
-    } else {
-      setFeeds([...feeds, ...results])
-    }
-    setOffset(options.offset + results.length)
-  }
-
-  const handleLoadMore = () => {
-    fetchAndSetQuestions({ id, offset, limit: LIMIT })
-  }
+  const filteredItems =
+    feedState.filter === '미답변' ? feeds.filter((feed) => !feed.answer) : feeds.filter((feed) => feed.answer)
 
   const handleDeleteQuestion = async (questionId) => {
     await deleteQuestion(questionId)
@@ -48,9 +31,9 @@ const FeedCardList = ({
 
   return (
     <>
-      <Dropdown setFilter={setFilter} setOrder={setOrder} order={order} filter={filter} />
+      <Dropdown setFeedState={setFeedState} feedState={feedState} />
       {/* filter 값이 있으면 필터된 피드 카드가 나열되고 filter값이 없으면 정렬된 피드 카드가 나열됩니다. */}
-      {filter
+      {feedState.filter
         ? filteredItems.map((feed) => (
             <FeedCard
               key={feed.id}
