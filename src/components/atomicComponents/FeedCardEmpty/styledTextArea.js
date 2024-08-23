@@ -4,7 +4,7 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 8px;
+  gap: 24px;
   align-self: stretch;
 `
 
@@ -19,6 +19,7 @@ export const TextAreaInput = styled.textarea`
   align-self: stretch;
   border-radius: 8px;
   background: var(--Grayscale-20, #f9f9f9);
+  resize: none;
 
   &:placeholder {
     flex: 1 0 0;
