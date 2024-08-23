@@ -17,7 +17,7 @@ import {
   BoxImg,
 } from './styledAskPage'
 import ShareBtn from '../../atomicComponents/Share'
-import FeedCards from '../../atomicComponents/FeedCard'
+import FeedCardList from '../../atomicComponents/FeedCard/FeedCardList'
 import Logo from '../../../assets/images/mainLogo.svg'
 import CAT from '../../../assets/images/Ellipse 1.svg'
 import Bubble from '../../../assets/images/Messages.svg'
@@ -79,7 +79,7 @@ export const AskPageComponent = ({ id }) => {
           <QuestionCount>
             <Text>{questionCounts}개의 질문이 있습니다.</Text>
           </QuestionCount>
-          <FeedCards id={id} isAskPage />
+          <FeedCardList id={id} isAskPage />
         </QuestionsList>
       )}
       <FloatingBtn onClick={openModal} />
