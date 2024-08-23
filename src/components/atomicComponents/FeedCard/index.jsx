@@ -8,6 +8,7 @@ import AnswerKebab from './AnswerKebab'
 import ButtonEdit from '../ButtonEdit/buttonEdit'
 import AnsweredBadge from '../ButtonBadge/AnsweredBadge'
 import UnansweredBadge from '../ButtonBadge/UnansweredBadge'
+import AnswerCard from './AnswerCard'
 
 const FeedCard = ({
   question,
@@ -25,36 +26,6 @@ const FeedCard = ({
   const [answer, setAnswer] = useState(initAnswer)
   const handleModifyClick = () => {
     setIsModify(!isModify)
-  }
-
-  const renderAnswerComponent = () => {
-    if (isAskPage) {
-      return undefined
-    }
-    if (answer) {
-      if (isModify) {
-        return (
-          <TextArea
-            questionId={id}
-            value={answer?.content}
-            isModify={isModify}
-            answerId={answer.id}
-            setAnswer={setAnswer}
-            setIsModify={setIsModify}
-          />
-        )
-      }
-      return (
-        <ReplyComponent
-          image={replyingUserImage}
-          name={replyingUserName}
-          answer={answer?.content}
-          repliedAt={answer?.createdAt}
-          isRejected={answer?.isRejected}
-        />
-      )
-    }
-    return <TextArea questionId={id} setAnswer={setAnswer} />
   }
 
   return (
@@ -86,7 +57,16 @@ const FeedCard = ({
         />
       )}
 
-      {renderAnswerComponent()}
+      <AnswerCard
+        isAskPage={isAskPage}
+        answer={answer}
+        isModify={isModify}
+        id={id}
+        setAnswer={setAnswer}
+        setIsModify={setIsModify}
+        replyingUserImage={replyingUserImage}
+        replyingUserName={replyingUserName}
+      />
       <FooterCard>
         <ButtonsComponent like={like} dislike={dislike} questionId={id} />
         {!isAskPage && answer && !answer?.isRejected && <ButtonEdit onClick={handleModifyClick} isModify={isModify} />}

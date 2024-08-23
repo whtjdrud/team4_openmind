@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Text } from '../../atomicComponents/FeedCard/styledCard'
 import { PageLayout, QuestionsList, QuestionCount, BubbleImg, NotYet, BoxImg } from './StyledAnswerPage'
-import FeedCards from '../../atomicComponents/FeedCard'
+import FeedCardList from '../../atomicComponents/FeedCard/FeedCardList'
 import Bubble from '../../../assets/images/Messages.svg'
 import EmptyBox from '../../../assets/images/Frame 70.svg'
 import AnswerPageHeader from './AnswerPageHeader'
@@ -22,6 +22,7 @@ export const AnswerPageComponent = ({ id }) => {
     }
     fetchProfileData()
   }, [id])
+  console.log(id)
 
   return (
     <PageLayout>
@@ -37,7 +38,7 @@ export const AnswerPageComponent = ({ id }) => {
           <QuestionCount>
             <Text>{questionCounts}개의 질문이 있습니다.</Text>
           </QuestionCount>
-          <FeedCards id={id} isAskPage={false} setQuestionCounts={setQuestionCounts} />
+          <FeedCardList id={id} isAskPage={false} setQuestionCounts={setQuestionCounts} />
         </QuestionsList>
       )}
     </PageLayout>
