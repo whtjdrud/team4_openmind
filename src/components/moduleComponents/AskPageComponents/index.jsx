@@ -19,17 +19,26 @@ import {
 import ShareBtn from '../../atomicComponents/Share'
 import FeedCardList from '../../atomicComponents/FeedCard/FeedCardList'
 import Logo from '../../../assets/images/mainLogo.svg'
-import CAT from '../../../assets/images/Ellipse 1.svg'
 import Bubble from '../../../assets/images/Messages.svg'
 import EmptyBox from '../../../assets/images/Frame 70.svg'
 import FloatingBtn from '../../atomicComponents/Floating'
 import QuestionModal from '../../atomicComponents/QuestionModal'
+import ProfileSkeletonComponent from '../../atomicComponents/Skeleton/ProfileSkeletonComponent'
+import { fetchQuestions } from '../../../api/AnswerApi'
+
+const LIMIT = 6
 
 export const AskPageComponent = ({ id }) => {
-  const [profileImage, setProfileImage] = useState(`${CAT}`)
-  const [profileName, setProfileName] = useState('아초는 고양이')
+  const [profileImage, setProfileImage] = useState('')
+  const [profileName, setProfileName] = useState('')
   const [questionCounts, setQuestionCounts] = useState(0)
   const [isOpenModal, setIsOpenModal] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [feeds, setFeeds] = useState([])
+  const [order, setOrder] = useState('createdAt')
+  const [filter, setFilter] = useState('')
+  const [offset, setOffset] = useState(0)
+
   const openModal = () => {
     setIsOpenModal(true)
   }
@@ -49,9 +58,26 @@ export const AskPageComponent = ({ id }) => {
     setProfileName(name)
   }
 
+  const fetchAndSetQuestions = async (options) => {
+    const { results } = await fetchQuestions(options)
+    if (options.offset === 0) {
+      setFeeds(results)
+    } else {
+      setFeeds([...feeds, ...results])
+    }
+    setOffset(options.offset + results.length)
+  }
+
   useEffect(() => {
     getSubjectProfile()
-  }, [])
+    fetchAndSetQuestions({ id, offset: 0, limit: LIMIT })
+
+    const timer = setTimeout(() => {
+      setLoading(false)
+    }, 800)
+
+    return () => clearTimeout(timer)
+  }, [id, order])
 
   return (
     <PageLayout>
@@ -65,12 +91,18 @@ export const AskPageComponent = ({ id }) => {
           </LogoBox>
         </Link>
       </LogoContainer>
-      <ProfileContainer>
-        <ProfileImage backgroundImageUrl={profileImage} />
-        <Text>{profileName}</Text>
-        <ShareBtn />
-      </ProfileContainer>
-      {questionCounts === 0 ? (
+      {loading ? (
+        <ProfileSkeletonComponent />
+      ) : (
+        <ProfileContainer>
+          <ProfileImage backgroundImageUrl={profileImage} />
+          <Text>{profileName}</Text>
+          <ShareBtn />
+        </ProfileContainer>
+      )}
+      {loading ? (
+        ''
+      ) : questionCounts === 0 ? (
         <NotYet>
           <BubbleImg src={Bubble} />
           <Text>아직 질문이 없습니다.</Text>
@@ -81,9 +113,23 @@ export const AskPageComponent = ({ id }) => {
           <QuestionCount>
             <Text>{questionCounts}개의 질문이 있습니다.</Text>
           </QuestionCount>
-          <FeedCardList name={profileName} imageSource={profileImage} id={id} isAskPage />
+          <FeedCardList
+            feeds={feeds}
+            setFeeds={setFeeds}
+            offset={offset}
+            setOffset={setOffset}
+            order={order}
+            setOrder={setOrder}
+            filter={filter}
+            setFilter={setFilter}
+            name={profileName}
+            imageSource={profileImage}
+            id={id}
+            isAskPage
+          />
         </QuestionsList>
       )}
+
       <FloatingBtn onClick={openModal} />
       {isOpenModal && <QuestionModal closeModal={closeModal} image={profileImage} name={profileName} id={id} />}
     </PageLayout>

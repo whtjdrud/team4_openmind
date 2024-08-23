@@ -22,7 +22,6 @@ export const AnswerPageComponent = ({ id }) => {
     }
     fetchProfileData()
   }, [id])
-  console.log(id)
 
   return (
     <PageLayout>

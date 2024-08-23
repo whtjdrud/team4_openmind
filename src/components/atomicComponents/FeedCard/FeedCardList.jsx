@@ -1,27 +1,26 @@
 import React, { useEffect, useState } from 'react'
-import { fetchQuestions, fetchUserData } from '../../../api/AnswerApi'
+import { fetchQuestions } from '../../../api/AnswerApi'
 import { deleteQuestion } from '../../../api/QuestionApi'
 import Dropdown from './Dropdown'
 import FeedCard from './index'
 
 const LIMIT = 6
 
-const FeedCardList = ({ name, imageSource, id, isAskPage, setQuestionCounts }) => {
-  const [feeds, setFeeds] = useState([
-    {
-      answer: null,
-      content: null,
-      createdAt: null,
-      dislike: 0,
-      id: 1,
-      like: 0,
-      subjectedId: 0,
-    },
-  ])
-  const [order, setOrder] = useState('createdAt')
-  const [filter, setFilter] = useState('')
-  const [offset, setOffset] = useState(0)
-
+const FeedCardList = ({
+  feeds,
+  setFeeds,
+  offset,
+  setOffset,
+  order,
+  setOrder,
+  filter,
+  setFilter,
+  name,
+  imageSource,
+  id,
+  isAskPage,
+  setQuestionCounts,
+}) => {
   const sortedItems =
     order === '질문순'
       ? feeds.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
@@ -39,12 +38,6 @@ const FeedCardList = ({ name, imageSource, id, isAskPage, setQuestionCounts }) =
     setOffset(options.offset + results.length)
   }
 
-  useEffect(() => {
-    fetchAndSetQuestions({ id, offset: 0, limit: LIMIT })
-    // 버튼으로 order값을 바꿔줄때 마다 useEffect를 실행시켜주기 위해
-    // dependency array에 order를 추가해줍니다.
-  }, [id, order])
-
   const handleLoadMore = () => {
     fetchAndSetQuestions({ id, offset, limit: LIMIT })
   }
@@ -54,8 +47,6 @@ const FeedCardList = ({ name, imageSource, id, isAskPage, setQuestionCounts }) =
     setFeeds((prevFeeds) => prevFeeds.filter((feed) => feed.id !== questionId))
     setQuestionCounts((prevCounts) => prevCounts - 1)
   }
-
-  console.log(feeds)
 
   return (
     <>

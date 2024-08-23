@@ -31,6 +31,7 @@
         "endOfLine": "auto"
       }
     ],
+    "no-nested-ternary": "off",
     "arrow-body-style": "off",
     "semi": ["warn", "never"],
     "react/function-component-definition": ["warn", { "namedComponents": "arrow-function" }],
