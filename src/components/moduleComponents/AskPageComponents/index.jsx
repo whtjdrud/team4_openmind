@@ -24,7 +24,7 @@ import EmptyBox from '../../../assets/images/Frame 70.svg'
 import FloatingBtn from '../../atomicComponents/Floating'
 import QuestionModal from '../../atomicComponents/QuestionModal'
 import ProfileSkeletonComponent from '../../atomicComponents/Skeleton/ProfileSkeletonComponent'
-import { fetchQuestions } from '../../../api/AnswerApi'
+import { getSubject, fetchQuestions } from '../../../api/AnswerApi'
 
 const LIMIT = 6
 
@@ -49,14 +49,9 @@ export const AskPageComponent = ({ id }) => {
   const closeModal = () => {
     setIsOpenModal(false)
   }
-  const API_BASE_URL = 'https://openmind-api.vercel.app/3-4/subjects/'
-  const getSubject = async () => {
-    const subject = await fetch(`${API_BASE_URL}${id}/`)
-    return subject.json()
-  }
 
   const getSubjectProfile = async () => {
-    const { imageSource, questionCount, name } = await getSubject()
+    const { imageSource, questionCount, name } = await getSubject(id)
     setQuestionCounts(questionCount)
     setProfileState({ profileImage: imageSource, profileName: name })
   }
