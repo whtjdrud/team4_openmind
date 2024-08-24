@@ -116,14 +116,14 @@ export const AskPageComponent = ({ id }) => {
             <Text>{questionCounts}개의 질문이 있습니다.</Text>
           </QuestionCount>
           <FeedCardList
+            id={id}
             feeds={feeds}
             setFeeds={setFeeds}
             feedState={feedState}
             setFeedState={setFeedState}
             profileState={profileState}
-            id={id}
-            handleLoadMore={handleLoadMore}
             setQuestionCounts={setQuestionCounts}
+            handleLoadMore={handleLoadMore}
             questionCounts={questionCounts}
             isAskPage
             disabled={isToast}

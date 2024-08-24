@@ -17,8 +17,6 @@ import {
   BoxImg,
 } from './StyledAnswerPage'
 import FeedCardList from '../../atomicComponents/FeedCard/FeedCardList'
-import Bubble from '../../../assets/images/Messages.svg'
-import EmptyBox from '../../../assets/images/Frame 70.svg'
 import Logo from '../../../assets/images/mainLogo.svg'
 import ShareBtn from '../../atomicComponents/Share'
 import { getSubject, fetchQuestions } from '../../../api/AnswerApi'
@@ -111,16 +109,17 @@ export const AnswerPageComponent = ({ id }) => {
             <Text>{questionCounts}개의 질문이 있습니다.</Text>
           </QuestionCount>
           <FeedCardList
+            id={id}
             feeds={feeds}
             setFeeds={setFeeds}
             feedState={feedState}
             setFeedState={setFeedState}
             profileState={profileState}
-            id={id}
+            setQuestionCounts={setQuestionCounts}
             handleLoadMore={handleLoadMore}
+            questionCounts={questionCounts}
             isAskPage={false}
             disabled={isToast}
-            setQuestionCounts={setQuestionCounts}
           />
         </QuestionsList>
       )}

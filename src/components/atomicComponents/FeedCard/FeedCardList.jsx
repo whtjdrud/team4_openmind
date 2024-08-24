@@ -1,10 +1,8 @@
 import { deleteQuestion } from '../../../api/QuestionApi'
 import Dropdown from './Dropdown'
-import Bubble from '../../../assets/images/Messages.svg'
 import EmptyBox from '../../../assets/images/Frame 70.svg'
-import { BubbleImg, BoxImg } from '../../moduleComponents/AskPageComponents/styledAskPage'
+import { BoxImg } from '../../moduleComponents/AskPageComponents/styledAskPage'
 import { NotYet } from '../../moduleComponents/AnswerPageComponents/StyledAnswerPage'
-import { Text } from './styledCard'
 import FeedCard from './index'
 import { useEffect } from 'react'
 

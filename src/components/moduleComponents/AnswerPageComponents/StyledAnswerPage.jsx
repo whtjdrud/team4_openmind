@@ -110,7 +110,7 @@ export const BubbleImg = styled.img`
 `
 export const NotYet = styled.div`
   display: flex;
-  width: 716px;
+  width: 684px;
   height: 330px;
   padding: 16px 24px;
   justify-content: center;
