@@ -46,7 +46,7 @@ const ShareBtn = () => {
         <ShareFaceBookImg src={FacebookSvg} alt='facebook' onClick={shareToFacebook} />
         <ShareKakaoImg src={KakaotalkSvg} alt='kakao' onClick={handleShareKakao} />
       </ShareBtnDiv>
-      <div>{isToast && <Toast />}</div>
+      {isToast && <Toast text='URL이 복사되었습니다' />}
     </>
   )
 }

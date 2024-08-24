@@ -4,19 +4,19 @@ import { Text } from '../../atomicComponents/FeedCard/styledCard'
 
 export const PageLayout = styled.div`
   width: 100%;
-  height: 2215px;
+  height: 100%;
   background: var(--Grayscale-20, #f9f9f9);
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: scroll;
 `
 export const QuestionsList = styled.div`
   position: relative;
   display: inline-flex;
   padding: 16px;
   margin-top: 20rem;
+  margin-bottom: 3rem;
   flex-direction: column;
   align-items: center;
   gap: 16px;
@@ -136,4 +136,18 @@ export const BoxImg = styled.img`
   position: absolute;
   top: 33%;
   left: 40%;
+`
+export const EmptyLayout = styled.div`
+  display: flex;
+  width: 716px;
+  height: 330px;
+  padding: 16px 24px;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 8px;
+  flex-shrink: 0;
+  border-radius: 16px;
+  border: 1px solid var(--Brown-20, #e4d5c9);
+  background: var(--Brown-10, #f5f1ee);
+  position: relative;
 `

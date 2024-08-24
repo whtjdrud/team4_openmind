@@ -18,7 +18,7 @@ const LoginMain = ({ isLoggedIn, inputValue, onClick, setInputValue, userStorage
           <>
             <LoginText>반가워요, {inputValue}님</LoginText>
             <AnswerButtonLink to={`/post/${userStorageId}/answer`}>
-              <AskButton>질문받기</AskButton>
+              <AskButton>답변하기</AskButton>
             </AnswerButtonLink>
           </>
         ) : (

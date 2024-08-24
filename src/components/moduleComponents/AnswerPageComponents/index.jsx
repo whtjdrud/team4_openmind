@@ -23,6 +23,7 @@ import Logo from '../../../assets/images/mainLogo.svg'
 import ShareBtn from '../../atomicComponents/Share'
 import { getSubject, fetchQuestions } from '../../../api/AnswerApi'
 import ProfileSkeletonComponent from '../../atomicComponents/Skeleton/ProfileSkeletonComponent'
+import Toast from '../../atomicComponents/Toast'
 
 const LIMIT = 6
 
@@ -32,13 +33,13 @@ export const AnswerPageComponent = ({ id }) => {
     profileName: '',
   })
   const [feedState, setFeedState] = useState({
-    order: '질문순',
-    filter: '',
+    option: '질문순',
     offset: '',
   })
   const [questionCounts, setQuestionCounts] = useState(0)
   const [loading, setLoading] = useState(true)
   const [feeds, setFeeds] = useState([])
+  const [isToast, setIsToast] = useState(false)
 
   const fetchAndSetQuestions = async (options) => {
     const { results } = await fetchQuestions(options)
@@ -46,6 +47,17 @@ export const AnswerPageComponent = ({ id }) => {
       setFeeds(results)
     } else {
       setFeeds([...feeds, ...results])
+      if (feedState.option === '질문순') {
+        if (results.length) {
+          window.scrollTo(0, 150)
+        }
+      }
+      if (!results.length) {
+        setIsToast(true)
+        setTimeout(() => {
+          setIsToast(false)
+        }, 5000)
+      }
     }
     setFeedState((prev) => ({ ...prev, offset: options.offset + results.length }))
   }
@@ -70,7 +82,7 @@ export const AnswerPageComponent = ({ id }) => {
     }, 800)
 
     return () => clearTimeout(timer)
-  }, [id, feedState.order])
+  }, [id])
 
   return (
     <PageLayout>
@@ -93,16 +105,7 @@ export const AnswerPageComponent = ({ id }) => {
           <ShareBtn />
         </ProfileContainer>
       )}
-
-      {loading ? (
-        ''
-      ) : questionCounts === 0 ? (
-        <NotYet>
-          <BubbleImg src={Bubble} />
-          <Text>아직 질문이 없습니다.</Text>
-          <BoxImg src={EmptyBox} />
-        </NotYet>
-      ) : (
+      {loading || (
         <QuestionsList>
           <QuestionCount>
             <Text>{questionCounts}개의 질문이 있습니다.</Text>
@@ -116,10 +119,13 @@ export const AnswerPageComponent = ({ id }) => {
             id={id}
             handleLoadMore={handleLoadMore}
             isAskPage={false}
+            disabled={isToast}
             setQuestionCounts={setQuestionCounts}
           />
         </QuestionsList>
       )}
+
+      {isToast && <Toast text='질문을 모두 가져왔습니다.' />}
     </PageLayout>
   )
 }

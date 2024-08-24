@@ -12,19 +12,15 @@ import {
   LogoItem,
   ProfileContainer,
   ProfileImage,
-  BubbleImg,
-  NotYet,
-  BoxImg,
 } from './styledAskPage'
 import ShareBtn from '../../atomicComponents/Share'
 import FeedCardList from '../../atomicComponents/FeedCard/FeedCardList'
 import Logo from '../../../assets/images/mainLogo.svg'
-import Bubble from '../../../assets/images/Messages.svg'
-import EmptyBox from '../../../assets/images/Frame 70.svg'
 import FloatingBtn from '../../atomicComponents/Floating'
 import QuestionModal from '../../atomicComponents/QuestionModal'
 import ProfileSkeletonComponent from '../../atomicComponents/Skeleton/ProfileSkeletonComponent'
 import { getSubject, fetchQuestions } from '../../../api/AnswerApi'
+import Toast from '../../atomicComponents/Toast'
 
 const LIMIT = 6
 
@@ -34,14 +30,14 @@ export const AskPageComponent = ({ id }) => {
     profileName: '',
   })
   const [feedState, setFeedState] = useState({
-    order: '질문순',
-    filter: '',
+    option: '질문순',
     offset: '',
   })
   const [questionCounts, setQuestionCounts] = useState(0)
-  const [isOpenModal, setIsOpenModal] = useState(false)
   const [loading, setLoading] = useState(true)
   const [feeds, setFeeds] = useState([])
+  const [isToast, setIsToast] = useState(false)
+  const [isOpenModal, setIsOpenModal] = useState(false)
 
   const openModal = () => {
     setIsOpenModal(true)
@@ -62,6 +58,17 @@ export const AskPageComponent = ({ id }) => {
       setFeeds(results)
     } else {
       setFeeds([...feeds, ...results])
+      if (feedState.option === '질문순') {
+        if (results.length) {
+          window.scrollTo(0, 150)
+        }
+      }
+      if (!results.length) {
+        setIsToast(true)
+        setTimeout(() => {
+          setIsToast(false)
+        }, 5000)
+      }
     }
     setFeedState((prev) => ({ ...prev, offset: options.offset + results.length }))
   }
@@ -80,7 +87,7 @@ export const AskPageComponent = ({ id }) => {
     }, 800)
 
     return () => clearTimeout(timer)
-  }, [id, feedState.order])
+  }, [id])
 
   return (
     <PageLayout>
@@ -103,15 +110,7 @@ export const AskPageComponent = ({ id }) => {
           <ShareBtn />
         </ProfileContainer>
       )}
-      {loading ? (
-        ''
-      ) : questionCounts === 0 ? (
-        <NotYet>
-          <BubbleImg src={Bubble} />
-          <Text>아직 질문이 없습니다.</Text>
-          <BoxImg src={EmptyBox} />
-        </NotYet>
-      ) : (
+      {loading || (
         <QuestionsList>
           <QuestionCount>
             <Text>{questionCounts}개의 질문이 있습니다.</Text>
@@ -124,7 +123,10 @@ export const AskPageComponent = ({ id }) => {
             profileState={profileState}
             id={id}
             handleLoadMore={handleLoadMore}
+            setQuestionCounts={setQuestionCounts}
+            questionCounts={questionCounts}
             isAskPage
+            disabled={isToast}
           />
         </QuestionsList>
       )}
@@ -138,6 +140,7 @@ export const AskPageComponent = ({ id }) => {
           id={id}
         />
       )}
+      {isToast && <Toast text='질문을 모두 가져왔습니다.' />}
     </PageLayout>
   )
 }

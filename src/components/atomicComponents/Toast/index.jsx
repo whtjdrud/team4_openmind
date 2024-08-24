@@ -1,11 +1,7 @@
-import { ToastDiv, ToastBox } from './StyleToast'
+import { ToastDiv } from './StyleToast'
 
-const Toast = () => {
-  return (
-    <ToastBox>
-      <ToastDiv>URL이 복사되었습니다</ToastDiv>
-    </ToastBox>
-  )
+const Toast = ({ text }) => {
+  return <ToastDiv>{text}</ToastDiv>
 }
 
 export default Toast

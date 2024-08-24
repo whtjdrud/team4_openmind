@@ -1,14 +1,10 @@
 import styled from 'styled-components'
 
-export const ToastBox = styled.div`
-  position: relative;
-`
-
 export const ToastDiv = styled.span`
   width: 167px;
-  position: absolute;
-  top: 0.5rem;
-  left: -8rem;
+  position: fixed;
+  top: 40vh;
+  left: 42vw;
   padding: 12px 20px;
   background-color: var(--Grayscale-60, #000);
   color: var(--Grayscale-10, #fff);
