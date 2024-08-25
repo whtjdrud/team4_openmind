@@ -60,26 +60,29 @@ export const AnswerPageComponent = ({ id }) => {
     setFeedState((prev) => ({ ...prev, offset: options.offset + results.length }))
   }
 
+  const fetchProfileData = async () => {
+    const { imageSource, questionCount, name } = await getSubject(id)
+
+    setQuestionCounts(questionCount)
+    setProfileState({ profileImage: imageSource, profileName: name })
+  }
+
   const handleLoadMore = () => {
     const { offset } = feedState
     fetchAndSetQuestions({ id, offset, limit: LIMIT })
   }
 
   useEffect(() => {
-    const fetchProfileData = async () => {
-      const { imageSource, questionCount, name } = await getSubject(id)
+    const profilePromise = fetchProfileData()
+    const questionPromise = fetchAndSetQuestions({ id, offset: 0, limit: LIMIT })
 
-      setQuestionCounts(questionCount)
-      setProfileState({ profileImage: imageSource, profileName: name })
-    }
-    fetchProfileData()
-    fetchAndSetQuestions({ id, offset: 0, limit: LIMIT })
+    Promise.all([profilePromise, questionPromise]).then(() => {
+      const timer = setTimeout(() => {
+        setLoading(false)
+      }, 600)
 
-    const timer = setTimeout(() => {
-      setLoading(false)
-    }, 800)
-
-    return () => clearTimeout(timer)
+      return () => clearTimeout(timer)
+    })
   }, [id])
 
   return (

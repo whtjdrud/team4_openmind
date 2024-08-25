@@ -39,6 +39,13 @@ const GlobalStyle = createGlobalStyle`
       background-repeat: no-repeat;
       background-attachment: fixed;
       background: var(--Grayscale20, #F9F9F9);
+      scrollbar-width: none; /* Firefox */
+  }
+
+
+  body::-webkit-scrollbar {
+      width: 0;
+      height: 0; /* Chrome, Safari, Opera */
   }
 
   h1 {

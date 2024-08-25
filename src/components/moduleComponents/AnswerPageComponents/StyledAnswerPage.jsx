@@ -23,6 +23,7 @@ export const QuestionsList = styled.div`
   border-radius: 16px;
   border: 1px solid var(--Brown-30, #c7bbb5);
   background: var(--Brown-10, #f5f1ee);
+  scroll-width: none;
 `
 export const QuestionCount = styled.div`
   display: flex;
