@@ -45,19 +45,19 @@ const FeedCardList = ({
   }
 
   useEffect(() => {
-    setQuestionCounts(filteredItems.length)
+    setQuestionCounts((prev) => ({ ...prev, current: filteredItems.length }))
   }, [feedState.option])
 
   return (
     <>
       <Dropdown setFeedState={setFeedState} feedState={feedState} />
       {/* filter 값이 있으면 필터된 피드 카드가 나열되고 filter값이 없으면 정렬된 피드 카드가 나열됩니다. */}
-      {questionCounts === 0 && (
+      {questionCounts.current === 0 && (
         <NotYet>
           <BoxImg src={EmptyBox} />
         </NotYet>
       )}
-      {questionCounts !== 0 &&
+      {questionCounts.current !== 0 &&
         filteredItems.map((feed) => (
           <FeedCard
             key={feed.id}

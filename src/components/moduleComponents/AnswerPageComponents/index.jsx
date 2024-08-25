@@ -12,9 +12,6 @@ import {
   ProfileImage,
   QuestionsList,
   QuestionCount,
-  BubbleImg,
-  NotYet,
-  BoxImg,
 } from './StyledAnswerPage'
 import FeedCardList from '../../atomicComponents/FeedCard/FeedCardList'
 import Logo from '../../../assets/images/mainLogo.svg'
@@ -34,7 +31,10 @@ export const AnswerPageComponent = ({ id }) => {
     option: '질문순',
     offset: '',
   })
-  const [questionCounts, setQuestionCounts] = useState(0)
+  const [questionCounts, setQuestionCounts] = useState({
+    total: 0,
+    current: 0,
+  })
   const [loading, setLoading] = useState(true)
   const [feeds, setFeeds] = useState([])
   const [isToast, setIsToast] = useState(false)
@@ -63,7 +63,7 @@ export const AnswerPageComponent = ({ id }) => {
   const fetchProfileData = async () => {
     const { imageSource, questionCount, name } = await getSubject(id)
 
-    setQuestionCounts(questionCount)
+    setQuestionCounts((prev) => ({ ...prev, total: questionCount }))
     setProfileState({ profileImage: imageSource, profileName: name })
   }
 
@@ -109,7 +109,7 @@ export const AnswerPageComponent = ({ id }) => {
       {loading || (
         <QuestionsList>
           <QuestionCount>
-            <Text>{questionCounts}개의 질문이 있습니다.</Text>
+            <Text>{questionCounts.total}개의 질문이 있습니다.</Text>
           </QuestionCount>
           <FeedCardList
             id={id}
