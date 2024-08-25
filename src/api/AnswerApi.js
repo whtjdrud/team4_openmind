@@ -1,25 +1,21 @@
 import axios from 'axios'
 
+const LIMIT = 6
 const API_BASE_URL = 'https://openmind-api.vercel.app/3-4/'
+
 export const getSubject = async (id) => {
-  try {
-    const response = await fetch(`${API_BASE_URL}subjects/${id}/`)
-    if (!response.ok) {
-      throw new Error('Network response was not ok')
-    }
-    return response.json()
-  } catch (err) {
-    return null
-  }
+  const response = await axios.get(`${API_BASE_URL}subjects/${id}/`)
+  return response.data
 }
-export const fetchQuestions = async ({ id, offset = 0, limit = 6 }) => {
-  const query = `offset=${offset}&limit=${limit}`
-  const response = await fetch(`${API_BASE_URL}subjects/${id}/questions/?${query}`)
-  return response.json()
+
+export const fetchQuestions = async ({ id, offset = 0 }) => {
+  const query = `offset=${offset}&limit=${LIMIT}`
+  const response = await axios.get(`${API_BASE_URL}subjects/${id}/questions/?${query}`)
+  return response.data
 }
 export const fetchUserData = async (subjectId) => {
-  const response = await fetch(`${API_BASE_URL}subjects/${subjectId}/`)
-  return response.json()
+  const response = await axios.get(`${API_BASE_URL}subjects/${subjectId}/`)
+  return response.data
 }
 
 export const postAnswer = async (questionId, content, isRejected) => {

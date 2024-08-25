@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Text } from '../../atomicComponents/FeedCard/styledCard'
 import {
   PageLayout,
@@ -21,8 +21,6 @@ import QuestionModal from '../../atomicComponents/QuestionModal'
 import ProfileSkeletonComponent from '../../atomicComponents/Skeleton/ProfileSkeletonComponent'
 import { getSubject, fetchQuestions } from '../../../api/AnswerApi'
 import Toast from '../../atomicComponents/Toast'
-
-const LIMIT = 6
 
 export const AskPageComponent = ({ id }) => {
   const [profileState, setProfileState] = useState({
@@ -49,10 +47,17 @@ export const AskPageComponent = ({ id }) => {
     setIsOpenModal(false)
   }
 
+  const navigate = useNavigate()
+
   const getSubjectProfile = async () => {
-    const { imageSource, questionCount, name } = await getSubject(id)
-    setQuestionCounts((prev) => ({ ...prev, total: questionCount }))
-    setProfileState({ profileImage: imageSource, profileName: name })
+    try {
+      const { imageSource, questionCount, name } = await getSubject(id)
+      setQuestionCounts((prev) => ({ ...prev, total: questionCount }))
+      setProfileState({ profileImage: imageSource, profileName: name })
+    } catch (err) {
+      navigate('/error')
+      throw new Error('Network response was not ok')
+    }
   }
 
   const fetchAndSetQuestions = async (options) => {
@@ -78,12 +83,12 @@ export const AskPageComponent = ({ id }) => {
 
   const handleLoadMore = () => {
     const { offset } = feedState
-    fetchAndSetQuestions({ id, offset, limit: LIMIT })
+    fetchAndSetQuestions({ id, offset })
   }
 
   useEffect(() => {
     const profilePromise = getSubjectProfile()
-    const questionPromise = fetchAndSetQuestions({ id, offset: 0, limit: LIMIT })
+    const questionPromise = fetchAndSetQuestions({ id, offset: 0 })
 
     Promise.all([profilePromise, questionPromise]).then(() => {
       const timer = setTimeout(() => {
