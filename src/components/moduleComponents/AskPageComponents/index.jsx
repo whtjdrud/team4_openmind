@@ -29,7 +29,7 @@ export const AskPageComponent = ({ id }) => {
   })
   const [feedState, setFeedState] = useState({
     option: '질문순',
-    offset: '',
+    offset: 0,
   })
   const [questionCounts, setQuestionCounts] = useState({
     total: 0,
