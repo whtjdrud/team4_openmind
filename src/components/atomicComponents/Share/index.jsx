@@ -12,11 +12,6 @@ const ShareBtn = () => {
   const Params = useParams()
   const url = `${window.location.origin}/post/${Params.id}`
 
-  const shareToFacebook = () => {
-    const sharedLink = encodeURIComponent(url)
-    window.open(`http://www.facebook.com/sharer/sharer.php?u=${sharedLink}`, '_blank')
-  }
-
   const handleCopyClipBoard = async (text) => {
     try {
       await navigator.clipboard.writeText(text)
@@ -27,6 +22,11 @@ const ShareBtn = () => {
     } catch (err) {
       console.log(err)
     }
+  }
+
+  const shareToFacebook = () => {
+    const sharedLink = encodeURIComponent(url)
+    window.open(`http://www.facebook.com/sharer/sharer.php?u=${sharedLink}`, '_blank')
   }
 
   const handleShareKakao = () => {

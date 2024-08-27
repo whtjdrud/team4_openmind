@@ -51,7 +51,6 @@ const FeedCardList = ({
   return (
     <>
       <Dropdown setFeedState={setFeedState} feedState={feedState} />
-      {/* filter 값이 있으면 필터된 피드 카드가 나열되고 filter값이 없으면 정렬된 피드 카드가 나열됩니다. */}
       {questionCounts.current === 0 && (
         <NotYet>
           <BoxImg src={EmptyBox} />

@@ -31,7 +31,7 @@ export default function timeSince(date) {
     return '1달전'
   }
   if (months < 12) {
-    return `${months}시간전`
+    return `${months}개월 전`
   }
   if (years < 2) {
     return '1년전'
